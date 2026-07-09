@@ -446,6 +446,71 @@ body::before{
 .jj-milestone-title{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:var(--tea-dk);margin-bottom:6px;}
 .jj-milestone-desc{font-size:13.5px;color:var(--t2);line-height:1.8;}
 
+/* ─── AUDIENCE SECTION ─── */
+.jj-audience{position:relative;z-index:5;padding:56px 32px;border-bottom:1px solid var(--line);}
+.jj-audience-inner{max-width:1200px;margin:0 auto;}
+.jj-audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;}
+.jj-audience-card{
+  padding:28px 26px;border:1px solid var(--line);background:var(--paper);
+  border-radius:2px;transition:border-color .25s,box-shadow .25s,transform .25s;
+}
+.jj-audience-card:hover{border-color:var(--line-a);box-shadow:0 4px 20px rgba(58,53,48,.04);transform:translateY(-2px);}
+.jj-audience-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:var(--wood-dk);background:var(--wood-glow);border:1px solid var(--line-a);border-radius:2px;margin-bottom:16px;}
+.jj-audience-title{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:var(--t1);margin-bottom:8px;}
+.jj-audience-desc{font-size:13.5px;line-height:1.85;color:var(--t2);}
+.jj-audience-bar{display:flex;align-items:center;gap:24px;margin-top:28px;padding:20px 26px;background:var(--tea-glow);border:1px solid rgba(139,168,136,.18);border-radius:2px;flex-wrap:wrap;}
+.jj-audience-bar-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--t2);}
+.jj-audience-bar-num{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:700;color:var(--tea-dk);}
+.jj-audience-bar-sep{width:1px;height:28px;background:var(--line-a);}
+
+/* ─── GLOSSARY SECTION ─── */
+.jj-glossary-toggle{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--wood-dk);font-family:'Noto Sans SC',sans-serif;
+  padding:8px 16px;border:1px solid var(--line-a);
+  background:var(--wood-glow);border-radius:2px;margin-bottom:16px;
+  transition:background .25s;cursor:pointer;
+}
+.jj-glossary-toggle:hover{background:rgba(184,153,104,.12);}
+.jj-glossary-toggle-arrow{transition:transform .3s;font-size:10px;}
+.jj-glossary-toggle.open .jj-glossary-toggle-arrow{transform:rotate(180deg);}
+.jj-glossary-panel{display:none;margin-top:8px;}
+.jj-glossary-panel.open{display:block;}
+.jj-glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--line);border-radius:2px;overflow:hidden;}
+.jj-glossary-item{padding:18px 22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .2s;}
+.jj-glossary-item:hover{background:rgba(184,153,104,.03);}
+.jj-glossary-item:nth-child(2n){border-right:none;}
+.jj-glossary-term{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px;}
+.jj-glossary-en{font-family:monospace;font-size:11px;color:var(--wood-dk);margin-left:8px;font-weight:400;}
+.jj-glossary-def{font-size:13px;line-height:1.8;color:var(--t2);}
+
+/* ─── INTERVIEW SECTION ─── */
+.jj-interview-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.jj-interview-card{
+  padding:24px 26px;border:1px solid var(--line);background:var(--paper);
+  border-radius:2px;transition:border-color .25s,box-shadow .25s;
+  display:flex;flex-direction:column;gap:10px;
+}
+.jj-interview-card:hover{border-color:var(--line-a);box-shadow:0 4px 16px rgba(58,53,48,.04);}
+.jj-interview-tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.1em;padding:3px 10px;background:var(--wood-glow);border:1px solid var(--line-a);color:var(--wood-dk);font-family:'Noto Serif SC',serif;text-transform:uppercase;border-radius:1px;width:fit-content;}
+.jj-interview-q{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--t1);line-height:1.6;}
+.jj-interview-hint{font-size:12.5px;line-height:1.8;color:var(--t3);padding-top:8px;border-top:1px solid var(--line);}
+.jj-interview-hint-label{font-family:'Noto Serif SC',serif;font-size:10px;letter-spacing:.16em;color:var(--wood-dk);text-transform:uppercase;margin-right:6px;}
+
+/* ─── PITFALL SECTION ─── */
+.jj-pitfall-list{display:flex;flex-direction:column;gap:16px;}
+.jj-pitfall-item{
+  display:flex;gap:18px;padding:22px 26px;
+  border:1px solid var(--line);background:var(--paper);border-radius:2px;
+  transition:border-color .25s,box-shadow .25s;
+}
+.jj-pitfall-item:hover{border-color:var(--line-a);box-shadow:0 2px 12px rgba(58,53,48,.03);}
+.jj-pitfall-num{font-family:'Noto Serif SC',serif;font-size:28px;font-weight:900;color:var(--wood);opacity:.4;flex-shrink:0;line-height:1;}
+.jj-pitfall-body{flex:1;}
+.jj-pitfall-title{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--t1);margin-bottom:6px;}
+.jj-pitfall-wrong{font-size:13px;line-height:1.8;color:var(--warm-red);margin-bottom:4px;}
+.jj-pitfall-right{font-size:13px;line-height:1.8;color:var(--tea-dk);}
+
 /* ─── STATS BAR ─── */
 .jj-stats{position:relative;z-index:5;border-bottom:1px solid var(--line);background:var(--bg1);}
 .jj-stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
@@ -572,6 +637,8 @@ body::before{
 .jj-lib-row{display:grid;grid-template-columns:260px 180px 1fr;gap:16px;padding:13px 22px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.65;transition:background .2s;}
 .jj-lib-row:last-child{border-bottom:none;}
 .jj-lib-row:hover{background:rgba(184,153,104,.03);}
+.jj-lib-a a:hover{color:var(--wood-dk);text-decoration:underline !important;text-underline-offset:3px;}
+.jj-lib-row:hover .jj-lib-a{cursor:pointer;}
 .jj-lib-a{font-weight:600;color:var(--t1);}
 .jj-lib-b{font-family:monospace;font-size:12px;color:var(--wood-dk);}
 .jj-lib-c{color:var(--t2);}
@@ -823,6 +890,11 @@ body::before{
   .jj-section{padding:60px 20px;}
   .jj-section-h2{font-size:30px;}
   .jj-hero{padding:60px 20px 56px;min-height:auto;}
+  .jj-audience-grid{grid-template-columns:1fr;}
+  .jj-glossary-grid{grid-template-columns:1fr;}
+  .jj-glossary-item{border-right:none;}
+  .jj-interview-grid{grid-template-columns:1fr;}
+  .jj-audience{padding:48px 20px;}
 }
 
 @media (max-width: 768px) {
@@ -865,6 +937,9 @@ body::before{
   .jj-stats-inner{grid-template-columns:repeat(2,1fr);}
   .jj-phase-body.collapsed{max-height:none;opacity:1;display:block;}
   .jj-phase-collapsed-hint{display:none !important;}
+  .jj-glossary-panel{display:block !important;}
+  .jj-audience-card,.jj-interview-card,.jj-pitfall-item{border:1px solid #ddd;break-inside:avoid;}
+  .jj-glossary-item{break-inside:avoid;}
 }
 </style>
 </head>
@@ -896,7 +971,9 @@ body::before{
   <button class="jj-rail-dot" data-rail="phase3" onclick="scrollToSection('phase3')" aria-label="跳转到实战项目" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">实战项目</span></button>
   <button class="jj-rail-dot" data-rail="phase4" onclick="scrollToSection('phase4')" aria-label="跳转到求职冲刺" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">求职冲刺</span></button>
   <div class="jj-rail-dot-spacer"></div>
+  <button class="jj-rail-dot" data-rail="glossary" onclick="scrollToSection('glossary')" aria-label="跳转到术语词典" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">术语词典</span></button>
   <button class="jj-rail-dot" data-rail="resources" onclick="scrollToSection('resources')" aria-label="跳转到资料库" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">资料库</span></button>
+  <button class="jj-rail-dot" data-rail="interview" onclick="scrollToSection('interview')" aria-label="跳转到面试真题" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">面试真题</span></button>
   <button class="jj-rail-dot" data-rail="contact" onclick="scrollToSection('contact')" aria-label="跳转到加入社群" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">加入社群</span></button>
   <button class="jj-rail-top-dot" onclick="scrollToTop()" aria-label="回到顶部" tabindex="0" title="回到顶部">&#9650;</button>
 </nav>
@@ -908,7 +985,7 @@ body::before{
     <div class="jj-shortcut-sub">按 <code style="font-family:monospace;background:#EFE9E0;padding:1px 6px;border-radius:2px;">?</code> 打开，<code style="font-family:monospace;background:#EFE9E0;padding:1px 6px;border-radius:2px;">Esc</code> 关闭</div>
     <div class="jj-shortcut-group">
       <div class="jj-shortcut-group-label">页面导航</div>
-      <div class="jj-shortcut-row"><span class="jj-shortcut-key">1 – 7</span><span class="jj-shortcut-desc">跳转到对应章节</span></div>
+      <div class="jj-shortcut-row"><span class="jj-shortcut-key">1 – 9</span><span class="jj-shortcut-desc">跳转到对应章节</span></div>
       <div class="jj-shortcut-row"><span class="jj-shortcut-key">J / K</span><span class="jj-shortcut-desc">下一个 / 上一个章节</span></div>
       <div class="jj-shortcut-row"><span class="jj-shortcut-key">T</span><span class="jj-shortcut-desc">回到顶部</span></div>
     </div>
@@ -938,6 +1015,8 @@ body::before{
     <a href="#phase2" class="jj-nav-link" data-nav="phase2">核心技能</a>
     <a href="#phase3" class="jj-nav-link" data-nav="phase3">实战项目</a>
     <a href="#phase4" class="jj-nav-link" data-nav="phase4">求职冲刺</a>
+    <a href="#glossary" class="jj-nav-link" data-nav="glossary">术语</a>
+    <a href="#interview" class="jj-nav-link" data-nav="interview">面试题</a>
     <a href="#resources" class="jj-nav-link" data-nav="resources">资料库</a>
     <a href="#contact" class="jj-nav-cta">加入社群</a>
   </div>
@@ -1008,6 +1087,41 @@ body::before{
     </div>
   </div>
 </header>
+
+<!-- ─── AUDIENCE ─── -->
+<section class="jj-audience">
+  <div class="jj-audience-inner">
+    <div class="jj-section-eyebrow jj-reveal">适合谁学</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s">你不需要懂算法，但需要懂产品</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s">这条路径不教你写训练代码，而是教你成为「能和算法团队对话、能定义 AI 产品边界」的产品经理。</p>
+    <div class="jj-audience-grid">
+      <div class="jj-audience-card jj-reveal">
+        <div class="jj-audience-icon">PM</div>
+        <div class="jj-audience-title">传统产品经理</div>
+        <div class="jj-audience-desc">有 2 年以上产品经验，想转 AI 方向。你已有的需求分析、用户研究、项目管理能力全部可以迁移——需要补的是 AI 技术认知和 Eval 思维。</div>
+      </div>
+      <div class="jj-audience-card jj-reveal" style="transition-delay:.1s">
+        <div class="jj-audience-icon">DEV</div>
+        <div class="jj-audience-title">开发者 / 工程师</div>
+        <div class="jj-audience-desc">会写代码但想转产品方向。你的技术理解力是巨大优势——需要补的是产品思维、用户视角和商业化判断。这条路径帮你完成「技术到产品」的跨越。</div>
+      </div>
+      <div class="jj-audience-card jj-reveal" style="transition-delay:.16s">
+        <div class="jj-audience-icon">NEW</div>
+        <div class="jj-audience-title">应届生 / 转行者</div>
+        <div class="jj-audience-desc">没有产品经验但想直接进入 AI 领域。路径从零开始，12 周系统学习 + 实战项目 + 求职冲刺，帮你拿到第一份 AI PM offer。</div>
+      </div>
+    </div>
+    <div class="jj-audience-bar jj-reveal" style="transition-delay:.2s">
+      <div class="jj-audience-bar-item"><span class="jj-audience-bar-num">~80h</span><span>总学习时长（兼职可完成）</span></div>
+      <div class="jj-audience-bar-sep"></div>
+      <div class="jj-audience-bar-item"><span class="jj-audience-bar-num">8-10h</span><span>每周建议投入</span></div>
+      <div class="jj-audience-bar-sep"></div>
+      <div class="jj-audience-bar-item"><span class="jj-audience-bar-num">0</span><span>前置编程要求（能看懂 Python 更佳）</span></div>
+      <div class="jj-audience-bar-sep"></div>
+      <div class="jj-audience-bar-item"><span class="jj-audience-bar-num">FREE</span><span>所有推荐资源免费</span></div>
+    </div>
+  </div>
+</section>
 
 <!-- ─── STATS ─── -->
 <div class="jj-stats">
@@ -1362,9 +1476,14 @@ body::before{
         <div>
           <div class="jj-phase-col-label">推荐资源</div>
           <div class="jj-resource-list">
-            <a href="#" class="jj-resource-card" aria-label="AI PM 面试题库">
+            <a href="#interview" class="jj-resource-card" aria-label="AI PM 面试题库">
               <span class="jj-resource-type-tag">指南</span>
               <div class="jj-resource-info"><div class="jj-resource-title">AI PM 面试题库</div><div class="jj-resource-sub">高频问题 + 答题框架 + 参考答案</div></div>
+              <span class="jj-resource-arrow" aria-hidden="true">&#8594;</span>
+            </a>
+            <a href="https://www.linkedin.com/podcast/the-ai-pm-build-new/extreme789/" target="_blank" rel="noopener" class="jj-resource-card" aria-label="AI PM 求职指南">
+              <span class="jj-resource-type-tag">文章</span>
+              <div class="jj-resource-info"><div class="jj-resource-title">AI PM 求职指南</div><div class="jj-resource-sub">简历优化 + 面试策略 + 岗位选择</div></div>
               <span class="jj-resource-arrow" aria-hidden="true">&#8594;</span>
             </a>
           </div>
@@ -1497,6 +1616,36 @@ body::before{
   </div>
 </section>
 
+<!-- ─── GLOSSARY ─── -->
+<section id="glossary" class="jj-section alt">
+  <div class="jj-section-inner">
+    <div class="jj-section-eyebrow jj-reveal">术语词典</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s">AI PM 黑话翻译器</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s">看到不认识的术语？来这里查。点击展开完整词典。</p>
+    <button class="jj-glossary-toggle jj-reveal" style="transition-delay:.16s" tabindex="0" onclick="toggleGlossary(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleGlossary(this)" aria-label="展开术语词典" aria-expanded="false">
+      展开全部术语 <span class="jj-glossary-toggle-arrow">&#9660;</span>
+    </button>
+    <div class="jj-glossary-panel jj-reveal" id="glossary-panel">
+      <div class="jj-glossary-grid">
+        <div class="jj-glossary-item"><div class="jj-glossary-term">大语言模型<span class="jj-glossary-en">LLM</span></div><div class="jj-glossary-def">用海量文本训练的 AI 模型，能理解和生成自然语言。代表：GPT-4、Claude、Gemini。PM 需要知道的是：它能做什么、不能做什么、为什么有时会「胡说」。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">检索增强生成<span class="jj-glossary-en">RAG</span></div><div class="jj-glossary-def">先从知识库检索相关文档，再让 LLM 基于文档生成回答。解决了 LLM 「知识截止」和「幻觉」问题。类比：开卷考试 vs 闭卷考试。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">评估框架<span class="jj-glossary-en">Eval</span></div><div class="jj-glossary-def">系统性地衡量 AI 产品输出质量的方法。包括：定义评估维度（准确率/相关性/安全性）、收集测试用例、跑分对比。AI PM 的核心技能之一。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">模型上下文协议<span class="jj-glossary-en">MCP</span></div><div class="jj-glossary-def">Anthropic 提出的开放标准，让 AI Agent 能连接外部工具和数据源。类比：AI 世界的 USB 接口——统一了 Agent 和工具之间的连接方式。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">智能体<span class="jj-glossary-en">Agent</span></div><div class="jj-glossary-def">能自主规划、调用工具、多步推理完成任务的 AI 系统。不只是「问答」，而是「做事」。核心机制：Agent Loop（感知→思考→行动→观察→循环）。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">工具调用<span class="jj-glossary-en">Tool Use</span></div><div class="jj-glossary-def">让 LLM 调用外部函数/API 的能力。比如查天气、搜数据库、发邮件。是 Agent 「做事」的基础——光会说不行，得能动手。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">思维链<span class="jj-glossary-en">Chain-of-Thought</span></div><div class="jj-glossary-def">让 LLM 在给出答案前先「展示推理过程」的技术。类似让学生写解题步骤而不是只写答案。能显著提升复杂推理任务的准确率。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">少样本学习<span class="jj-glossary-en">Few-shot</span></div><div class="jj-glossary-def">在 Prompt 中给 LLM 几个示例，让它理解你想要的输出格式和风格。类比：给新员工看几个之前的案例，他就能照着做。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">微调<span class="jj-glossary-en">Fine-tuning</span></div><div class="jj-glossary-def">在预训练模型基础上，用特定领域数据继续训练，让模型在某个方向更强。PM 需要判断：什么时候用 Prompt 工程（便宜），什么时候该微调（贵但效果好）。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">幻觉<span class="jj-glossary-en">Hallucination</span></div><div class="jj-glossary-def">LLM 生成看似合理但实际错误的内容。是 AI 产品最大的风险之一。PM 的核心职责：设计产品机制让用户能发现和纠正幻觉，而不是假装它不存在。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">检查点<span class="jj-glossary-en">Checkpointing</span></div><div class="jj-glossary-def">在 Agent 执行过程中保存中间状态，支持回退和恢复。类比：游戏的存档点。让长流程任务不会因为中途出错就全部重来。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">人机协作<span class="jj-glossary-en">Human-in-the-loop</span></div><div class="jj-glossary-def">在 AI 自动化流程中插入人工审核/决策节点。关键设计：什么时候该让人介入？介入成本 vs 错误成本如何权衡？这是 AI PM 的核心设计决策。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">Token<span class="jj-glossary-en">Token</span></div><div class="jj-glossary-def">LLM 处理文本的最小单位，约 0.75 个英文单词或 0.5 个中文字。API 按 Token 计费——PM 必须理解 Token 成本如何影响产品设计（比如要不要缓存、要不要截断）。</div></div>
+        <div class="jj-glossary-item"><div class="jj-glossary-term">温度<span class="jj-glossary-en">Temperature</span></div><div class="jj-glossary-def">控制 LLM 输出随机性的参数。温度=0 时输出确定（适合数据提取），温度=1 时更创造性（适合写文案）。PM 需要根据场景选择合适的温度。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── ZEN DIVIDER ─── -->
 <div class="jj-zen-divider" aria-hidden="true">
   <div class="jj-zen-line"></div>
@@ -1604,6 +1753,100 @@ body::before{
           <div class="jj-compare-note" style="grid-column:1/3;margin:0 0 18px;">
             <span class="jj-compare-note-label">要点</span>AI PM 最容易被低估的能力：设计数据飞轮，让产品越用越好。
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INTERVIEW QUESTIONS ─── -->
+<section id="interview" class="jj-section alt">
+  <div class="jj-section-inner">
+    <div class="jj-section-eyebrow jj-reveal">面试真题</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s">AI PM 高频面试题</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s">这些是真实面试中出现频率最高的问题。每道题附带了答题思路框架，帮你快速建立回答结构。</p>
+    <div class="jj-interview-grid jj-reveal" style="transition-delay:.18s">
+      <div class="jj-interview-card">
+        <span class="jj-interview-tag">Agent 设计</span>
+        <div class="jj-interview-q">设计一个客服 Agent，它需要能查订单、改地址、处理退款。你会怎么设计 Tool Use 和 Agent Loop？</div>
+        <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>先画 Agent 架构图（感知→工具选择→执行→观察→循环），再定义每个 Tool 的输入输出 schema，最后设计 fallback 策略（什么时候转人工）。重点讲清楚「多轮对话的状态管理」。</div>
+      </div>
+      <div class="jj-interview-card">
+        <span class="jj-interview-tag">Eval 方法</span>
+        <div class="jj-interview-q">你的 AI 客服上线后准确率只有 75%，你会怎么系统性地提升？</div>
+        <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>分三步：1) 建 Eval 数据集，按错误类型分类（幻觉/拒答/理解错误）；2) 分析 Top 3 错误类型的根因（Prompt/数据/模型）；3) 针对性优化并重新评估。强调「数据驱动的迭代」。</div>
+      </div>
+      <div class="jj-interview-card">
+        <span class="jj-interview-tag">产品策略</span>
+        <div class="jj-interview-q">RAG 和微调，什么场景选哪个？如果一个客户问「我的产品文档有 10 万页，怎么做 AI 问答」，你怎么回答？</div>
+        <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>核心判断：知识更新频率。频繁更新→RAG（改数据库不改模型）；稳定领域+特定格式→微调。10 万页文档→RAG + 分块策略 + 向量检索，不建议微调（成本高、更新难）。</div>
+      </div>
+      <div class="jj-interview-card">
+        <span class="jj-interview-tag">Agent 设计</span>
+        <div class="jj-interview-q">你的 Agent 延迟太高（平均 15 秒），用户抱怨。你会从哪些维度优化？</div>
+        <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>四个方向：1) 模型层——换小模型做路由，大模型做核心；2) Prompt 层——减少 Token、缓存 system prompt；3) 架构层——并行工具调用、流式输出；4) 产品层——加 loading 动画、分步展示结果。关键是先测量再优化。</div>
+      </div>
+      <div class="jj-interview-card">
+        <span class="jj-interview-tag">产品策略</span>
+        <div class="jj-interview-q">AI 产品和传统产品最大的区别是什么？用你自己的话解释。</div>
+        <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>三个核心差异：1) 确定性→概率性（接受非确定性输出）；2) 功能验收→持续 Eval（永不「完成」）；3) 数据是运营工具→数据是产品本身（数据飞轮）。用具体案例说明，不要背概念。</div>
+      </div>
+      <div class="jj-interview-card">
+        <span class="jj-interview-tag">Eval 方法</span>
+        <div class="jj-interview-q">什么是「幻觉」？你的产品里如何检测和降低幻觉？</div>
+        <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>幻觉 = LLM 生成看似合理但事实错误的内容。检测：自动（事实一致性校验）+ 人工（bad case 标注）。降低：RAG 提供事实依据、Prompt 约束（「不确定时说不知道」）、输出后校验。产品设计上让用户能纠错。</div>
+      </div>
+      <div class="jj-interview-card">
+        <span class="jj-interview-tag">技术协作</span>
+        <div class="jj-interview-q">你的算法工程师说「这个效果做不出来，模型能力不够」。你怎么判断他说的是真的还是推脱？</div>
+        <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>三步验证：1) 要具体的 Eval 数据（准确率多少？在什么测试集上？）；2) 对比竞品/开源方案（别人做到了吗？）；3) 拆解问题（是模型能力问题还是 Prompt/架构问题？）。AI PM 不需要会写代码，但必须能看懂 Eval 结果。</div>
+      </div>
+      <div class="jj-interview-card">
+        <span class="jj-interview-tag">产品策略</span>
+        <div class="jj-interview-q">给你 3 个月和 2 个工程师，做一个 AI 产品 MVP。你会选什么方向？为什么？</div>
+        <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>考察产品判断力。好的回答：选一个「AI 能做到、传统方案做不到」的场景（而不是用 AI 重复造轮子），有明确的 Eval 标准，MVP 范围克制（1 个核心功能 > 5 个半成品），有商业化路径。避免选太泛的方向。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PITFALL GUIDE ─── -->
+<section class="jj-section">
+  <div class="jj-section-inner">
+    <div class="jj-section-eyebrow jj-reveal">避坑指南</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s">新人最常见的四个误区</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s">这些坑，每一条都有无数人踩过。提前知道，少走三个月弯路。</p>
+    <div class="jj-pitfall-list jj-reveal" style="transition-delay:.18s">
+      <div class="jj-pitfall-item">
+        <div class="jj-pitfall-num">01</div>
+        <div class="jj-pitfall-body">
+          <div class="jj-pitfall-title">「我要先学会写代码再学 AI PM」</div>
+          <div class="jj-pitfall-wrong">&#10007; 误区：把学编程当成前置条件，花 3 个月学 Python，还没碰到真正的 AI PM 知识。</div>
+          <div class="jj-pitfall-right">&#10003; 正解：AI PM 的核心能力是产品判断 + Eval 思维 + Agent 设计，不是写代码。能看懂 Python 示例就够用了。直接开始学 Prompt 工程，在实践中学编程。</div>
+        </div>
+      </div>
+      <div class="jj-pitfall-item">
+        <div class="jj-pitfall-num">02</div>
+        <div class="jj-pitfall-body">
+          <div class="jj-pitfall-title">「学完理论就够了，项目以后再说」</div>
+          <div class="jj-pitfall-wrong">&#10007; 误区：只看书和课程，不做实战项目。面试时只能说「我学过」，拿不出任何作品。</div>
+          <div class="jj-pitfall-right">&#10003; 正解：项目经验是 AI PM 求职的硬通货。Phase 3 的实战项目不是可选项——它是你简历上最闪亮的部分。学完 Phase 2 就立刻开始做项目。</div>
+        </div>
+      </div>
+      <div class="jj-pitfall-item">
+        <div class="jj-pitfall-num">03</div>
+        <div class="jj-pitfall-body">
+          <div class="jj-pitfall-title">「Prompt 工程就是写几句话」</div>
+          <div class="jj-pitfall-wrong">&#10007; 误区：以为 Prompt 就是「帮我写个文案」，随便写写就行。</div>
+          <div class="jj-pitfall-right">&#10003; 正解：Prompt 工程是一套系统方法论——系统指令设计、few-shot 策略、思维链触发、输出格式控制、Eval 驱动迭代。这是 AI PM 的基本功，值得花 2 周以上深入练习。</div>
+        </div>
+      </div>
+      <div class="jj-pitfall-item">
+        <div class="jj-pitfall-num">04</div>
+        <div class="jj-pitfall-body">
+          <div class="jj-pitfall-title">「AI PM 就是给 AI 产品写 PRD」</div>
+          <div class="jj-pitfall-wrong">&#10007; 误区：用传统 PM 的思路做 AI 产品——列功能清单、画流程图、定义每个交互状态。</div>
+          <div class="jj-pitfall-right">&#10003; 正解：AI PM 的核心转变是从「定义确定行为」到「定义可接受的行为范围」。你需要设计 Eval 标准、接受非确定性输出、建数据飞轮。PRD 的写法完全不同——看 Compare 章节就懂了。</div>
         </div>
       </div>
     </div>
@@ -1762,12 +2005,12 @@ function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
       obs.unobserve(e.target);
     });
   },{threshold:.08});
-  document.querySelectorAll('.jj-section,.jj-hero,.jj-stats,.jj-radar-wrap,.jj-contact').forEach(function(el){obs.observe(el);});
+  document.querySelectorAll('.jj-section,.jj-hero,.jj-stats,.jj-radar-wrap,.jj-contact,.jj-audience').forEach(function(el){obs.observe(el);});
   document.querySelectorAll('.jj-hero .jj-reveal').forEach(function(el,i){setTimeout(function(){el.classList.add('jj-in');},i*110);});
 })();
 
 /* ─── NAV & RAIL SCROLL HIGHLIGHT ─── */
-var sectionIds = ['overview','phase1','phase2','phase3','phase4','resources','contact'];
+var sectionIds = ['overview','phase1','phase2','phase3','phase4','glossary','interview','resources','contact'];
 (function(){
   var navLinks = document.querySelectorAll('.jj-nav-link[data-nav]');
   var railDots = document.querySelectorAll('.jj-rail-dot[data-rail]');
@@ -2086,6 +2329,14 @@ function toggleNotes(btn) {
   }
 }
 
+function toggleGlossary(btn) {
+  var panel = document.getElementById('glossary-panel');
+  var open = panel.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  btn.firstChild.textContent = open ? '收起术语词典 ' : '展开全部术语 ';
+}
+
 function saveNotes(phase) {
   var ta = document.getElementById('notes-textarea-' + phase);
   if (!ta) return;
@@ -2272,26 +2523,26 @@ var libData = {
   docs: {
     cols: ['类别', '资源', '说明'],
     rows: [
-      ['Anthropic 官方文档','docs.claude.com','API、Agent SDK、MCP 协议规范','必读 Claude'],
-      ['Anthropic Academy','anthropic.com/learn','17-18 门免费认证课程','必读 Claude'],
-      ['MCP 入门 + 进阶','Anthropic Academy','两门连读，重点看 Sampling、Transport','进阶 MCP'],
-      ['AI Product Management','Anthropic Academy','讲 agentic 产品的评估 / 监控','必读'],
-      ['Building with Claude API','Anthropic Academy','覆盖 agent loop、tool use、managed agents','进阶 Claude'],
-      ['MCP 官方规范','modelcontextprotocol.io','开放协议标准文档','必读 MCP'],
-      ['LangGraph 文档','langchain.com/docs','图状态机、checkpointing、human-in-the-loop','进阶'],
+      ['Anthropic 官方文档','docs.claude.com','API、Agent SDK、MCP 协议规范','必读 Claude','https://docs.claude.com'],
+      ['Anthropic Academy','anthropic.com/learn','17-18 门免费认证课程','必读 Claude','https://www.anthropic.com/learn'],
+      ['MCP 入门 + 进阶','Anthropic Academy','两门连读，重点看 Sampling、Transport','进阶 MCP','https://www.anthropic.com/learn'],
+      ['AI Product Management','Anthropic Academy','讲 agentic 产品的评估 / 监控','必读','https://www.anthropic.com/learn'],
+      ['Building with Claude API','Anthropic Academy','覆盖 agent loop、tool use、managed agents','进阶 Claude','https://www.anthropic.com/learn'],
+      ['MCP 官方规范','modelcontextprotocol.io','开放协议标准文档','必读 MCP','https://modelcontextprotocol.io'],
+      ['LangGraph 文档','langchain.com/docs','图状态机、checkpointing、human-in-the-loop','进阶','https://langchain.com/docs'],
     ]
   },
   repos: {
     cols: ['仓库', '优先级', '建议操作'],
     rows: [
-      ['anthropics/claude-agent-sdk-python','核心','clone + 跑通 hello world','必读 Claude 开源'],
-      ['anthropics/claude-agent-sdk-demos','核心','精读 research-agent 多智能体协调','必读 Claude 开源'],
-      ['modelcontextprotocol/servers','核心','精读 filesystem、git 两个 server 源码','必读 MCP 开源'],
-      ['anthropics/claude-cookbooks','核心','找 evaluation notebook 借鉴评估框架','必读 Claude'],
-      ['anthropics/claude-quickstarts','建议','看 computer-use-demo 可观测性实践','进阶 Claude'],
-      ['modelcontextprotocol/*-sdk','建议','按技术栈选一个深入','进阶 MCP 开源'],
-      ['crewAIInc/crewAI','泛读','泛读 README，理解角色制范式','进阶 开源'],
-      ['microsoft/agent-framework','泛读','了解定位，AutoGen 继任者','开源'],
+      ['anthropics/claude-agent-sdk-python','核心','clone + 跑通 hello world','必读 Claude 开源','https://github.com/anthropics/claude-agent-sdk-python'],
+      ['anthropics/claude-agent-sdk-demos','核心','精读 research-agent 多智能体协调','必读 Claude 开源','https://github.com/anthropics/claude-agent-sdk-demos'],
+      ['modelcontextprotocol/servers','核心','精读 filesystem、git 两个 server 源码','必读 MCP 开源','https://github.com/modelcontextprotocol/servers'],
+      ['anthropics/claude-cookbooks','核心','找 evaluation notebook 借鉴评估框架','必读 Claude','https://github.com/anthropics/claude-cookbooks'],
+      ['anthropics/claude-quickstarts','建议','看 computer-use-demo 可观测性实践','进阶 Claude','https://github.com/anthropics/claude-quickstarts'],
+      ['modelcontextprotocol/*-sdk','建议','按技术栈选一个深入','进阶 MCP 开源','https://github.com/modelcontextprotocol'],
+      ['crewAIInc/crewAI','泛读','泛读 README，理解角色制范式','进阶 开源','https://github.com/crewAIInc/crewAI'],
+      ['microsoft/agent-framework','泛读','了解定位，AutoGen 继任者','开源','https://github.com/microsoft/agent-framework'],
     ]
   }
 };
@@ -2313,7 +2564,9 @@ function renderLib() {
     rowsEl.innerHTML = '<div class="jj-lib-empty"><span class="jj-lib-empty-icon">\uD83D\uDD0D</span><span>未找到匹配的资源，试试其他关键词或标签</span></div>';
   } else {
     rowsEl.innerHTML = rows.map(function(row) {
-      return '<div class="jj-lib-row"><span class="jj-lib-a">' + row[0] + '</span><span class="jj-lib-b">' + row[1] + '</span><span class="jj-lib-c">' + row[2] + '</span></div>';
+      var url = row[4] || '#';
+      var nameHTML = url !== '#' ? '<a href="' + url + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">' + row[0] + '</a>' : row[0];
+      return '<div class="jj-lib-row"><span class="jj-lib-a">' + nameHTML + '</span><span class="jj-lib-b">' + row[1] + '</span><span class="jj-lib-c">' + row[2] + '</span></div>';
     }).join('');
   }
 }
