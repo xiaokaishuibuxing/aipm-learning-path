@@ -1,0 +1,2658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI PM 学习路径 · 从零到一的系统成长之路</title>
+<meta name="description" content="从零到一成为 AI 产品经理的完整学习路径，包含 Prompt 工程、Agent 设计、MCP 协议与实战项目">
+<meta property="og:title" content="AI PM 学习路径">
+<meta property="og:description" content="12 周系统化学习路线图，四阶段渐进式成长">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F5F1EA">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='2' fill='%23B89968'/><text x='16' y='15' text-anchor='middle' dominant-baseline='central' font-family='serif' font-size='14' font-weight='700' fill='%23FFFDF8'>AI</text><text x='16' y='25' text-anchor='middle' dominant-baseline='central' font-family='serif' font-size='8' fill='rgba(255,253,248,0.85)'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:#F5F1EA;
+  color:#3A3530;
+  font-family:'Noto Sans SC',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:#8B7355;text-decoration:none;transition:color .25s;}
+a:hover{color:#A67B5B;}
+button{cursor:pointer;font-family:'Noto Sans SC',sans-serif;border:none;background:none;}
+
+/* ─── FOCUS-VISIBLE (A11Y) ─── */
+:focus-visible{outline:2px solid var(--wood);outline-offset:2px;border-radius:1px;}
+button:focus-visible,a:focus-visible,.jj-task-item:focus-visible{outline:2px solid var(--wood);outline-offset:2px;}
+
+/* ─── TOKENS ─── */
+:root{
+  --bg:        #F5F1EA;
+  --bg1:       #EFE9E0;
+  --bg2:       #E8E0D4;
+  --paper:     #FFFDF8;
+  --card:      #FFFFFF;
+  --glass:     rgba(255,253,248,0.88);
+  --glass-lt:  rgba(255,253,248,0.65);
+  --line:      rgba(139,115,85,0.12);
+  --line-a:    rgba(139,115,85,0.22);
+  --t1:        #3A3530;
+  --t2:        #6B6258;
+  --t3:        #A89E92;
+  --wood:      #B89968;
+  --wood-dk:   #8B7355;
+  --wood-lt:   #D4C4A8;
+  --tea:       #8BA888;
+  --tea-dk:    #6B8E6B;
+  --tea-glow:  rgba(139,168,136,0.10);
+  --gold:      #C4A661;
+  --copper:    #A67B5B;
+  --warm-red:  #C9785E;
+  --wood-glow: rgba(184,153,104,0.10);
+}
+
+/* ─── TEXTURE OVERLAY ─── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(184,153,104,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 80% 100%, rgba(139,168,136,0.05) 0%, transparent 60%);
+}
+
+/* ─── CANVAS BG ─── */
+#jj-bg{position:fixed;inset:0;z-index:0;pointer-events:none;will-change:transform;}
+
+/* ─── GRADIENT ORBS ─── */
+.jj-orbs{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.jj-orb{position:absolute;border-radius:50%;filter:blur(120px);}
+.jj-orb-a{width:700px;height:700px;top:-200px;right:-100px;background:radial-gradient(circle,rgba(184,153,104,0.10) 0%,transparent 70%);animation:jjFloat 22s ease-in-out infinite;}
+.jj-orb-b{width:550px;height:550px;bottom:-180px;left:-80px;background:radial-gradient(circle,rgba(139,168,136,0.08) 0%,transparent 70%);animation:jjFloat 28s ease-in-out infinite reverse;}
+.jj-orb-c{width:450px;height:450px;top:45%;left:35%;background:radial-gradient(circle,rgba(196,166,97,0.06) 0%,transparent 70%);animation:jjFloat 34s ease-in-out infinite 10s;}
+@keyframes jjFloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-50px) scale(1.05);}66%{transform:translate(-30px,35px) scale(0.96);}}
+
+/* ─── SCROLL PROGRESS BAR ─── */
+.jj-scroll-progress{
+  position:fixed;top:0;left:0;height:3px;
+  background:linear-gradient(90deg,var(--wood),var(--copper),var(--tea));
+  z-index:300;width:0;
+  transition:width .1s linear;
+  border-radius:0 2px 2px 0;
+}
+
+/* ─── BACK TO TOP ─── */
+.jj-btt{
+  position:fixed;bottom:32px;right:32px;z-index:200;
+  width:44px;height:44px;
+  background:var(--glass);
+  border:1px solid var(--line-a);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:var(--wood-dk);
+  border-radius:2px;cursor:pointer;
+  opacity:0;pointer-events:none;
+  transform:translateY(8px);
+  transition:opacity .3s,transform .3s,background .2s,box-shadow .2s;
+  backdrop-filter:blur(12px);
+}
+.jj-btt.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+.jj-btt:hover{background:rgba(184,153,104,.12);box-shadow:0 4px 16px rgba(184,153,104,.15);}
+
+/* ─── BADGE TOAST ─── */
+.jj-toast-container{
+  position:fixed;top:88px;right:32px;z-index:250;
+  display:flex;flex-direction:column;gap:10px;pointer-events:none;
+}
+.jj-toast{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--paper);border:1px solid var(--line-a);
+  padding:18px 24px;border-radius:2px;
+  box-shadow:0 8px 32px rgba(58,53,48,.1);
+  animation:jjToastIn .5s cubic-bezier(.22,1,.36,1),jjToastOut .4s 3.2s ease-in forwards;
+  pointer-events:auto;max-width:380px;
+}
+.jj-toast-icon{
+  width:44px;height:44px;
+  background:linear-gradient(135deg,#B89968,#8B7355);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Noto Serif SC',serif;font-size:20px;color:#FFFDF8;
+  border-radius:2px;flex-shrink:0;
+}
+.jj-toast-body{flex:1;}
+.jj-toast-title{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--t1);}
+.jj-toast-sub{font-size:12.5px;color:var(--t3);margin-top:2px;}
+.jj-toast-undo{
+  display:inline-block;margin-top:6px;font-size:12px;color:var(--wood-dk);
+  border-bottom:1px dashed var(--wood-dk);cursor:pointer;
+  font-family:'Noto Sans SC',sans-serif;
+  transition:opacity .2s;
+}
+.jj-toast-undo:hover{opacity:.7;}
+@keyframes jjToastIn{0%{opacity:0;transform:translateX(40px);}100%{opacity:1;transform:translateX(0);}}
+@keyframes jjToastOut{0%{opacity:1;transform:translateX(0);}100%{opacity:0;transform:translateX(40px);}}
+
+/* ─── TIME BADGE ─── */
+.jj-time-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;color:var(--tea-dk);
+  background:var(--tea-glow);border:1px solid rgba(139,168,136,.2);
+  padding:2px 9px;margin-left:8px;border-radius:1px;
+  font-family:'Noto Serif SC',serif;white-space:nowrap;
+}
+
+/* ─── REVEAL ANIMATIONS ─── */
+.jj-reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
+.jj-reveal.jj-left{transform:translateX(-28px);}
+.jj-reveal.jj-right{transform:translateX(28px);}
+.jj-reveal.jj-scale{transform:scale(.96);}
+.jj-reveal.jj-in{opacity:1;transform:none;}
+
+@keyframes jjPulse{0%,100%{opacity:.5;transform:scale(1);}50%{opacity:1;transform:scale(1.2);}}
+@keyframes jjCheckPop{0%{transform:scale(0) rotate(-20deg);}70%{transform:scale(1.2) rotate(3deg);}100%{transform:scale(1) rotate(0);}}
+
+/* ─── NAV ─── */
+.jj-nav{
+  position:sticky;top:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;height:68px;
+  background:rgba(245,241,234,0.92);
+  backdrop-filter:blur(24px) saturate(1.2);
+  border-bottom:1px solid var(--line);
+}
+.jj-logo{display:flex;align-items:center;gap:14px;}
+.jj-logo-icon{
+  width:38px;height:38px;
+  background:transparent;
+  border:1.5px solid var(--wood);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Noto Serif SC',serif;font-weight:300;font-size:15px;letter-spacing:.04em;color:var(--wood-dk);
+  border-radius:2px;
+  position:relative;overflow:hidden;
+  transition:box-shadow .3s,background .25s;
+}
+.jj-logo-icon:hover{background:var(--wood-glow);box-shadow:0 4px 20px rgba(184,153,104,.15);}
+.jj-logo-text{font-family:'Noto Serif SC',serif;font-weight:700;font-size:17px;letter-spacing:.06em;color:var(--t1);}
+.jj-logo-sub{font-family:'Noto Serif SC',serif;font-size:11px;letter-spacing:.18em;color:var(--t3);text-transform:uppercase;margin-top:1px;}
+.jj-nav-links{display:flex;align-items:center;gap:16px;font-size:12.5px;flex-wrap:wrap;}
+.jj-nav-link{color:var(--t2);position:relative;padding-bottom:2px;transition:color .25s;white-space:nowrap;}
+.jj-nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--wood);transition:width .3s cubic-bezier(.4,0,.2,1);}
+.jj-nav-link:hover{color:var(--t1);}
+.jj-nav-link:hover::after{width:100%;}
+.jj-nav-link.active{color:var(--wood-dk);font-weight:600;}
+.jj-nav-link.active::after{width:100%;}
+.jj-nav-cta{
+  display:inline-flex;align-items:center;height:36px;padding:0 20px;
+  background:var(--wood-glow);border:1px solid var(--line-a);
+  color:var(--wood-dk) !important;font-size:13.5px;font-weight:500;
+  border-radius:1px;
+  transition:background .25s,box-shadow .25s;white-space:nowrap;
+}
+.jj-nav-cta:hover{background:rgba(184,153,104,.18);box-shadow:0 2px 12px rgba(184,153,104,.12);}
+
+/* ─── HERO ─── */
+.jj-hero{
+  position:relative;z-index:5;
+  padding:80px 32px 76px;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;min-height:560px;
+  display:flex;align-items:center;
+}
+.jj-hero-deco{
+  position:absolute;right:-40px;top:50%;transform:translateY(-50%);
+  font-family:'Noto Serif SC',serif;font-weight:900;font-size:200px;line-height:1;
+  color:var(--wood);opacity:.03;pointer-events:none;user-select:none;letter-spacing:-.03em;
+}
+.jj-hero-inner{
+  position:relative;max-width:1200px;margin:0 auto;width:100%;
+  display:flex;gap:100px;align-items:flex-start;flex-wrap:wrap;
+}
+.jj-hero-left{flex:1;min-width:300px;}
+.jj-hero-greeting{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Noto Serif SC',serif;font-size:12px;letter-spacing:.22em;
+  color:var(--wood-dk);border:1px solid var(--line-a);
+  padding:7px 18px;margin-bottom:32px;text-transform:uppercase;
+  background:var(--wood-glow);border-radius:1px;
+}
+.jj-hero-dot{width:6px;height:6px;background:var(--wood);border-radius:50%;animation:jjPulse 2.5s ease-in-out infinite;}
+.jj-hero-h1{
+  font-family:'Noto Serif SC',serif;font-weight:900;font-size:58px;line-height:1.2;
+  margin:0 0 26px;color:var(--t1);letter-spacing:.01em;
+}
+.jj-hero-h1 em{color:var(--wood-dk);font-style:normal;}
+.jj-hero-p{font-size:16px;line-height:2.1;color:var(--t2);max-width:520px;margin:0 0 40px;}
+.jj-hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+.jj-btn-wood{
+  display:inline-flex;align-items:center;height:50px;padding:0 34px;
+  background:linear-gradient(135deg,#B89968,#8B7355);
+  color:#FFFDF8;font-size:15px;font-weight:600;font-family:'Noto Sans SC',sans-serif;
+  border-radius:1px;
+  transition:opacity .25s,box-shadow .25s,transform .15s;
+}
+.jj-btn-wood:hover{opacity:.92;box-shadow:0 6px 24px rgba(184,153,104,.25);transform:translateY(-1px);color:#FFFDF8;}
+.jj-btn-ghost{
+  display:inline-flex;align-items:center;height:50px;padding:0 34px;
+  border:1px solid var(--line-a);color:var(--t2);font-size:15px;font-family:'Noto Sans SC',sans-serif;
+  border-radius:1px;
+  transition:border-color .25s,color .25s,background .25s;
+}
+.jj-btn-ghost:hover{border-color:var(--wood);color:var(--wood-dk);background:var(--wood-glow);}
+
+/* ─── HERO CARD ─── */
+.jj-hero-right{flex-shrink:0;width:340px;padding-top:4px;}
+.jj-hero-card{
+  background:#FFFDFB;
+  border:1px solid var(--line);
+  box-shadow:0 8px 32px rgba(58,53,48,.05);
+  position:relative;overflow:hidden;border-radius:2px;
+}
+.jj-hero-card-hdr{
+  padding:14px 20px;border-bottom:1px solid var(--line);
+  font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:.06em;
+  color:var(--t3);display:flex;justify-content:space-between;text-transform:uppercase;
+}
+.jj-hero-card-live{display:flex;align-items:center;gap:8px;color:var(--t2);}
+.jj-hero-card-livdot{width:6px;height:6px;background:var(--tea);border-radius:50%;animation:jjPulse 2.5s ease-in-out infinite;}
+.jj-progress-row{
+  padding:14px 20px;border-bottom:1px solid var(--line);
+  display:flex;flex-direction:column;gap:6px;
+  cursor:pointer;transition:background .2s,color .2s;
+}
+.jj-progress-row:hover,.jj-progress-row:focus-visible{background:rgba(184,153,104,.06);}
+.jj-progress-row:active{background:rgba(184,153,104,.10);}
+.jj-progress-row:last-child{border-bottom:none;}
+.jj-progress-label{display:flex;justify-content:space-between;align-items:center;font-size:13px;}
+.jj-progress-title{color:var(--t2);font-weight:500;}
+.jj-progress-pct{font-family:'Noto Serif SC',serif;font-size:13px;color:var(--wood-dk);font-weight:500;}
+.jj-progress-track{height:2px;background:rgba(139,115,85,.08);overflow:hidden;border-radius:2px;}
+.jj-progress-fill{height:100%;background:linear-gradient(90deg,var(--wood),var(--copper));transition:width .8s cubic-bezier(.4,0,.2,1);border-radius:2px;}
+.jj-progress-sub{font-size:11.5px;color:var(--t3);margin-top:2px;}
+.jj-hero-card-export{
+  display:flex;align-items:center;justify-content:flex-end;gap:4px;
+  padding:10px 20px;
+  font-size:11.5px;color:var(--t3);font-family:'Noto Sans SC',sans-serif;
+  border-top:1px solid var(--line);
+  transition:color .2s,background .2s;
+}
+.jj-hero-card-export:hover,.jj-hero-card-export:focus-visible{
+  color:var(--wood-dk);background:rgba(184,153,104,.04);outline:none;
+}
+.jj-hero-card-export:focus-visible{outline:2px solid var(--wood);outline-offset:-2px;}
+.jj-hero-card-export:active{color:var(--wood-dk);background:rgba(184,153,104,.08);}
+.jj-hero-card-export-arrow{display:inline-block;transition:transform .2s;}
+.jj-hero-card-export:hover .jj-hero-card-export-arrow,
+.jj-hero-card-export:focus-visible .jj-hero-card-export-arrow{transform:translateX(3px);}
+
+/* ─── SECTION ─── */
+.jj-section{position:relative;z-index:5;padding:80px 32px;border-bottom:1px solid var(--line);}
+.jj-section.alt{background:var(--bg1);}
+.jj-section-inner{max-width:1200px;margin:0 auto;}
+.jj-section-eyebrow{font-family:'Noto Serif SC',serif;font-size:12px;letter-spacing:.24em;color:var(--wood-dk);text-transform:uppercase;margin-bottom:10px;}
+.jj-section-h2{font-family:'Noto Serif SC',serif;font-weight:700;font-size:36px;margin:0 0 16px;color:var(--t1);}
+.jj-section-lead{font-size:16px;line-height:2.1;color:var(--t2);max-width:660px;margin:0 0 48px;}
+
+/* ─── PHASE COLLAPSE CONTROLS ─── */
+.jj-collapse-all-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  height:36px;padding:0 18px;
+  border:1px solid var(--line-a);background:var(--glass);
+  color:var(--t2);font-size:13px;font-family:'Noto Sans SC',sans-serif;
+  border-radius:2px;margin-bottom:20px;margin-left:8px;
+  transition:background .25s,color .25s,border-color .25s;
+  vertical-align:middle;
+}
+.jj-collapse-all-btn:hover{background:rgba(184,153,104,.06);color:var(--wood-dk);border-color:var(--wood);}
+
+.jj-phase-toggle-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;color:var(--wood-dk);font-family:'Noto Sans SC',sans-serif;
+  padding:6px 14px;border:1px solid var(--line-a);
+  background:var(--wood-glow);border-radius:2px;
+  margin-bottom:16px;margin-left:4px;
+  transition:background .25s;
+}
+.jj-phase-toggle-btn:hover{background:rgba(184,153,104,.12);}
+.jj-phase-toggle-btn .jj-phase-toggle-arrow{transition:transform .3s;font-size:10px;}
+.jj-phase-toggle-btn.expanded .jj-phase-toggle-arrow{transform:rotate(180deg);}
+
+/* ─── OVERVIEW TIMELINE ─── */
+.jj-timeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:0;}
+.jj-timeline::before{
+  content:'';position:absolute;top:48px;left:calc(12.5%);right:calc(12.5%);height:1px;
+  background:linear-gradient(90deg,var(--wood) 0%,rgba(184,153,104,.3) 100%);z-index:0;
+}
+.jj-phase{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 12px;position:relative;z-index:1;}
+.jj-phase-node{
+  width:84px;height:84px;border:1px solid var(--line-a);background:var(--glass);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  margin-bottom:20px;position:relative;border-radius:2px;cursor:pointer;
+  transition:background .3s,box-shadow .3s,transform .25s;
+}
+.jj-phase:hover .jj-phase-node{background:rgba(184,153,104,.06);box-shadow:0 4px 24px rgba(184,153,104,.1);transform:translateY(-4px);}
+.jj-phase-num{font-family:'Noto Serif SC',serif;font-size:10px;letter-spacing:.2em;color:var(--t3);text-transform:uppercase;margin-bottom:4px;}
+.jj-phase-weeks{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:700;color:var(--wood-dk);line-height:1;}
+.jj-phase-weeks-label{font-size:10px;color:var(--t3);margin-top:2px;}
+.jj-phase-title{font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px;color:var(--t1);margin-bottom:8px;}
+.jj-phase-desc{font-size:13px;line-height:1.8;color:var(--t3);max-width:180px;}
+.jj-phase-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;padding:4px 10px;border:1px solid;margin-top:10px;font-family:'Noto Serif SC',serif;letter-spacing:.06em;border-radius:1px;}
+
+/* ─── PHASE DETAIL ─── */
+.jj-phase-body{border:1px solid var(--line);padding:0;background:var(--glass-lt);border-radius:2px;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .3s;overflow:hidden;}
+.jj-phase-body.collapsed{max-height:0;opacity:0;border:none;margin:0;}
+.jj-phase-body-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:32px;}
+.jj-phase-col-label{
+  font-family:'Noto Serif SC',serif;font-size:11px;letter-spacing:.2em;
+  color:var(--t3);text-transform:uppercase;margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.jj-phase-col-label::after{content:'';flex:1;height:1px;background:var(--line);}
+
+/* Goal pills */
+.jj-goal-list{display:flex;flex-direction:column;gap:8px;}
+.jj-goal-item{
+  display:flex;align-items:flex-start;gap:12px;padding:13px 16px;
+  border:1px solid var(--line);background:var(--paper);
+  font-size:14px;line-height:1.7;color:var(--t2);
+  border-radius:2px;
+  transition:border-color .25s,background .25s,box-shadow .25s;
+}
+.jj-goal-item:hover{border-color:var(--line-a);background:rgba(184,153,104,.03);box-shadow:0 2px 8px rgba(58,53,48,.03);}
+.jj-goal-dot{width:5px;height:5px;background:var(--wood);border-radius:50%;margin-top:8px;flex-shrink:0;box-shadow:0 0 6px rgba(184,153,104,.3);}
+
+/* Resource cards */
+.jj-resource-list{display:flex;flex-direction:column;gap:8px;}
+.jj-resource-card{
+  display:flex;align-items:center;gap:16px;padding:14px 18px;
+  border:1px solid var(--line);background:var(--paper);text-decoration:none;
+  border-radius:2px;
+  transition:border-color .25s,background .25s,transform .25s,box-shadow .25s;
+}
+.jj-resource-card:hover{border-color:var(--line-a);background:rgba(184,153,104,.03);transform:translateX(4px);box-shadow:0 2px 8px rgba(58,53,48,.04);}
+.jj-resource-type-tag{
+  font-size:10px;letter-spacing:.1em;padding:4px 10px;
+  background:var(--wood-glow);border:1px solid var(--line-a);color:var(--wood-dk);
+  font-family:'Noto Serif SC',serif;white-space:nowrap;text-transform:uppercase;border-radius:1px;
+}
+.jj-resource-info{flex:1;}
+.jj-resource-title{font-size:14px;font-weight:500;color:var(--t1);margin-bottom:3px;}
+.jj-resource-sub{font-size:12px;color:var(--t3);}
+.jj-resource-arrow{color:var(--wood);font-size:16px;}
+
+/* Task checklist */
+.jj-task-list{display:flex;flex-direction:column;gap:4px;margin-top:8px;}
+.jj-task-item{
+  display:flex;align-items:flex-start;gap:13px;padding:11px 14px;cursor:pointer;
+  border:1px solid transparent;border-radius:2px;
+  transition:border-color .2s,background .2s;
+}
+.jj-task-item:hover{border-color:var(--line);background:rgba(184,153,104,.03);}
+.jj-task-check{
+  width:20px;height:20px;border:1.5px solid var(--t3);border-radius:2px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+  transition:border-color .25s,background .25s;
+}
+.jj-task-check.done{border-color:var(--wood);background:var(--wood);color:#FFFDF8;}
+.jj-task-check.done::after{content:'\2713';font-size:12px;animation:jjCheckPop .3s ease;}
+.jj-task-text{font-size:13.5px;line-height:1.75;color:var(--t2);transition:color .25s,text-decoration .25s;flex:1;}
+.jj-task-text.done{color:var(--t3);text-decoration:line-through;}
+
+/* ─── NOTES PANEL ─── */
+.jj-notes-toggle{
+  margin-top:20px;display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--wood-dk);font-family:'Noto Sans SC',sans-serif;
+  padding:8px 16px;border:1px solid var(--line-a);
+  background:var(--wood-glow);border-radius:2px;
+  transition:background .25s;cursor:pointer;
+}
+.jj-notes-toggle:hover{background:rgba(184,153,104,.12);}
+.jj-notes-toggle-arrow{transition:transform .3s;font-size:10px;}
+.jj-notes-toggle.open .jj-notes-toggle-arrow{transform:rotate(180deg);}
+.jj-notes-panel{display:none;margin-top:16px;padding:20px 24px;background:var(--paper);border:1px solid var(--line);border-radius:2px;}
+.jj-notes-panel.open{display:block;}
+.jj-notes-textarea{
+  width:100%;min-height:120px;border:1px solid var(--line);background:var(--bg);
+  padding:14px;font-family:'Noto Sans SC',sans-serif;font-size:14px;line-height:1.8;
+  color:var(--t1);resize:vertical;outline:none;border-radius:2px;
+  transition:border-color .25s;
+}
+.jj-notes-textarea:focus{border-color:var(--wood);}
+.jj-notes-save-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;}
+.jj-notes-save-btn{
+  height:36px;padding:0 22px;
+  background:linear-gradient(135deg,#B89968,#8B7355);
+  color:#FFFDF8;font-size:13px;font-weight:600;
+  font-family:'Noto Sans SC',sans-serif;border-radius:2px;
+  transition:opacity .25s;cursor:pointer;
+}
+.jj-notes-save-btn:hover{opacity:.9;}
+.jj-notes-hint{font-size:12px;color:var(--t3);}
+
+/* Milestone */
+.jj-milestone{
+  margin-top:28px;padding:20px 24px;
+  background:var(--tea-glow);border:1px solid rgba(139,168,136,.2);
+  display:flex;align-items:flex-start;gap:16px;border-radius:2px;
+}
+.jj-milestone-icon{font-size:26px;flex-shrink:0;margin-top:1px;}
+.jj-milestone-title{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:var(--tea-dk);margin-bottom:6px;}
+.jj-milestone-desc{font-size:13.5px;color:var(--t2);line-height:1.8;}
+
+/* ─── STATS BAR ─── */
+.jj-stats{position:relative;z-index:5;border-bottom:1px solid var(--line);background:var(--bg1);}
+.jj-stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.jj-stat{padding:36px 24px;border-right:1px solid var(--line);position:relative;overflow:hidden;transition:background .3s;}
+.jj-stat:last-child{border-right:none;}
+.jj-stat:hover{background:rgba(184,153,104,.03);}
+.jj-stat::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--wood),var(--copper));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.jj-stat:hover::after{transform:scaleX(1);}
+.jj-stat-val{font-family:'Noto Serif SC',serif;font-size:44px;font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--t1);}
+.jj-stat-val span{font-size:22px;color:var(--wood-dk);}
+.jj-stat-label{font-size:13px;color:var(--t3);margin-top:10px;}
+
+/* ─── RADAR SECTION ─── */
+.jj-radar-wrap{
+  position:relative;z-index:5;padding:60px 32px;
+  background:linear-gradient(180deg,var(--bg1) 0%,var(--bg) 100%);
+}
+.jj-radar-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.jj-radar-chart-box{
+  background:var(--glass);border:1px solid var(--line);
+  border-radius:2px;padding:24px;
+  position:relative;overflow:hidden;
+}
+.jj-radar-chart-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(184,153,104,.3),transparent);
+}
+.jj-radar-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:var(--t1);margin-bottom:6px;}
+.jj-radar-sub{font-size:13.5px;color:var(--t3);margin-bottom:20px;line-height:1.7;}
+.jj-radar-dim-list{display:flex;flex-direction:column;gap:12px;}
+.jj-radar-dim-row{display:flex;align-items:center;gap:14px;}
+.jj-radar-dim-label{font-size:13px;font-weight:500;color:var(--t1);width:100px;flex-shrink:0;}
+.jj-radar-dim-slider{
+  -webkit-appearance:none;flex:1;height:6px;
+  background:rgba(139,115,85,.12);border-radius:3px;
+  outline:none;
+}
+.jj-radar-dim-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:18px;height:18px;
+  background:var(--wood);border-radius:50%;
+  cursor:pointer;box-shadow:0 2px 6px rgba(184,153,104,.3);
+  transition:transform .15s;
+}
+.jj-radar-dim-slider::-webkit-slider-thumb:hover{transform:scale(1.2);}
+.jj-radar-dim-val{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:var(--wood-dk);width:28px;text-align:right;}
+.jj-radar-reset{
+  margin-top:20px;display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;color:var(--t3);font-family:'Noto Sans SC',sans-serif;
+  padding:6px 14px;border:1px solid var(--line);border-radius:2px;cursor:pointer;
+  transition:color .25s,border-color .25s;
+}
+.jj-radar-reset:hover{color:var(--wood-dk);border-color:var(--line-a);}
+
+/* ─── SPRINT TRACKER ─── */
+.jj-sprint-bar{
+  display:flex;align-items:center;gap:20px;padding:16px 22px;
+  border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(12px);
+  margin-bottom:20px;border-radius:2px;
+}
+.jj-sprint-label{font-family:'Noto Serif SC',serif;font-size:11px;letter-spacing:.2em;color:var(--t3);white-space:nowrap;text-transform:uppercase;}
+.jj-sprint-track{flex:1;height:4px;background:rgba(139,115,85,.08);overflow:hidden;border-radius:2px;}
+.jj-sprint-fill{height:100%;background:linear-gradient(90deg,var(--wood),var(--copper));transition:width .8s cubic-bezier(.4,0,.2,1);border-radius:2px;}
+.jj-sprint-pct{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:var(--wood-dk);min-width:52px;text-align:right;}
+
+.jj-sprint-week{border-bottom:1px solid var(--line);background:var(--paper);transition:background .2s;}
+.jj-sprint-week:last-child{border-bottom:none;}
+.jj-sprint-week.open{background:var(--glass);}
+.jj-sprint-header{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:18px 26px;cursor:pointer;transition:background .2s;
+}
+.jj-sprint-header:hover{background:rgba(184,153,104,.03);}
+.jj-sprint-h-left{display:flex;align-items:center;gap:16px;}
+.jj-sprint-week-num{font-family:'Noto Serif SC',serif;font-size:11px;color:var(--wood-dk);letter-spacing:.14em;text-transform:uppercase;}
+.jj-sprint-week-title{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:var(--t1);}
+.jj-sprint-h-right{display:flex;align-items:center;gap:16px;}
+.jj-sprint-week-prog{font-family:'Noto Serif SC',serif;font-size:12px;color:var(--wood-dk);}
+.jj-sprint-toggle{color:var(--wood);font-size:18px;transition:transform .3s;}
+.jj-sprint-week.open .jj-sprint-toggle{transform:rotate(180deg);}
+.jj-sprint-body{padding:0 26px 26px;display:none;}
+.jj-sprint-week.open .jj-sprint-body{display:block;}
+.jj-sprint-sub-label{font-family:'Noto Serif SC',serif;font-size:10px;letter-spacing:.2em;color:var(--t3);margin:12px 0 8px;text-transform:uppercase;}
+.jj-sprint-reading-item{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--t2);}
+.jj-sprint-reading-item span:first-child{color:var(--wood);flex-shrink:0;}
+.jj-sprint-task{display:flex;align-items:flex-start;gap:12px;padding:8px 0;cursor:pointer;}
+.jj-sprint-task-check{width:18px;height:18px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:10px;border:1.5px solid var(--t3);border-radius:2px;transition:border-color .25s,background .25s;}
+.jj-sprint-task-check.done{border-color:var(--wood);background:var(--wood);color:#FFFDF8;}
+.jj-sprint-task-check.done::after{content:'\2713';animation:jjCheckPop .3s ease;}
+.jj-sprint-task-text{font-size:13.5px;line-height:1.65;color:var(--t2);transition:color .25s,text-decoration .25s;flex:1;}
+.jj-sprint-task-text.done{color:var(--t3);text-decoration:line-through;}
+.jj-sprint-output{margin-top:16px;padding:14px 20px;background:var(--wood-glow);border:1px solid var(--line-a);font-size:13.5px;line-height:1.78;display:flex;gap:12px;color:var(--t2);border-radius:2px;}
+.jj-sprint-output-label{font-family:'Noto Serif SC',serif;font-size:10px;letter-spacing:.2em;color:var(--wood-dk);white-space:nowrap;text-transform:uppercase;}
+
+/* ─── RESOURCE LIBRARY ─── */
+.jj-lib-search-wrap{margin-bottom:16px;display:flex;gap:12px;flex-wrap:wrap;}
+.jj-lib-search{
+  height:42px;flex:1;min-width:220px;border:1px solid var(--line);background:var(--paper);
+  padding:0 16px;font-size:14px;font-family:'Noto Sans SC',sans-serif;outline:none;
+  color:var(--t1);border-radius:2px;transition:border-color .25s;
+}
+.jj-lib-search::placeholder{color:var(--t3);}
+.jj-lib-search:focus{border-color:var(--wood);}
+
+.jj-lib-tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+.jj-lib-tag{
+  height:30px;padding:0 12px;border:1px solid var(--line);background:var(--paper);
+  font-size:12px;font-family:'Noto Sans SC',sans-serif;color:var(--t2);
+  border-radius:2px;cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.jj-lib-tag:hover{color:var(--wood-dk);border-color:var(--line-a);}
+.jj-lib-tag.active{background:var(--wood);color:#FFFDF8;border-color:var(--wood);}
+
+.jj-lib-tabs{display:flex;border:1px solid var(--line);border-bottom:none;width:fit-content;border-radius:2px 2px 0 0;overflow:hidden;}
+.jj-lib-tab{height:40px;padding:0 22px;border-right:1px solid var(--line);font-size:13px;font-weight:500;font-family:'Noto Sans SC',sans-serif;cursor:pointer;transition:background .2s,color .2s;}
+.jj-lib-tab:last-child{border-right:none;}
+.jj-lib-tab.active{background:var(--paper);color:var(--wood-dk);font-weight:700;}
+.jj-lib-tab:not(.active){background:var(--bg1);color:var(--t3);}
+.jj-lib-table{border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(12px);border-radius:0 0 2px 2px;overflow:hidden;}
+.jj-lib-hdr{display:grid;grid-template-columns:260px 180px 1fr;gap:16px;padding:11px 22px;border-bottom:1px solid var(--line);font-family:'Noto Serif SC',serif;font-size:11px;letter-spacing:.16em;color:var(--t3);text-transform:uppercase;}
+.jj-lib-row{display:grid;grid-template-columns:260px 180px 1fr;gap:16px;padding:13px 22px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.65;transition:background .2s;}
+.jj-lib-row:last-child{border-bottom:none;}
+.jj-lib-row:hover{background:rgba(184,153,104,.03);}
+.jj-lib-a{font-weight:600;color:var(--t1);}
+.jj-lib-b{font-family:monospace;font-size:12px;color:var(--wood-dk);}
+.jj-lib-c{color:var(--t2);}
+.jj-lib-row.hidden{display:none;}
+.jj-lib-empty{
+  padding:40px 22px;text-align:center;color:var(--t3);font-size:14px;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.jj-lib-empty-icon{font-size:28px;opacity:.5;}
+
+/* ─── COMPARE ─── */
+.jj-compare-item{border-bottom:1px solid var(--line);}
+.jj-compare-item:last-child{border-bottom:none;}
+.jj-compare-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:20px 28px;transition:background .2s;cursor:pointer;}
+.jj-compare-btn:hover{background:rgba(184,153,104,.03);}
+.jj-compare-left{display:flex;align-items:center;gap:18px;}
+.jj-compare-num{font-family:'Noto Serif SC',serif;font-size:12px;color:var(--wood-dk);letter-spacing:.12em;}
+.jj-compare-dim{font-family:'Noto Serif SC',serif;font-size:19px;font-weight:700;color:var(--t1);}
+.jj-compare-toggle{color:var(--wood);font-size:18px;transition:transform .3s;}
+.jj-compare-item.open .jj-compare-toggle{transform:rotate(180deg);}
+.jj-compare-panels{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:0 28px 18px;}
+.jj-compare-panel{padding:18px 20px;border-radius:2px;}
+.jj-compare-panel-trad{background:rgba(139,115,85,.04);border:1px solid var(--line);}
+.jj-compare-panel-ai{background:var(--wood-glow);border:1px solid var(--line-a);}
+.jj-compare-panel-label{font-family:'Noto Serif SC',serif;font-size:11px;letter-spacing:.1em;margin-bottom:10px;text-transform:uppercase;}
+.jj-compare-panel-text{font-size:14px;line-height:1.9;}
+.jj-compare-note{display:flex;gap:12px;padding:12px 18px;background:var(--tea-glow);border:1px solid rgba(139,168,136,.18);font-size:13.5px;line-height:1.78;margin:0 28px 24px;color:var(--t2);border-radius:2px;}
+.jj-compare-note-label{font-family:'Noto Serif SC',serif;font-size:10px;letter-spacing:.2em;color:var(--tea-dk);white-space:nowrap;text-transform:uppercase;}
+
+/* ─── CONTACT ─── */
+.jj-contact{position:relative;z-index:5;padding:80px 32px 88px;border-bottom:1px solid var(--line);overflow:hidden;}
+.jj-contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 110%,rgba(184,153,104,.06) 0%,transparent 70%);pointer-events:none;}
+.jj-contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:64px;align-items:start;position:relative;}
+.jj-contact-eyebrow{font-family:'Noto Serif SC',serif;font-size:12px;letter-spacing:.26em;color:var(--wood-dk);text-transform:uppercase;}
+.jj-contact-h2{font-family:'Noto Serif SC',serif;font-weight:900;font-size:40px;margin:18px 0 22px;line-height:1.25;color:var(--t1);}
+.jj-contact-p{font-size:16px;line-height:2.1;color:var(--t2);max-width:440px;}
+.jj-contact-links{display:flex;flex-direction:column;gap:14px;margin-top:40px;}
+.jj-contact-row{display:flex;gap:16px;align-items:baseline;}
+.jj-contact-row-label{color:var(--t3);font-family:'Noto Serif SC',serif;font-size:11px;letter-spacing:.16em;width:60px;text-transform:uppercase;flex-shrink:0;}
+.jj-contact-row-val{font-size:15px;color:var(--t2);}
+.jj-form-card{
+  background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(20px) saturate(1.2);
+  padding:36px 32px;position:relative;overflow:hidden;border-radius:2px;
+  box-shadow:0 12px 40px rgba(58,53,48,.05);
+}
+.jj-form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(184,153,104,.35),transparent);}
+.jj-form-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;margin-bottom:26px;color:var(--t1);}
+.jj-form-fields{display:flex;flex-direction:column;gap:16px;}
+.jj-form-label{display:flex;flex-direction:column;gap:7px;font-size:11px;letter-spacing:.12em;color:var(--t3);text-transform:uppercase;font-family:'Noto Serif SC',serif;}
+.jj-form-input{
+  height:46px;border:1px solid var(--line);background:var(--paper);padding:0 14px;
+  font-size:14.5px;font-family:'Noto Sans SC',sans-serif;outline:none;color:var(--t1);
+  border-radius:2px;transition:border-color .25s,background .25s;
+}
+.jj-form-input::placeholder{color:var(--t3);}
+.jj-form-input:focus{border-color:var(--wood);background:rgba(184,153,104,.03);}
+.jj-form-input.error{border-color:var(--warm-red);background:rgba(201,120,94,.03);}
+.jj-form-error{font-size:12px;color:var(--warm-red);min-height:18px;margin-top:-4px;display:none;}
+.jj-form-error.visible{display:block;}
+.jj-form-success{
+  font-size:13.5px;color:var(--tea-dk);padding:10px 0;display:none;
+  align-items:center;gap:8px;animation:jjCheckPop .3s ease;
+}
+.jj-form-success.visible{display:flex;}
+.jj-form-fail{
+  font-size:13.5px;color:var(--warm-red);padding:10px 0;display:none;
+  align-items:center;gap:8px;animation:jjCheckPop .3s ease;line-height:1.6;
+}
+.jj-form-fail.visible{display:flex;}
+.jj-honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+.jj-form-actions{display:flex;gap:10px;}
+.jj-form-submit{
+  flex:1;height:50px;background:linear-gradient(135deg,#B89968,#8B7355);color:#FFFDF8;
+  font-size:15px;font-weight:600;font-family:'Noto Sans SC',sans-serif;
+  border-radius:2px;transition:opacity .25s,box-shadow .25s;cursor:pointer;
+}
+.jj-form-submit:hover{opacity:.92;box-shadow:0 6px 20px rgba(184,153,104,.2);}
+.jj-form-submit:disabled{opacity:.6;cursor:not-allowed;}
+.jj-form-reset{
+  height:50px;padding:0 24px;border:1px solid var(--line);
+  background:var(--paper);color:var(--t2);
+  font-size:14px;font-family:'Noto Sans SC',sans-serif;
+  border-radius:2px;cursor:pointer;transition:border-color .25s,color .25s;
+}
+.jj-form-reset:hover{border-color:var(--line-a);color:var(--wood-dk);}
+
+.jj-footer{max-width:1200px;margin:80px auto 0;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:12px;color:var(--t3);}
+.jj-footer-brand{font-family:'Noto Serif SC',serif;letter-spacing:.14em;text-transform:uppercase;}
+
+/* ─── ZEN DIVIDER ─── */
+.jj-zen-divider{display:flex;align-items:center;justify-content:center;gap:16px;padding:8px 0;}
+.jj-zen-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line-a),transparent);max-width:120px;}
+.jj-zen-mark{font-family:'Noto Serif SC',serif;font-size:14px;color:var(--t3);}
+
+/* ─── PHASE COLLAPSED HINT ─── */
+.jj-phase-collapsed-hint{
+  text-align:center;padding:28px 20px;color:var(--t3);font-size:13px;
+  border:1px dashed var(--line);border-radius:2px;
+  display:none;
+}
+.jj-phase-body.collapsed + .jj-phase-collapsed-hint{display:block;}
+
+/* ─── SECTION RAIL (right-side navigation dots) ─── */
+.jj-section-rail{
+  position:fixed;right:28px;top:50%;transform:translateY(-50%);
+  z-index:190;display:flex;flex-direction:column;align-items:center;
+  gap:0;
+}
+.jj-rail-line{
+  position:absolute;top:0;bottom:0;left:50%;width:1px;
+  background:linear-gradient(180deg,transparent 0%,var(--line-a) 15%,var(--line-a) 85%,transparent 100%);
+  z-index:0;
+}
+.jj-rail-dot{
+  position:relative;z-index:1;width:18px;height:18px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  background:none;border:none;padding:0;font-family:'Noto Sans SC',sans-serif;
+  transition:transform .2s;
+}
+.jj-rail-dot-inner{
+  width:8px;height:8px;border:1.5px solid var(--t3);
+  border-radius:50%;transition:all .3s cubic-bezier(.4,0,.2,1);
+  background:var(--bg);
+}
+.jj-rail-dot:hover .jj-rail-dot-inner{
+  border-color:var(--wood);background:var(--wood-lt);transform:scale(1.35);
+}
+.jj-rail-dot.active .jj-rail-dot-inner{
+  border-color:var(--wood);background:var(--wood);transform:scale(1.25);
+}
+.jj-rail-dot:focus-visible{outline:2px solid var(--wood);outline-offset:3px;border-radius:2px;}
+.jj-rail-dot-spacer{height:14px;}
+.jj-rail-tooltip{
+  position:absolute;right:28px;top:50%;transform:translateY(-50%);
+  white-space:nowrap;font-size:11.5px;color:var(--wood-dk);
+  background:var(--paper);border:1px solid var(--line-a);
+  padding:5px 12px;border-radius:2px;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s,transform .2s;
+  font-family:'Noto Serif SC',serif;letter-spacing:.04em;
+  box-shadow:0 2px 8px rgba(58,53,48,.06);
+}
+.jj-rail-dot:hover .jj-rail-tooltip{opacity:1;transform:translateY(-50%) translateX(-4px);}
+.jj-rail-top-dot{
+  margin-top:18px;width:24px;height:24px;border:1.5px solid var(--line-a);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--wood-dk);cursor:pointer;background:var(--glass);
+  border-radius:50%;transition:all .25s;
+  backdrop-filter:blur(8px);
+}
+.jj-rail-top-dot:hover{background:rgba(184,153,104,.1);border-color:var(--wood);transform:translateY(-2px);}
+
+/* ─── SECTION BACKGROUND TRANSITION ─── */
+.jj-section{transition:background-color .8s ease;}
+.jj-section.alt{transition:background-color .8s ease;}
+
+/* ─── PHASE WATERMARK ─── */
+.jj-phase-watermark{
+  position:absolute;top:-10px;left:-30px;
+  font-family:'Noto Serif SC',serif;font-weight:900;font-size:140px;line-height:1;
+  color:var(--wood);opacity:.04;pointer-events:none;user-select:none;
+  z-index:0;letter-spacing:-.04em;
+}
+
+/* ─── DAILY/WEEKLY STATS ─── */
+.jj-stat-sub{font-size:11px;color:var(--wood-dk);margin-top:4px;opacity:.8;}
+
+/* ─── RADAR SKELETON ─── */
+.jj-radar-skeleton{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:var(--glass);z-index:1;
+}
+.jj-radar-skeleton.hidden{display:none;}
+.jj-radar-skeleton-svg{width:200px;height:200px;opacity:.5;}
+
+/* ─── EXPORT BUTTON ─── */
+.jj-export-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  height:36px;padding:0 16px;
+  border:1px solid var(--line-a);background:var(--glass);
+  color:var(--t2);font-size:12px;font-family:'Noto Sans SC',sans-serif;
+  border-radius:2px;cursor:pointer;margin-top:12px;
+  transition:all .25s;
+}
+.jj-export-btn:hover{background:rgba(184,153,104,.06);color:var(--wood-dk);border-color:var(--wood);}
+
+/* ─── SHORTCUT PANEL ─── */
+.jj-shortcut-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(58,53,48,.15);backdrop-filter:blur(3px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s;
+}
+.jj-shortcut-overlay.open{opacity:1;pointer-events:auto;}
+.jj-shortcut-panel{
+  background:var(--paper);border:1px solid var(--line-a);
+  border-radius:4px;padding:32px 36px;max-width:420px;width:90%;
+  box-shadow:0 16px 48px rgba(58,53,48,.12);
+  transform:translateY(12px);transition:transform .3s cubic-bezier(.22,1,.36,1);
+}
+.jj-shortcut-overlay.open .jj-shortcut-panel{transform:translateY(0);}
+.jj-shortcut-title{
+  font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:var(--t1);margin-bottom:4px;
+}
+.jj-shortcut-sub{font-size:13px;color:var(--t3);margin-bottom:20px;}
+.jj-shortcut-group{
+  display:flex;flex-direction:column;gap:8px;margin-bottom:16px;
+}
+.jj-shortcut-group:last-child{margin-bottom:0;}
+.jj-shortcut-group-label{
+  font-family:'Noto Serif SC',serif;font-size:10px;letter-spacing:.2em;color:var(--wood-dk);
+  text-transform:uppercase;margin-bottom:2px;
+}
+.jj-shortcut-row{display:flex;align-items:center;gap:12px;}
+.jj-shortcut-key{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:28px;height:24px;padding:0 6px;
+  background:var(--bg1);border:1px solid var(--line-a);
+  font-family:monospace;font-size:11px;color:var(--wood-dk);
+  border-radius:3px;
+}
+.jj-shortcut-desc{font-size:13px;color:var(--t2);}
+.jj-shortcut-hint{
+  margin-top:20px;font-size:11px;color:var(--t3);
+  border-top:1px solid var(--line);padding-top:16px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .jj-section-rail{right:12px;}
+  .jj-rail-tooltip{display:none;}
+  .jj-rail-dot-inner{width:6px;height:6px;}
+  .jj-phase-watermark{font-size:100px;left:-20px;top:0;}
+  .jj-hero-h1{font-size:40px;}
+  .jj-hero-inner{flex-direction:column;gap:40px;}
+  .jj-hero-right{width:100%;padding-top:0;}
+  .jj-hero-deco{font-size:140px;opacity:.02;}
+  .jj-timeline{grid-template-columns:repeat(2,1fr);gap:24px;}
+  .jj-timeline::before{display:none;}
+  .jj-phase-body-grid{grid-template-columns:1fr;gap:24px;padding:24px;}
+  .jj-stats-inner{grid-template-columns:repeat(2,1fr);}
+  .jj-stat{border-right:none;border-bottom:1px solid var(--line);}
+  .jj-radar-inner{grid-template-columns:1fr;gap:32px;}
+  .jj-contact-inner{grid-template-columns:1fr;gap:40px;}
+  .jj-nav{padding:0 20px;height:auto;min-height:68px;flex-wrap:wrap;}
+  .jj-nav-links{gap:10px;font-size:11.5px;}
+  .jj-lib-hdr{grid-template-columns:200px 140px 1fr;font-size:10px;}
+  .jj-lib-row{grid-template-columns:200px 140px 1fr;}
+  .jj-section{padding:60px 20px;}
+  .jj-section-h2{font-size:30px;}
+  .jj-hero{padding:60px 20px 56px;min-height:auto;}
+}
+
+@media (max-width: 768px) {
+  .jj-hero-h1{font-size:32px;}
+  .jj-hero-deco{display:none;}
+  .jj-nav-links{flex-wrap:wrap;gap:6px;font-size:11px;}
+  .jj-timeline{grid-template-columns:1fr;gap:20px;}
+  .jj-phase{flex-direction:row;text-align:left;gap:18px;align-items:flex-start;}
+  .jj-phase-node{width:64px;height:64px;flex-shrink:0;margin-bottom:0;}
+  .jj-phase-weeks{font-size:18px;}
+  .jj-phase-desc{max-width:none;}
+  .jj-stats-inner{grid-template-columns:1fr;}
+  .jj-stat{padding:28px 20px;}
+  .jj-stat-val{font-size:36px;}
+  .jj-stat-val span{font-size:18px;}
+  .jj-hero-right{width:100%;padding-top:0;}
+  .jj-section-h2{font-size:26px;}
+  .jj-contact-h2{font-size:30px;}
+  .jj-lib-hdr,.jj-lib-row{grid-template-columns:1fr;gap:4px;padding:10px 14px;}
+  .jj-lib-search-wrap{flex-direction:column;}
+  .jj-btt{width:38px;height:38px;bottom:20px;right:20px;}
+  .jj-form-actions{flex-direction:column;}
+  .jj-section-rail{display:none;}
+}
+
+/* ─── PRINT ─── */
+@media print {
+  body{background:#fff !important;color:#000 !important;}
+  body::before,#jj-bg,.jj-orbs,.jj-hero-deco,.jj-btt,.jj-toast-container,.jj-scroll-progress{display:none !important;}
+  .jj-nav{position:static;border-bottom:2px solid #000;background:#fff !important;backdrop-filter:none;}
+  .jj-section,.jj-hero,.jj-radar-wrap,.jj-contact{padding:24px 0;border-bottom:1px solid #ccc;background:none !important;}
+  .jj-phase-body,.jj-lib-table,.jj-hero-card,.jj-form-card{background:#fff !important;border:1px solid #ccc;box-shadow:none;}
+  .jj-phase-node{border:1px solid #999;}
+  .jj-task-check{display:none;}
+  .jj-task-item,.jj-goal-item,.jj-resource-card{border:1px solid #ddd;break-inside:avoid;}
+  .jj-notes-textarea,.jj-form-input,.jj-lib-search,.jj-radar-dim-slider{border:1px solid #999;}
+  .jj-btn-wood,.jj-form-submit,.jj-notes-save-btn{background:#000 !important;color:#fff !important;}
+  .jj-hero-p,.jj-section-lead{max-width:none;}
+  .jj-timeline{grid-template-columns:repeat(2,1fr);}
+  .jj-stats-inner{grid-template-columns:repeat(2,1fr);}
+  .jj-phase-body.collapsed{max-height:none;opacity:1;display:block;}
+  .jj-phase-collapsed-hint{display:none !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS BAR -->
+<div class="jj-scroll-progress"></div>
+
+<canvas id="jj-bg"></canvas>
+<div class="jj-orbs" aria-hidden="true">
+  <div class="jj-orb jj-orb-a"></div>
+  <div class="jj-orb jj-orb-b"></div>
+  <div class="jj-orb jj-orb-c"></div>
+</div>
+
+<!-- BADGE TOAST CONTAINER -->
+<div class="jj-toast-container" id="jj-toast-container"></div>
+
+<!-- BACK TO TOP -->
+<button class="jj-btt" id="jj-btt" onclick="scrollToTop()" title="回到顶部" aria-label="回到顶部">&#9650;</button>
+
+<!-- SECTION RAIL -->
+<nav class="jj-section-rail" id="jj-rail" aria-label="章节导航">
+  <div class="jj-rail-line" aria-hidden="true"></div>
+  <button class="jj-rail-dot" data-rail="overview" onclick="scrollToSection('overview')" aria-label="跳转到路径总览" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">路径总览</span></button>
+  <div class="jj-rail-dot-spacer"></div>
+  <button class="jj-rail-dot" data-rail="phase1" onclick="scrollToSection('phase1')" aria-label="跳转到基础认知" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">基础认知</span></button>
+  <button class="jj-rail-dot" data-rail="phase2" onclick="scrollToSection('phase2')" aria-label="跳转到核心技能" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">核心技能</span></button>
+  <button class="jj-rail-dot" data-rail="phase3" onclick="scrollToSection('phase3')" aria-label="跳转到实战项目" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">实战项目</span></button>
+  <button class="jj-rail-dot" data-rail="phase4" onclick="scrollToSection('phase4')" aria-label="跳转到求职冲刺" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">求职冲刺</span></button>
+  <div class="jj-rail-dot-spacer"></div>
+  <button class="jj-rail-dot" data-rail="resources" onclick="scrollToSection('resources')" aria-label="跳转到资料库" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">资料库</span></button>
+  <button class="jj-rail-dot" data-rail="contact" onclick="scrollToSection('contact')" aria-label="跳转到加入社群" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">加入社群</span></button>
+  <button class="jj-rail-top-dot" onclick="scrollToTop()" aria-label="回到顶部" tabindex="0" title="回到顶部">&#9650;</button>
+</nav>
+
+<!-- SHORTCUT PANEL -->
+<div class="jj-shortcut-overlay" id="jj-shortcut-overlay" onclick="if(event.target===this)closeShortcuts()">
+  <div class="jj-shortcut-panel">
+    <div class="jj-shortcut-title">&#9000; 键盘快捷键</div>
+    <div class="jj-shortcut-sub">按 <code style="font-family:monospace;background:#EFE9E0;padding:1px 6px;border-radius:2px;">?</code> 打开，<code style="font-family:monospace;background:#EFE9E0;padding:1px 6px;border-radius:2px;">Esc</code> 关闭</div>
+    <div class="jj-shortcut-group">
+      <div class="jj-shortcut-group-label">页面导航</div>
+      <div class="jj-shortcut-row"><span class="jj-shortcut-key">1 – 7</span><span class="jj-shortcut-desc">跳转到对应章节</span></div>
+      <div class="jj-shortcut-row"><span class="jj-shortcut-key">J / K</span><span class="jj-shortcut-desc">下一个 / 上一个章节</span></div>
+      <div class="jj-shortcut-row"><span class="jj-shortcut-key">T</span><span class="jj-shortcut-desc">回到顶部</span></div>
+    </div>
+    <div class="jj-shortcut-group">
+      <div class="jj-shortcut-group-label">学习工具</div>
+      <div class="jj-shortcut-row"><span class="jj-shortcut-key">E</span><span class="jj-shortcut-desc">导出学习数据</span></div>
+      <div class="jj-shortcut-row"><span class="jj-shortcut-key">Esc</span><span class="jj-shortcut-desc">关闭此面板</span></div>
+    </div>
+    <div class="jj-shortcut-hint">提示：点击页面右侧小圆点也可以快速跳转章节。</div>
+  </div>
+</div>
+
+<div style="position:relative;z-index:5;">
+
+<!-- ─── NAV ─── -->
+<nav class="jj-nav" aria-label="主导航">
+  <div class="jj-logo">
+    <div class="jj-logo-icon" aria-hidden="true">AI</div>
+    <div>
+      <div class="jj-logo-text">AI PM 学习路径</div>
+      <div class="jj-logo-sub">从零到一的系统成长之路</div>
+    </div>
+  </div>
+  <div class="jj-nav-links">
+    <a href="#overview" class="jj-nav-link" data-nav="overview">路径总览</a>
+    <a href="#phase1" class="jj-nav-link" data-nav="phase1">基础认知</a>
+    <a href="#phase2" class="jj-nav-link" data-nav="phase2">核心技能</a>
+    <a href="#phase3" class="jj-nav-link" data-nav="phase3">实战项目</a>
+    <a href="#phase4" class="jj-nav-link" data-nav="phase4">求职冲刺</a>
+    <a href="#resources" class="jj-nav-link" data-nav="resources">资料库</a>
+    <a href="#contact" class="jj-nav-cta">加入社群</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<header class="jj-hero">
+  <div class="jj-hero-deco" aria-hidden="true">AI PM</div>
+  <div class="jj-hero-inner">
+    <div class="jj-hero-left">
+      <div class="jj-hero-greeting jj-reveal">
+        <span class="jj-hero-dot" aria-hidden="true"></span>
+        欢迎来到你的 AI PM 学习之旅
+      </div>
+      <h1 class="jj-hero-h1 jj-reveal" style="transition-delay:.08s">
+        从零开始，<br>成为真正懂 AI 的<br><em>产品经理</em>。
+      </h1>
+      <p class="jj-hero-p jj-reveal" style="transition-delay:.16s">这条路径历时 12 周，从 AI 基础认知到实战落地，再到求职冲刺。每一步都有清晰的目标、精选的资源和可交付的产出——让成长有迹可循。</p>
+      <div class="jj-hero-ctas jj-reveal" style="transition-delay:.24s">
+        <a href="#overview" class="jj-btn-wood">开始这段旅程 &#8594;</a>
+        <a href="#resources" class="jj-btn-ghost">浏览资料库</a>
+      </div>
+    </div>
+    <div class="jj-hero-right jj-reveal jj-right" style="transition-delay:.2s">
+      <div class="jj-hero-card">
+        <div class="jj-hero-card-hdr">
+          <div class="jj-hero-card-live">
+            <span class="jj-hero-card-livdot" aria-hidden="true"></span>总体进度
+          </div>
+          <span>12 WEEKS</span>
+        </div>
+        <div class="jj-progress-row" tabindex="0" role="button" aria-label="跳转到第一阶段：基础认知" onclick="scrollToSection('phase1')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+          <div class="jj-progress-label">
+            <span class="jj-progress-title">第一阶段：基础认知</span>
+            <span class="jj-progress-pct" id="hero-pct-0">0%</span>
+          </div>
+          <div class="jj-progress-track"><div class="jj-progress-fill" style="width:0"></div></div>
+          <span class="jj-progress-sub" id="hero-tasks-0">0/4 项完成</span>
+        </div>
+        <div class="jj-progress-row" tabindex="0" role="button" aria-label="跳转到第二阶段：核心技能" onclick="scrollToSection('phase2')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+          <div class="jj-progress-label">
+            <span class="jj-progress-title">第二阶段：核心技能</span>
+            <span class="jj-progress-pct" id="hero-pct-1">0%</span>
+          </div>
+          <div class="jj-progress-track"><div class="jj-progress-fill" style="width:0"></div></div>
+          <span class="jj-progress-sub" id="hero-tasks-1">0/5 项完成</span>
+        </div>
+        <div class="jj-progress-row" tabindex="0" role="button" aria-label="跳转到第三阶段：实战项目" onclick="scrollToSection('phase3')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+          <div class="jj-progress-label">
+            <span class="jj-progress-title">第三阶段：实战项目</span>
+            <span class="jj-progress-pct" id="hero-pct-2">0%</span>
+          </div>
+          <div class="jj-progress-track"><div class="jj-progress-fill" style="width:0"></div></div>
+          <span class="jj-progress-sub" id="hero-tasks-2">0/4 项完成</span>
+        </div>
+        <div class="jj-progress-row" tabindex="0" role="button" aria-label="跳转到第四阶段：求职冲刺" onclick="scrollToSection('phase4')" onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+          <div class="jj-progress-label">
+            <span class="jj-progress-title">第四阶段：求职冲刺</span>
+            <span class="jj-progress-pct" id="hero-pct-3">0%</span>
+          </div>
+          <div class="jj-progress-track"><div class="jj-progress-fill" style="width:0"></div></div>
+          <span class="jj-progress-sub" id="hero-tasks-3">0/5 项完成</span>
+        </div>
+        <a href="#" class="jj-hero-card-export" onclick="exportData();return false" role="button" aria-label="导出学习数据">
+          导出学习数据 <span class="jj-hero-card-export-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ─── STATS ─── -->
+<div class="jj-stats">
+  <div class="jj-stats-inner">
+    <div class="jj-stat"><div class="jj-stat-val">12<span>周</span></div><div class="jj-stat-label">总学习周期</div></div>
+    <div class="jj-stat"><div class="jj-stat-val">4<span>阶段</span></div><div class="jj-stat-label">系统进阶路径</div></div>
+    <div class="jj-stat"><div class="jj-stat-val">18<span>项</span></div><div class="jj-stat-label">核心学习任务</div></div>
+    <div class="jj-stat"><div class="jj-stat-val" id="stat-hours">0<span>h</span></div><div class="jj-stat-label">已投入学习时间</div><div class="jj-stat-sub" id="stat-daily">今日 0h · 本周 0h</div></div>
+  </div>
+</div>
+
+<!-- ─── RADAR SKILL CHART ─── -->
+<section class="jj-radar-wrap">
+  <div class="jj-radar-inner">
+    <div class="jj-radar-chart-box jj-reveal" style="position:relative;">
+      <div class="jj-radar-skeleton" id="jj-radar-skeleton">
+        <svg class="jj-radar-skeleton-svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="85" fill="none" stroke="rgba(184,153,104,.15)" stroke-width="1.5"/><circle cx="100" cy="100" r="63" fill="none" stroke="rgba(184,153,104,.12)" stroke-width="1"/><circle cx="100" cy="100" r="42" fill="none" stroke="rgba(184,153,104,.1)" stroke-width="1"/><circle cx="100" cy="100" r="21" fill="none" stroke="rgba(184,153,104,.08)" stroke-width="1"/></svg>
+      </div>
+      <div style="position:relative;width:100%;max-width:400px;margin:0 auto;">
+        <canvas id="jj-radar-canvas" aria-label="技能雷达图：当前能力 vs 目标水平" role="img"></canvas>
+      </div>
+    </div>
+    <div class="jj-reveal" style="transition-delay:.1s">
+      <div class="jj-radar-title">我的 AI PM 技能矩阵</div>
+      <div class="jj-radar-sub">拖动滑块评估你当前的各项能力水平，看到与目标的差距。学习完成后回来重新评估，观察成长。</div>
+      <div class="jj-radar-dim-list" id="radar-dims">
+        <div class="jj-radar-dim-row"><label class="jj-radar-dim-label" for="rdim-0">Prompt 工程</label><input type="range" min="0" max="10" value="2" class="jj-radar-dim-slider" data-dim="0" id="rdim-0" oninput="updateRadar()"><span class="jj-radar-dim-val" id="radar-val-0">2</span></div>
+        <div class="jj-radar-dim-row"><label class="jj-radar-dim-label" for="rdim-1">Agent 设计</label><input type="range" min="0" max="10" value="1" class="jj-radar-dim-slider" data-dim="1" id="rdim-1" oninput="updateRadar()"><span class="jj-radar-dim-val" id="radar-val-1">1</span></div>
+        <div class="jj-radar-dim-row"><label class="jj-radar-dim-label" for="rdim-2">模型评估</label><input type="range" min="0" max="10" value="1" class="jj-radar-dim-slider" data-dim="2" id="rdim-2" oninput="updateRadar()"><span class="jj-radar-dim-val" id="radar-val-2">1</span></div>
+        <div class="jj-radar-dim-row"><label class="jj-radar-dim-label" for="rdim-3">产品策略</label><input type="range" min="0" max="10" value="5" class="jj-radar-dim-slider" data-dim="3" id="rdim-3" oninput="updateRadar()"><span class="jj-radar-dim-val" id="radar-val-3">5</span></div>
+        <div class="jj-radar-dim-row"><label class="jj-radar-dim-label" for="rdim-4">数据思维</label><input type="range" min="0" max="10" value="3" class="jj-radar-dim-slider" data-dim="4" id="rdim-4" oninput="updateRadar()"><span class="jj-radar-dim-val" id="radar-val-4">3</span></div>
+        <div class="jj-radar-dim-row"><label class="jj-radar-dim-label" for="rdim-5">工程协作</label><input type="range" min="0" max="10" value="3" class="jj-radar-dim-slider" data-dim="5" id="rdim-5" oninput="updateRadar()"><span class="jj-radar-dim-val" id="radar-val-5">3</span></div>
+      </div>
+      <button class="jj-radar-reset" onclick="resetRadar()">&#8634; 重置评估</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── OVERVIEW TIMELINE ─── -->
+<section id="overview" class="jj-section">
+  <div class="jj-section-inner">
+    <div class="jj-section-eyebrow jj-reveal">学习路径总览</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s">四阶段成长路径</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s">从认知到实战，从能力到求职——每一步都有明确的目标和可交付的产出。</p>
+    <button class="jj-collapse-all-btn jj-reveal" style="transition-delay:.14s" onclick="toggleAllPhases()" id="collapse-all-btn">
+      &#9650;&#9660; 全部展开
+    </button>
+    <div class="jj-timeline jj-reveal" style="transition-delay:.18s">
+      <div class="jj-phase">
+        <div class="jj-phase-node" tabindex="0" role="button" aria-label="第一阶段：基础认知，4周" onclick="scrollAndExpandPhase(0)" onkeydown="if(event.key==='Enter'||event.key===' ')scrollAndExpandPhase(0)">
+          <div class="jj-phase-num">阶段 01</div>
+          <div class="jj-phase-weeks">4</div>
+          <div class="jj-phase-weeks-label">周</div>
+        </div>
+        <div class="jj-phase-title">基础认知</div>
+        <div class="jj-phase-desc">理解 LLM 技术栈与 AI 产品生态，建立正确认知框架</div>
+        <div class="jj-phase-badge" style="border-color:var(--tea);color:var(--tea-dk);background:var(--tea-glow)">入门</div>
+      </div>
+      <div class="jj-phase">
+        <div class="jj-phase-node" tabindex="0" role="button" aria-label="第二阶段：核心技能，4周" onclick="scrollAndExpandPhase(1)" onkeydown="if(event.key==='Enter'||event.key===' ')scrollAndExpandPhase(1)">
+          <div class="jj-phase-num">阶段 02</div>
+          <div class="jj-phase-weeks">4</div>
+          <div class="jj-phase-weeks-label">周</div>
+        </div>
+        <div class="jj-phase-title">核心技能</div>
+        <div class="jj-phase-desc">Prompt 工程、Agent 设计、MCP 协议，掌握 AI PM 核心能力</div>
+        <div class="jj-phase-badge" style="border-color:var(--wood);color:var(--wood-dk);background:var(--wood-glow)">核心</div>
+      </div>
+      <div class="jj-phase">
+        <div class="jj-phase-node" tabindex="0" role="button" aria-label="第三阶段：实战项目，2周" onclick="scrollAndExpandPhase(2)" onkeydown="if(event.key==='Enter'||event.key===' ')scrollAndExpandPhase(2)">
+          <div class="jj-phase-num">阶段 03</div>
+          <div class="jj-phase-weeks">2</div>
+          <div class="jj-phase-weeks-label">周</div>
+        </div>
+        <div class="jj-phase-title">实战项目</div>
+        <div class="jj-phase-desc">独立完成一个端到端 AI 产品，从需求到 Eval 全流程</div>
+        <div class="jj-phase-badge" style="border-color:var(--copper);color:var(--copper);background:rgba(166,123,91,.08)">实战</div>
+      </div>
+      <div class="jj-phase">
+        <div class="jj-phase-node" tabindex="0" role="button" aria-label="第四阶段：求职冲刺，2周" onclick="scrollAndExpandPhase(3)" onkeydown="if(event.key==='Enter'||event.key===' ')scrollAndExpandPhase(3)">
+          <div class="jj-phase-num">阶段 04</div>
+          <div class="jj-phase-weeks">2</div>
+          <div class="jj-phase-weeks-label">周</div>
+        </div>
+        <div class="jj-phase-title">求职冲刺</div>
+        <div class="jj-phase-desc">简历打磨、面试准备、作品集呈现，完成从学到用的跃迁</div>
+        <div class="jj-phase-badge" style="border-color:var(--warm-red);color:var(--warm-red);background:rgba(201,120,94,.06)">冲刺</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 1: 基础认知 -->
+<section id="phase1" class="jj-section alt">
+  <div class="jj-section-inner" style="position:relative;">
+    <div class="jj-phase-watermark" aria-hidden="true">01</div>
+    <div class="jj-section-eyebrow jj-reveal">阶段 01 · 第 1-4 周</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+      <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s;margin-bottom:0;">基础认知</h2>
+      <button class="jj-phase-toggle-btn jj-reveal expanded" style="transition-delay:.08s;" onclick="togglePhase(0,this)" data-phase="0" id="phase-btn-0" aria-label="折叠第一阶段" aria-expanded="true">
+        收起 &#9650;
+      </button>
+    </div>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s;margin-bottom:20px;">先建立对 LLM 技术栈和 AI 产品生态的整体理解，这是后面所有学习的地基。</p>
+    <div class="jj-phase-body jj-reveal" style="transition-delay:.18s" id="phase-body-0">
+      <div class="jj-phase-body-grid">
+        <div>
+          <div class="jj-phase-col-label">学习目标</div>
+          <div class="jj-goal-list">
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>理解 Transformer 架构核心思想（不用写代码）</div>
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>搞懂 LLM 训练、推理、微调、RAG 的区别与应用场景</div>
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>完成 Anthropic Academy 基础课程</div>
+          </div>
+          <div style="margin-top:24px;">
+            <div class="jj-phase-col-label">学习任务 <span class="jj-time-badge">&#9716; ~12h</span></div>
+            <div class="jj-task-list" id="p1-tasks" role="list" aria-label="第一阶段任务列表">
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="3"><span class="jj-task-check"></span><span class="jj-task-text">阅读 Transformer 论文（Attention Is All You Need）摘要 + 图解</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="4"><span class="jj-task-check"></span><span class="jj-task-text">完成 Anthropic Academy 入门系列（4 门基础课）</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="3"><span class="jj-task-check"></span><span class="jj-task-text">阅读 RAG 综述，理解检索增强生成架构</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="2"><span class="jj-task-check"></span><span class="jj-task-text">完成一篇学习笔记：「一个 PM 眼中的 LLM 技术栈」</span></div>
+            </div>
+          </div>
+          <button class="jj-notes-toggle" tabindex="0" onclick="toggleNotes(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleNotes(this)" data-phase="0" aria-label="展开第一阶段学习笔记">
+            &#9998; 学习笔记 <span class="jj-notes-toggle-arrow">&#9660;</span>
+          </button>
+          <div class="jj-notes-panel" id="notes-0">
+            <label class="jj-form-label" style="font-family:'Noto Sans SC',sans-serif;font-size:12px;margin-bottom:6px;">写下你对基础认知阶段的理解、疑问和心得...</label>
+            <textarea class="jj-notes-textarea" id="notes-textarea-0" placeholder="例如：Transformer 的 Attention 机制本质上是..."></textarea>
+            <div class="jj-notes-save-row">
+              <span class="jj-notes-hint">内容自动保存在浏览器中</span>
+              <button class="jj-notes-save-btn" onclick="saveNotes(0)">保存笔记</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="jj-phase-col-label">推荐资源</div>
+          <div class="jj-resource-list">
+            <a href="https://docs.claude.com" target="_blank" class="jj-resource-card" aria-label="Anthropic 官方文档">
+              <span class="jj-resource-type-tag">文档</span>
+              <div class="jj-resource-info"><div class="jj-resource-title">Anthropic 官方文档</div><div class="jj-resource-sub">API、Agent SDK、MCP 协议规范</div></div>
+              <span class="jj-resource-arrow" aria-hidden="true">&#8594;</span>
+            </a>
+            <a href="https://www.anthropic.com/learn" target="_blank" class="jj-resource-card" aria-label="Anthropic Academy 免费课程">
+              <span class="jj-resource-type-tag">课程</span>
+              <div class="jj-resource-info"><div class="jj-resource-title">Anthropic Academy</div><div class="jj-resource-sub">17-18 门免费认证课程</div></div>
+              <span class="jj-resource-arrow" aria-hidden="true">&#8594;</span>
+            </a>
+          </div>
+          <div class="jj-milestone">
+            <div class="jj-milestone-icon" aria-hidden="true">&#9786;</div>
+            <div>
+              <div class="jj-milestone-title">阶段里程碑</div>
+              <div class="jj-milestone-desc">能画出 LLM 技术栈全景图，并能向非技术同事讲清楚「模型是怎么工作的」——不需要代码。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jj-phase-collapsed-hint" id="phase-hint-0">&#9654; 点击上方「展开」查看完整学习内容</div>
+  </div>
+</section>
+
+<!-- PHASE 2: 核心技能 -->
+<section id="phase2" class="jj-section">
+  <div class="jj-section-inner" style="position:relative;">
+    <div class="jj-phase-watermark" aria-hidden="true">02</div>
+    <div class="jj-section-eyebrow jj-reveal">阶段 02 · 第 5-8 周</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+      <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s;margin-bottom:0;">核心技能</h2>
+      <button class="jj-phase-toggle-btn jj-reveal" style="transition-delay:.08s;" onclick="togglePhase(1,this)" data-phase="1" id="phase-btn-1" aria-label="展开第二阶段" aria-expanded="false">
+        展开 &#9660;
+      </button>
+    </div>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s;margin-bottom:20px;">深入 AI PM 的三大核心技能：Prompt 工程、Agent 设计、MCP 协议。</p>
+    <div class="jj-phase-body jj-reveal collapsed" style="transition-delay:.18s;max-height:0;" id="phase-body-1">
+      <div class="jj-phase-body-grid">
+        <div>
+          <div class="jj-phase-col-label">学习目标</div>
+          <div class="jj-goal-list">
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>掌握 Prompt 工程最佳实践——系统指令、few-shot、思维链</div>
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>理解 Agent 架构：tool use、agent loop、多智能体协调</div>
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>理解 MCP 协议，能选型和使用 MCP Server</div>
+          </div>
+          <div style="margin-top:24px;">
+            <div class="jj-phase-col-label">学习任务 <span class="jj-time-badge">&#9716; ~14h</span></div>
+            <div class="jj-task-list" id="p2-tasks" role="list" aria-label="第二阶段任务列表">
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="3"><span class="jj-task-check"></span><span class="jj-task-text">精读 Anthropic Prompt Engineering Guide</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="3"><span class="jj-task-check"></span><span class="jj-task-text">阅读 Claude Agent SDK 文档，理解 agent loop 和 tool use</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="4"><span class="jj-task-check"></span><span class="jj-task-text">搭建一个 Claude Agent 原型——使用 Tool Use 完成一个实际任务</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="2"><span class="jj-task-check"></span><span class="jj-task-text">阅读 MCP 协议规范，搭建一个 MCP Server 并集成到 Agent</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="2"><span class="jj-task-check"></span><span class="jj-task-text">整理 Prompt 模版库 + Agent 设计模式笔记</span></div>
+            </div>
+          </div>
+          <button class="jj-notes-toggle" tabindex="0" onclick="toggleNotes(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleNotes(this)" data-phase="1" aria-label="展开第二阶段学习笔记">
+            &#9998; 学习笔记 <span class="jj-notes-toggle-arrow">&#9660;</span>
+          </button>
+          <div class="jj-notes-panel" id="notes-1">
+            <label class="jj-form-label" style="font-family:'Noto Sans SC',sans-serif;font-size:12px;margin-bottom:6px;">写下你对 Prompt 工程、Agent 设计、MCP 协议的理解和实践心得...</label>
+            <textarea class="jj-notes-textarea" id="notes-textarea-1" placeholder="例如：Few-shot prompting 的关键在于..."></textarea>
+            <div class="jj-notes-save-row">
+              <span class="jj-notes-hint">内容自动保存在浏览器中</span>
+              <button class="jj-notes-save-btn" onclick="saveNotes(1)">保存笔记</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="jj-phase-col-label">推荐资源</div>
+          <div class="jj-resource-list">
+            <a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering" target="_blank" class="jj-resource-card" aria-label="Prompt Engineering Guide">
+              <span class="jj-resource-type-tag">文档</span>
+              <div class="jj-resource-info"><div class="jj-resource-title">Prompt Engineering Guide</div><div class="jj-resource-sub">Anthropic 官方 Prompt 工程指南</div></div>
+              <span class="jj-resource-arrow" aria-hidden="true">&#8594;</span>
+            </a>
+            <a href="https://modelcontextprotocol.io" target="_blank" class="jj-resource-card" aria-label="MCP 官方规范">
+              <span class="jj-resource-type-tag">协议</span>
+              <div class="jj-resource-info"><div class="jj-resource-title">MCP 官方规范</div><div class="jj-resource-sub">开放协议标准文档</div></div>
+              <span class="jj-resource-arrow" aria-hidden="true">&#8594;</span>
+            </a>
+            <a href="https://langchain.com/docs" target="_blank" class="jj-resource-card" aria-label="LangGraph 文档">
+              <span class="jj-resource-type-tag">文档</span>
+              <div class="jj-resource-info"><div class="jj-resource-title">LangGraph 文档</div><div class="jj-resource-sub">图状态机、checkpointing、human-in-the-loop</div></div>
+              <span class="jj-resource-arrow" aria-hidden="true">&#8594;</span>
+            </a>
+          </div>
+          <div class="jj-milestone">
+            <div class="jj-milestone-icon" aria-hidden="true">&#9752;</div>
+            <div>
+              <div class="jj-milestone-title">阶段里程碑</div>
+              <div class="jj-milestone-desc">能独立设计一个 AI Agent 的原型——包括系统指令、Tool Use 集成和 Eval 方案。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jj-phase-collapsed-hint" id="phase-hint-1">&#9654; 点击上方「展开」查看完整学习内容</div>
+  </div>
+</section>
+
+<!-- PHASE 3: 实战项目 -->
+<section id="phase3" class="jj-section alt">
+  <div class="jj-section-inner" style="position:relative;">
+    <div class="jj-phase-watermark" aria-hidden="true">03</div>
+    <div class="jj-section-eyebrow jj-reveal">阶段 03 · 第 9-10 周</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+      <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s;margin-bottom:0;">实战项目</h2>
+      <button class="jj-phase-toggle-btn jj-reveal" style="transition-delay:.08s;" onclick="togglePhase(2,this)" data-phase="2" id="phase-btn-2" aria-label="展开第三阶段" aria-expanded="false">
+        展开 &#9660;
+      </button>
+    </div>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s;margin-bottom:20px;">独立完成一个端到端 AI 产品——从需求定义到 Eval 框架，形成完整作品。</p>
+    <div class="jj-phase-body jj-reveal collapsed" style="transition-delay:.18s;max-height:0;" id="phase-body-2">
+      <div class="jj-phase-body-grid">
+        <div>
+          <div class="jj-phase-col-label">学习目标</div>
+          <div class="jj-goal-list">
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>独立设计并实现一个完整的 AI Agent 产品</div>
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>建立 Eval 框架，用数据评估产品效果</div>
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>完成一份 PRD + Eval Report，作为求职作品</div>
+          </div>
+          <div style="margin-top:24px;">
+            <div class="jj-phase-col-label">学习任务 <span class="jj-time-badge">&#9716; ~16h</span></div>
+            <div class="jj-task-list" id="p3-tasks" role="list" aria-label="第三阶段任务列表">
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="3"><span class="jj-task-check"></span><span class="jj-task-text">确定项目选题 + 完成 PRD（AI 产品版本）</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="8"><span class="jj-task-check"></span><span class="jj-task-text">实现 Agent 原型——至少包含 2 个 Tool Use + 1 个 MCP 集成</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="3"><span class="jj-task-check"></span><span class="jj-task-text">搭建 Eval 框架——定义评估维度、收集测试用例、跑一轮评估</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="2"><span class="jj-task-check"></span><span class="jj-task-text">撰写项目 README——包含架构图、使用说明、Eval 结果</span></div>
+            </div>
+          </div>
+          <button class="jj-notes-toggle" tabindex="0" onclick="toggleNotes(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleNotes(this)" data-phase="2" aria-label="展开第三阶段学习笔记">
+            &#9998; 学习笔记 <span class="jj-notes-toggle-arrow">&#9660;</span>
+          </button>
+          <div class="jj-notes-panel" id="notes-2">
+            <label class="jj-form-label" style="font-family:'Noto Sans SC',sans-serif;font-size:12px;margin-bottom:6px;">记录你的项目进展、遇到的技术挑战和解决方案...</label>
+            <textarea class="jj-notes-textarea" id="notes-textarea-2" placeholder="例如：在选择 Agent 架构时，我最终决定采用..."></textarea>
+            <div class="jj-notes-save-row">
+              <span class="jj-notes-hint">内容自动保存在浏览器中</span>
+              <button class="jj-notes-save-btn" onclick="saveNotes(2)">保存笔记</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="jj-phase-col-label">推荐资源</div>
+          <div class="jj-resource-list">
+            <a href="https://github.com/anthropics/claude-agent-sdk-python" target="_blank" class="jj-resource-card" aria-label="Claude Agent SDK">
+              <span class="jj-resource-type-tag">仓库</span>
+              <div class="jj-resource-info"><div class="jj-resource-title">Claude Agent SDK</div><div class="jj-resource-sub">Python SDK for building Claude agents</div></div>
+              <span class="jj-resource-arrow" aria-hidden="true">&#8594;</span>
+            </a>
+            <a href="https://github.com/anthropics/claude-cookbooks" target="_blank" class="jj-resource-card" aria-label="Claude Cookbooks">
+              <span class="jj-resource-type-tag">仓库</span>
+              <div class="jj-resource-info"><div class="jj-resource-title">Claude Cookbooks</div><div class="jj-resource-sub">评估框架 Notebook 参考</div></div>
+              <span class="jj-resource-arrow" aria-hidden="true">&#8594;</span>
+            </a>
+          </div>
+          <div class="jj-milestone">
+            <div class="jj-milestone-icon" aria-hidden="true">&#9733;</div>
+            <div>
+              <div class="jj-milestone-title">阶段里程碑</div>
+              <div class="jj-milestone-desc">一个完整的 AI Agent 项目上线 + Eval Report——这就是你简历上最闪亮的部分。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jj-phase-collapsed-hint" id="phase-hint-2">&#9654; 点击上方「展开」查看完整学习内容</div>
+  </div>
+</section>
+
+<!-- PHASE 4: 求职冲刺 -->
+<section id="phase4" class="jj-section">
+  <div class="jj-section-inner" style="position:relative;">
+    <div class="jj-phase-watermark" aria-hidden="true">04</div>
+    <div class="jj-section-eyebrow jj-reveal">阶段 04 · 第 11-12 周</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+      <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s;margin-bottom:0;">求职冲刺</h2>
+      <button class="jj-phase-toggle-btn jj-reveal" style="transition-delay:.08s;" onclick="togglePhase(3,this)" data-phase="3" id="phase-btn-3" aria-label="展开第四阶段" aria-expanded="false">
+        展开 &#9660;
+      </button>
+    </div>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s;margin-bottom:20px;">将三阶段所学转化为求职竞争力——简历、面试、作品集三位一体。</p>
+    <div class="jj-phase-body jj-reveal collapsed" style="transition-delay:.18s;max-height:0;" id="phase-body-3">
+      <div class="jj-phase-body-grid">
+        <div>
+          <div class="jj-phase-col-label">学习目标</div>
+          <div class="jj-goal-list">
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>将学习经历和项目经验转化为简历，突出 AI PM 差异化竞争力</div>
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>准备 AI PM 面试高频问题——Agent 设计、Eval 方法、产品策略</div>
+            <div class="jj-goal-item"><span class="jj-goal-dot" aria-hidden="true"></span>整理作品集——项目 README + Eval Report + 学习笔记</div>
+          </div>
+          <div style="margin-top:24px;">
+            <div class="jj-phase-col-label">学习任务 <span class="jj-time-badge">&#9716; ~8h</span></div>
+            <div class="jj-task-list" id="p4-tasks" role="list" aria-label="第四阶段任务列表">
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="2"><span class="jj-task-check"></span><span class="jj-task-text">重写简历——将 AI PM 能力和项目经验突出放在首位</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="2"><span class="jj-task-check"></span><span class="jj-task-text">准备 AI PM 面试题库——至少 10 道高频题 + 答题框架</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="2"><span class="jj-task-check"></span><span class="jj-task-text">整理作品集——项目 README + Eval Report + 学习路径证明</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="1"><span class="jj-task-check"></span><span class="jj-task-text">完成至少 2 次模拟面试（可以找朋友或 AI 模拟）</span></div>
+              <div class="jj-task-item" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleTask(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(this)" data-time="1"><span class="jj-task-check"></span><span class="jj-task-text">至少投递 / 内推 3 个目标岗位</span></div>
+            </div>
+          </div>
+          <button class="jj-notes-toggle" tabindex="0" onclick="toggleNotes(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleNotes(this)" data-phase="3" aria-label="展开第四阶段学习笔记">
+            &#9998; 学习笔记 <span class="jj-notes-toggle-arrow">&#9660;</span>
+          </button>
+          <div class="jj-notes-panel" id="notes-3">
+            <label class="jj-form-label" style="font-family:'Noto Sans SC',sans-serif;font-size:12px;margin-bottom:6px;">记录你的面试准备、投递进展和反思...</label>
+            <textarea class="jj-notes-textarea" id="notes-textarea-3" placeholder="例如：今天面试了一家做 Agent 的公司，对方重点问了..."></textarea>
+            <div class="jj-notes-save-row">
+              <span class="jj-notes-hint">内容自动保存在浏览器中</span>
+              <button class="jj-notes-save-btn" onclick="saveNotes(3)">保存笔记</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="jj-phase-col-label">推荐资源</div>
+          <div class="jj-resource-list">
+            <a href="#" class="jj-resource-card" aria-label="AI PM 面试题库">
+              <span class="jj-resource-type-tag">指南</span>
+              <div class="jj-resource-info"><div class="jj-resource-title">AI PM 面试题库</div><div class="jj-resource-sub">高频问题 + 答题框架 + 参考答案</div></div>
+              <span class="jj-resource-arrow" aria-hidden="true">&#8594;</span>
+            </a>
+          </div>
+          <div class="jj-milestone">
+            <div class="jj-milestone-icon" aria-hidden="true">&#127942;</div>
+            <div>
+              <div class="jj-milestone-title">阶段里程碑</div>
+              <div class="jj-milestone-desc">拿到 AI PM 面试机会——并且你有信心在面试中展示出真正的 AI 产品能力。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jj-phase-collapsed-hint" id="phase-hint-3">&#9654; 点击上方「展开」查看完整学习内容</div>
+  </div>
+</section>
+
+<!-- ─── SPRINT TRACKER ─── -->
+<section class="jj-section alt">
+  <div class="jj-section-inner">
+    <div class="jj-section-eyebrow jj-reveal">四周冲刺计划</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s;margin-bottom:8px">四周冲刺计划</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s;margin-bottom:28px">如果你需要更紧凑的节奏，这里是四周速通版本。</p>
+    <div class="jj-reveal" style="transition-delay:.18s">
+      <div class="jj-sprint-bar">
+        <span class="jj-sprint-label">冲刺进度</span>
+        <div class="jj-sprint-track"><div class="jj-sprint-fill" id="sprint-fill"></div></div>
+        <span class="jj-sprint-pct" id="sprint-pct">0%</span>
+      </div>
+      <div style="border:1px solid var(--line);border-radius:2px;overflow:hidden;">
+        <div class="jj-sprint-week" data-week="0">
+          <button class="jj-sprint-header" tabindex="0" onclick="toggleSprintWeek(0)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintWeek(0)" aria-expanded="false">
+            <div class="jj-sprint-h-left"><span class="jj-sprint-week-num">第 1 周</span><span class="jj-sprint-week-title">基础认知 + Prompt 工程</span></div>
+            <div class="jj-sprint-h-right"><span class="jj-sprint-week-prog">0/6</span><span class="jj-sprint-toggle">&#9660;</span></div>
+          </button>
+          <div class="jj-sprint-body">
+            <div class="jj-sprint-sub-label">阅读材料</div>
+            <div class="jj-sprint-reading-item"><span>1</span><span>Transformer 论文图解 + 摘要</span></div>
+            <div class="jj-sprint-reading-item"><span>2</span><span>Anthropic Prompt Engineering Guide</span></div>
+            <div class="jj-sprint-sub-label">任务清单</div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,0,0)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,0,0)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">读完 Transformer 论文并整理要点</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,0,1)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,0,1)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">完成 Anthropic Academy 入门课程</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,0,2)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,0,2)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">练习 5 个不同场景的 Prompt 工程案例</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,0,3)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,0,3)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">搭建第一个 Claude Agent 原型</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,0,4)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,0,4)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">整理 Prompt 模版库</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,0,5)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,0,5)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">写一篇「LLM 技术栈全景图」笔记</span></div>
+            <div class="jj-sprint-output"><span class="jj-sprint-output-label">本周产出</span>能够独立设计高质量 Prompt 模版，并搭建基础 Agent 原型。</div>
+          </div>
+        </div>
+        <div class="jj-sprint-week" data-week="1">
+          <button class="jj-sprint-header" tabindex="0" onclick="toggleSprintWeek(1)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintWeek(1)" aria-expanded="false">
+            <div class="jj-sprint-h-left"><span class="jj-sprint-week-num">第 2 周</span><span class="jj-sprint-week-title">Agent 设计 + MCP 深入</span></div>
+            <div class="jj-sprint-h-right"><span class="jj-sprint-week-prog">0/6</span><span class="jj-sprint-toggle">&#9660;</span></div>
+          </button>
+          <div class="jj-sprint-body">
+            <div class="jj-sprint-sub-label">阅读材料</div>
+            <div class="jj-sprint-reading-item"><span>1</span><span>Claude Agent SDK 文档</span></div>
+            <div class="jj-sprint-reading-item"><span>2</span><span>MCP 官方规范</span></div>
+            <div class="jj-sprint-sub-label">任务清单</div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,1,0)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,1,0)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">精读 Agent SDK，理解 agent loop 和 tool use 机制</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,1,1)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,1,1)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">搭建 MCP Server 并集成到 Agent</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,1,2)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,1,2)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">设计多 Agent 协作场景并实现原型</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,1,3)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,1,3)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">研究 LangGraph 图状态机模式</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,1,4)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,1,4)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">整理 Agent 设计模式笔记</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,1,5)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,1,5)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">对比分析 3 个主流 Agent 框架优劣势</span></div>
+            <div class="jj-sprint-output"><span class="jj-sprint-output-label">本周产出</span>Agent 设计模式文档 + MCP Server 集成原型 + 框架对比分析报告。</div>
+          </div>
+        </div>
+        <div class="jj-sprint-week" data-week="2">
+          <button class="jj-sprint-header" tabindex="0" onclick="toggleSprintWeek(2)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintWeek(2)" aria-expanded="false">
+            <div class="jj-sprint-h-left"><span class="jj-sprint-week-num">第 3 周</span><span class="jj-sprint-week-title">项目实战 + Eval</span></div>
+            <div class="jj-sprint-h-right"><span class="jj-sprint-week-prog">0/4</span><span class="jj-sprint-toggle">&#9660;</span></div>
+          </button>
+          <div class="jj-sprint-body">
+            <div class="jj-sprint-sub-label">任务清单</div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,2,0)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,2,0)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">完成项目 PRD 并确定技术方案</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,2,1)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,2,1)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">实现 Agent 原型——至少 2 个 Tool Use</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,2,2)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,2,2)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">搭建 Eval 框架并跑一轮评估</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,2,3)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,2,3)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">撰写项目 README + 架构图</span></div>
+            <div class="jj-sprint-output"><span class="jj-sprint-output-label">本周产出</span>完整的 AI Agent 项目上线——包含 PRD + 代码 + Eval Report + README。</div>
+          </div>
+        </div>
+        <div class="jj-sprint-week" data-week="3">
+          <button class="jj-sprint-header" tabindex="0" onclick="toggleSprintWeek(3)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintWeek(3)" aria-expanded="false">
+            <div class="jj-sprint-h-left"><span class="jj-sprint-week-num">第 4 周</span><span class="jj-sprint-week-title">求职冲刺</span></div>
+            <div class="jj-sprint-h-right"><span class="jj-sprint-week-prog">0/5</span><span class="jj-sprint-toggle">&#9660;</span></div>
+          </button>
+          <div class="jj-sprint-body">
+            <div class="jj-sprint-sub-label">任务清单</div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,3,0)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,3,0)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">重写简历——突出 AI PM 能力和项目经验</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,3,1)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,3,1)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">准备 AI PM 面试题库 + 答题框架</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,3,2)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,3,2)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">整合三周成果进项目 README</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,3,3)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,3,3)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">同步更新简历技术深度描述</span></div>
+            <div class="jj-sprint-task" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleSprintTask(this,3,4)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSprintTask(this,3,4)"><span class="jj-sprint-task-check"></span><span class="jj-sprint-task-text">至少投递 / 内推 3 个目标岗位</span></div>
+            <div class="jj-sprint-output"><span class="jj-sprint-output-label">本周产出</span>整合前三周成果进项目 README，更新简历。这周核心任务是对外曝光，不是继续学新东西。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESOURCE LIBRARY ─── -->
+<section id="resources" class="jj-section">
+  <div class="jj-section-inner">
+    <div class="jj-section-eyebrow jj-reveal">参考资料库</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s;margin-bottom:8px">参考资料库</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s;margin-bottom:28px">按类型筛选所有学习资源，支持搜索和标签快速定位。</p>
+    <div class="jj-reveal" style="transition-delay:.18s">
+      <div class="jj-lib-search-wrap">
+        <input type="text" class="jj-lib-search" id="lib-search" placeholder="搜索资源名称或说明..." oninput="filterLib()" aria-label="搜索资源">
+        <div class="jj-lib-tags" id="lib-tags">
+          <button class="jj-lib-tag active" onclick="filterTag('all',this)">全部</button>
+          <button class="jj-lib-tag" onclick="filterTag('必读',this)">必读</button>
+          <button class="jj-lib-tag" onclick="filterTag('进阶',this)">进阶</button>
+          <button class="jj-lib-tag" onclick="filterTag('Claude',this)">Claude</button>
+          <button class="jj-lib-tag" onclick="filterTag('MCP',this)">MCP</button>
+          <button class="jj-lib-tag" onclick="filterTag('开源',this)">开源</button>
+        </div>
+      </div>
+      <div class="jj-lib-tabs">
+        <button class="jj-lib-tab active" onclick="switchLibTab('docs',this)">文档教程</button>
+        <button class="jj-lib-tab" onclick="switchLibTab('repos',this)">开源仓库</button>
+      </div>
+      <div class="jj-lib-table">
+        <div class="jj-lib-hdr" id="lib-hdr"><span>类别</span><span>资源</span><span>说明</span></div>
+        <div id="lib-rows"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ZEN DIVIDER ─── -->
+<div class="jj-zen-divider" aria-hidden="true">
+  <div class="jj-zen-line"></div>
+  <span class="jj-zen-mark">木</span>
+  <div class="jj-zen-line"></div>
+</div>
+
+<!-- ─── PM COMPARE ─── -->
+<section id="compare" class="jj-section">
+  <div class="jj-section-inner">
+    <div class="jj-section-eyebrow jj-reveal">能力对比</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s;margin-bottom:8px">传统 PM vs AI PM</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s;margin-bottom:36px">五个维度的差异，帮你清楚看到需要补足的能力缺口。</p>
+    <div style="border:1px solid var(--line);border-radius:2px;overflow:hidden;" class="jj-reveal">
+      <div class="jj-compare-item">
+        <button class="jj-compare-btn" tabindex="0" onclick="toggleCompare(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleCompare(this)" aria-expanded="false">
+          <div class="jj-compare-left"><span class="jj-compare-num">01</span><span class="jj-compare-dim">需求定义</span></div>
+          <span class="jj-compare-toggle">&#9662;</span>
+        </button>
+        <div class="jj-compare-panels" style="display:none;">
+          <div class="jj-compare-panel jj-compare-panel-trad">
+            <div class="jj-compare-panel-label" style="color:var(--t3)">传统产品经理</div>
+            <div class="jj-compare-panel-text" style="color:var(--t2)">功能清单驱动。PRD 写清楚每个按钮、每个交互状态，需求评审后进入开发。</div>
+          </div>
+          <div class="jj-compare-panel jj-compare-panel-ai">
+            <div class="jj-compare-panel-label" style="color:var(--wood-dk)">AI 产品经理</div>
+            <div class="jj-compare-panel-text" style="color:var(--t1)">能力边界驱动。PRD 描述期望的输入输出范围，定义 Eval 标准，接受输出的非确定性。</div>
+          </div>
+          <div class="jj-compare-note" style="grid-column:1/3;margin:0 0 18px;">
+            <span class="jj-compare-note-label">要点</span>核心转变：从「定义确定的行为」到「定义可接受的行为范围」。
+          </div>
+        </div>
+      </div>
+      <div class="jj-compare-item">
+        <button class="jj-compare-btn" tabindex="0" onclick="toggleCompare(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleCompare(this)" aria-expanded="false">
+          <div class="jj-compare-left"><span class="jj-compare-num">02</span><span class="jj-compare-dim">评估方式</span></div>
+          <span class="jj-compare-toggle">&#9662;</span>
+        </button>
+        <div class="jj-compare-panels" style="display:none;">
+          <div class="jj-compare-panel jj-compare-panel-trad">
+            <div class="jj-compare-panel-label" style="color:var(--t3)">传统产品经理</div>
+            <div class="jj-compare-panel-text" style="color:var(--t2)">QA 测试通过率、Bug 数、功能完整度。验收标准是二元的：有 or 没有。</div>
+          </div>
+          <div class="jj-compare-panel jj-compare-panel-ai">
+            <div class="jj-compare-panel-label" style="color:var(--wood-dk)">AI 产品经理</div>
+            <div class="jj-compare-panel-text" style="color:var(--t1)">Eval 框架驱动。准确率、相关性、安全性、延迟、成本，多维度持续评估，永不「完成」。</div>
+          </div>
+          <div class="jj-compare-note" style="grid-column:1/3;margin:0 0 18px;">
+            <span class="jj-compare-note-label">要点</span>AI 产品没有「上线即完成」，模型迭代 = 产品迭代，Eval 是持续过程。
+          </div>
+        </div>
+      </div>
+      <div class="jj-compare-item">
+        <button class="jj-compare-btn" tabindex="0" onclick="toggleCompare(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleCompare(this)" aria-expanded="false">
+          <div class="jj-compare-left"><span class="jj-compare-num">03</span><span class="jj-compare-dim">用户体验设计</span></div>
+          <span class="jj-compare-toggle">&#9662;</span>
+        </button>
+        <div class="jj-compare-panels" style="display:none;">
+          <div class="jj-compare-panel jj-compare-panel-trad">
+            <div class="jj-compare-panel-label" style="color:var(--t3)">传统产品经理</div>
+            <div class="jj-compare-panel-text" style="color:var(--t2)">设计确定的交互流程，用户走固定路径，每个页面状态可预期。</div>
+          </div>
+          <div class="jj-compare-panel jj-compare-panel-ai">
+            <div class="jj-compare-panel-label" style="color:var(--wood-dk)">AI 产品经理</div>
+            <div class="jj-compare-panel-text" style="color:var(--t1)">设计弹性交互，接受不确定性。设计反馈闭环让用户纠正错误，把「不完美」变成「可迭代」。</div>
+          </div>
+          <div class="jj-compare-note" style="grid-column:1/3;margin:0 0 18px;">
+            <span class="jj-compare-note-label">要点</span>AI UX 的核心不是完美，而是「出错时优雅地恢复」。
+          </div>
+        </div>
+      </div>
+      <div class="jj-compare-item">
+        <button class="jj-compare-btn" tabindex="0" onclick="toggleCompare(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleCompare(this)" aria-expanded="false">
+          <div class="jj-compare-left"><span class="jj-compare-num">04</span><span class="jj-compare-dim">技术协作</span></div>
+          <span class="jj-compare-toggle">&#9662;</span>
+        </button>
+        <div class="jj-compare-panels" style="display:none;">
+          <div class="jj-compare-panel jj-compare-panel-trad">
+            <div class="jj-compare-panel-label" style="color:var(--t3)">传统产品经理</div>
+            <div class="jj-compare-panel-text" style="color:var(--t2)">理解前后端 API、数据库结构，能和工程师讨论技术方案可行性。</div>
+          </div>
+          <div class="jj-compare-panel jj-compare-panel-ai">
+            <div class="jj-compare-panel-label" style="color:var(--wood-dk)">AI 产品经理</div>
+            <div class="jj-compare-panel-text" style="color:var(--t1)">理解模型能力边界、Prompt 工程、RAG 架构、Agent 设计模式，能和算法工程师讨论模型选型。</div>
+          </div>
+          <div class="jj-compare-note" style="grid-column:1/3;margin:0 0 18px;">
+            <span class="jj-compare-note-label">要点</span>不需要会写训练代码，但必须理解「为什么模型在这里表现不好」。
+          </div>
+        </div>
+      </div>
+      <div class="jj-compare-item">
+        <button class="jj-compare-btn" tabindex="0" onclick="toggleCompare(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleCompare(this)" aria-expanded="false">
+          <div class="jj-compare-left"><span class="jj-compare-num">05</span><span class="jj-compare-dim">数据策略</span></div>
+          <span class="jj-compare-toggle">&#9662;</span>
+        </button>
+        <div class="jj-compare-panels" style="display:none;">
+          <div class="jj-compare-panel jj-compare-panel-trad">
+            <div class="jj-compare-panel-label" style="color:var(--t3)">传统产品经理</div>
+            <div class="jj-compare-panel-text" style="color:var(--t2)">数据是运营分析工具——DAU、留存、转化漏斗，用于验证产品决策。</div>
+          </div>
+          <div class="jj-compare-panel jj-compare-panel-ai">
+            <div class="jj-compare-panel-label" style="color:var(--wood-dk)">AI 产品经理</div>
+            <div class="jj-compare-panel-text" style="color:var(--t1)">数据是产品本身——用户反馈是训练信号，bad case 是 Eval 数据集，数据飞轮驱动产品进化。</div>
+          </div>
+          <div class="jj-compare-note" style="grid-column:1/3;margin:0 0 18px;">
+            <span class="jj-compare-note-label">要点</span>AI PM 最容易被低估的能力：设计数据飞轮，让产品越用越好。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact" class="jj-contact">
+  <div class="jj-contact-inner">
+    <div>
+      <span class="jj-contact-eyebrow jj-reveal">加入社群</span>
+      <h2 class="jj-contact-h2 jj-reveal" style="transition-delay:.08s">不要一个人走，<br>一起走得更远。</h2>
+      <p class="jj-contact-p jj-reveal" style="transition-delay:.16s">加入 AI PM 学习社群，和同样在成长路上的伙伴互相陪伴，分享每周学习笔记，在真实的社区里获得真实的反馈。</p>
+      <div class="jj-contact-links jj-reveal" style="transition-delay:.24s">
+        <div class="jj-contact-row">
+          <span class="jj-contact-row-label">邮箱</span>
+          <div class="jj-contact-row-val"><a href="mailto:wenkai920914@gmail.com">wenkai920914@gmail.com</a></div>
+        </div>
+        <div class="jj-contact-row">
+          <span class="jj-contact-row-label">微信</span>
+          <div class="jj-contact-row-val" style="color:var(--t2)">AIPM_Learning</div>
+        </div>
+      </div>
+    </div>
+    <div class="jj-form-card jj-reveal jj-right" style="transition-delay:.2s">
+      <div class="jj-form-title">留下你的信息</div>
+      <div class="jj-form-fields" id="form-fields">
+        <label class="jj-form-label">姓名
+          <input id="form-name" placeholder="你的姓名" class="jj-form-input" aria-label="姓名" oninput="clearFieldError(this)">
+          <span class="jj-form-error" id="form-error-name">请输入姓名</span>
+        </label>
+        <label class="jj-form-label">邮箱
+          <input id="form-email" type="email" placeholder="you@company.com" class="jj-form-input" aria-label="邮箱" oninput="clearFieldError(this)">
+          <span class="jj-form-error" id="form-error-email">请输入有效的邮箱地址</span>
+        </label>
+        <input type="text" name="botcheck" class="jj-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="jj-form-success" id="form-success">&#10003; 提交成功，我们会尽快与你联系！</div>
+        <div class="jj-form-fail" id="form-fail">&#9888; 提交失败，请稍后再试或直接邮件联系我们。</div>
+        <div class="jj-form-actions">
+          <button class="jj-form-submit" id="form-submit-btn" onclick="submitForm()">提交申请</button>
+          <button class="jj-form-reset" onclick="resetForm()">重置</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jj-footer">
+    <span>AI PM 学习路径 · 从零到一的系统成长计划</span>
+    <span class="jj-footer-brand">AI PM 学习路径</span>
+  </div>
+</section>
+
+</div>
+
+<script>
+/* ─── CANVAS PARTICLE BG ─── */
+(function(){
+  var bg=document.getElementById('jj-bg');
+  if(!bg)return;
+  var ctx=bg.getContext('2d',{alpha:true}),W,H,DPR=Math.min(devicePixelRatio,2),mx=-9e9,my=-9e9;
+  function resize(){
+    W=innerWidth;H=innerHeight;
+    bg.width=Math.floor(W*DPR);bg.height=Math.floor(H*DPR);
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    bg.style.width=W+'px';bg.style.height=H+'px';
+  }
+  resize();
+  var resizeTimer;
+  addEventListener('resize',function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,150);});
+  var pendingMouse=false;
+  addEventListener('mousemove',function(e){
+    if(pendingMouse)return;
+    pendingMouse=true;
+    requestAnimationFrame(function(){mx=e.clientX;my=e.clientY;pendingMouse=false;});
+  });
+  var N=60,P=[];
+  for(var i=0;i<N;i++){
+    var warm=Math.random()<.5;
+    P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*1.4+.3,warm:warm,tea:!warm&&Math.random()<.3,o:Math.random()*.25+.06});
+  }
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var rafId=null;
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    ctx.lineWidth=.4;
+    for(var i=0;i<N;i++){
+      var a=P[i];
+      for(var j=i+1;j<N;j++){
+        var b=P[j],dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy;
+        if(d2<6400){
+          var d=Math.sqrt(d2);
+          ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle='rgba(184,153,104,'+(0.025*(1-d/80))+')';ctx.stroke();
+        }
+      }
+    }
+    for(var i=0;i<N;i++){
+      var p=P[i],dx=p.x-mx,dy=p.y-my,d2=dx*dx+dy*dy;
+      if(d2<14400){
+        var d=Math.sqrt(d2);p.x+=dx/d*.4;p.y+=dy/d*.4;
+      }
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<-10)p.x=W+10;if(p.x>W+10)p.x=-10;
+      if(p.y<-10)p.y=H+10;if(p.y>H+10)p.y=-10;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      if(p.warm){ctx.fillStyle='rgba(184,153,104,'+p.o+')';}
+      else if(p.tea){ctx.fillStyle='rgba(139,168,136,'+p.o+')';}
+      else{ctx.fillStyle='rgba(196,166,97,'+p.o+')';}
+      ctx.fill();
+    }
+    if(!reduce)rafId=requestAnimationFrame(frame);
+  }
+  frame();
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){
+      if(rafId){cancelAnimationFrame(rafId);rafId=null;}
+    }else if(!rafId&&!reduce){
+      frame();
+    }
+  });
+})();
+
+/* ─── SCROLL HANDLER (progress + btt + position save) ─── */
+(function(){
+  var bar=document.querySelector('.jj-scroll-progress');
+  var btt=document.getElementById('jj-btt');
+  var scrollPosKey='jj_scroll_pos_'+location.pathname;
+  var saveTimer,lastScrollY=-1,lastPct=-1,lastVisible=-1;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(y===lastScrollY)return;
+    lastScrollY=y;
+    // progress bar + back-to-top
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    var pct=h>0?Math.round(y/h*100):0;
+    if(bar&&pct!==lastPct){bar.style.width=pct+'%';lastPct=pct;}
+    var visible=y>500;
+    if(visible!==lastVisible){if(btt)btt.classList.toggle('visible',visible);lastVisible=visible;}
+    // scroll position save (debounced)
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(function(){
+      try{sessionStorage.setItem(scrollPosKey,y.toString());}catch(e){}
+    },500);
+  },{passive:true});
+})();
+
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+
+/* ─── REVEAL ON SCROLL ─── */
+(function(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var els=e.target.querySelectorAll('.jj-reveal:not(.jj-in)');
+      els.forEach(function(el,i){setTimeout(function(){el.classList.add('jj-in');},i*90);});
+      if(e.target.classList.contains('jj-reveal'))e.target.classList.add('jj-in');
+      obs.unobserve(e.target);
+    });
+  },{threshold:.08});
+  document.querySelectorAll('.jj-section,.jj-hero,.jj-stats,.jj-radar-wrap,.jj-contact').forEach(function(el){obs.observe(el);});
+  document.querySelectorAll('.jj-hero .jj-reveal').forEach(function(el,i){setTimeout(function(){el.classList.add('jj-in');},i*110);});
+})();
+
+/* ─── NAV & RAIL SCROLL HIGHLIGHT ─── */
+var sectionIds = ['overview','phase1','phase2','phase3','phase4','resources','contact'];
+(function(){
+  var navLinks = document.querySelectorAll('.jj-nav-link[data-nav]');
+  var railDots = document.querySelectorAll('.jj-rail-dot[data-rail]');
+  if (!navLinks.length && !railDots.length) return;
+  var activeId = null;
+  function updateActive(id){
+    if(id===activeId)return;
+    activeId=id;
+    navLinks.forEach(function(link){
+      link.classList.toggle('active', link.getAttribute('data-nav') === id);
+    });
+    railDots.forEach(function(d){
+      d.classList.toggle('active', d.getAttribute('data-rail') === id);
+    });
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      updateActive(e.target.id);
+    });
+  }, { threshold: 0.15, rootMargin: '-80px 0px -55% 0px' });
+  sectionIds.forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+})();
+
+/* ─── PHASE COLLAPSE ─── */
+var phaseCollapsed = [false, true, true, true]; // Phase 0 open, 1-3 closed by default
+try { var saved = JSON.parse(localStorage.getItem('jj_phase_collapsed') || 'null'); if (saved && saved.length === 4) phaseCollapsed = saved; } catch(e) {}
+
+function togglePhase(idx, btn) {
+  phaseCollapsed[idx] = !phaseCollapsed[idx];
+  applyPhaseState(idx);
+  updateCollapseBtn(btn, idx);
+  try { localStorage.setItem('jj_phase_collapsed', JSON.stringify(phaseCollapsed)); } catch(e) {}
+  updateCollapseAllBtn();
+}
+
+function applyPhaseState(idx) {
+  var body = document.getElementById('phase-body-' + idx);
+  if (!body) return;
+  if (phaseCollapsed[idx]) {
+    body.classList.add('collapsed');
+    body.style.maxHeight = '0';
+  } else {
+    body.classList.remove('collapsed');
+    body.style.maxHeight = body.scrollHeight + 'px';
+    // After transition, remove inline height to allow responsive grow
+    setTimeout(function(){ if (!phaseCollapsed[idx]) body.style.maxHeight = 'none'; }, 500);
+  }
+}
+
+function updateCollapseBtn(btn, idx) {
+  if (!btn) { btn = document.getElementById('phase-btn-' + idx); if (!btn) return; }
+  if (phaseCollapsed[idx]) {
+    btn.textContent = '展开 \u25BC';
+    btn.classList.remove('expanded');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', '展开第' + (idx+1) + '阶段');
+  } else {
+    btn.textContent = '收起 \u25B2';
+    btn.classList.add('expanded');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', '折叠第' + (idx+1) + '阶段');
+  }
+}
+
+function scrollAndExpandPhase(idx) {
+  var section = document.getElementById('phase' + (idx + 1));
+  if (!section) return;
+  // Expand if collapsed
+  if (phaseCollapsed[idx]) {
+    phaseCollapsed[idx] = false;
+    applyPhaseState(idx);
+    updateCollapseBtn(null, idx);
+    try { localStorage.setItem('jj_phase_collapsed', JSON.stringify(phaseCollapsed)); } catch(e) {}
+    updateCollapseAllBtn();
+  }
+  // Then scroll
+  setTimeout(function(){ section.scrollIntoView({behavior:'smooth',block:'start'}); }, 100);
+}
+
+function toggleAllPhases() {
+  var allExpanded = phaseCollapsed.every(function(c){ return !c; });
+  phaseCollapsed = phaseCollapsed.map(function(){ return allExpanded; });
+  for (var i = 0; i < 4; i++) {
+    applyPhaseState(i);
+    updateCollapseBtn(null, i);
+  }
+  try { localStorage.setItem('jj_phase_collapsed', JSON.stringify(phaseCollapsed)); } catch(e) {}
+  updateCollapseAllBtn();
+}
+
+function updateCollapseAllBtn() {
+  var btn = document.getElementById('collapse-all-btn');
+  if (!btn) return;
+  var allExpanded = phaseCollapsed.every(function(c){ return !c; });
+  btn.textContent = allExpanded ? '\u25B2\u25BC 全部收起' : '\u25B2\u25BC 全部展开';
+}
+
+function initPhaseStates() {
+  for (var i = 0; i < 4; i++) {
+    applyPhaseState(i);
+    updateCollapseBtn(null, i);
+    // Phase 0 body needs explicit maxHeight for collapse animation to work from expanded state
+    if (!phaseCollapsed[i]) {
+      var body = document.getElementById('phase-body-' + i);
+      if (body) { body.style.maxHeight = 'none'; }
+    }
+  }
+  updateCollapseAllBtn();
+}
+
+/* ─── TASK TOGGLE (localStorage) ─── */
+var taskState = {};
+var achievedBadges = {};
+try { taskState = JSON.parse(localStorage.getItem('jj_tasks') || '{}'); } catch(e) { taskState = {}; }
+try { achievedBadges = JSON.parse(localStorage.getItem('jj_badges') || '{}'); } catch(e) { achievedBadges = {}; }
+
+var phaseTaskCounts = [4,5,4,5];
+
+function toggleTask(el) {
+  var check = el.querySelector('.jj-task-check');
+  var text = el.querySelector('.jj-task-text');
+  var list = el.closest('.jj-task-list');
+  var taskId = list.id + '_' + Array.from(list.children).indexOf(el);
+  var done = check.classList.toggle('done');
+  text.classList.toggle('done', done);
+  el.setAttribute('aria-checked', done.toString());
+  taskState[taskId] = done;
+  try { localStorage.setItem('jj_tasks', JSON.stringify(taskState)); } catch(e) {}
+  // Log time for daily/weekly tracking
+  if (done) {
+    var hrs = parseFloat(el.getAttribute('data-time') || '0');
+    logTaskCompletion(taskId, hrs);
+  } else {
+    logTaskUndo(taskId);
+  }
+  updatePhaseProgress();
+  updateTimeStats();
+  checkBadges();
+}
+
+function updatePhaseProgress() {
+  var phases = [
+    {id:'p1-tasks', fillIdx:0},
+    {id:'p2-tasks', fillIdx:1},
+    {id:'p3-tasks', fillIdx:2},
+    {id:'p4-tasks', fillIdx:3}
+  ];
+  var fills = document.querySelectorAll('.jj-progress-fill');
+  phases.forEach(function(p,i) {
+    var list = document.getElementById(p.id);
+    if (!list) return;
+    var done = list.querySelectorAll('.jj-task-check.done').length;
+    var total = phaseTaskCounts[i];
+    var pct = total ? Math.round(done / total * 100) : 0;
+    if (fills[p.fillIdx]) fills[p.fillIdx].style.width = pct + '%';
+    var pctEl = document.getElementById('hero-pct-' + i);
+    if (pctEl) pctEl.textContent = pct + '%';
+    var tasksEl = document.getElementById('hero-tasks-' + i);
+    if (tasksEl) tasksEl.textContent = done + '/' + total + ' 项完成';
+  });
+}
+
+function restoreTasks() {
+  document.querySelectorAll('.jj-task-list').forEach(function(list) {
+    Array.from(list.children).forEach(function(item, i) {
+      var taskId = list.id + '_' + i;
+      if (taskState[taskId]) {
+        item.querySelector('.jj-task-check').classList.add('done');
+        item.querySelector('.jj-task-text').classList.add('done');
+        item.setAttribute('aria-checked', 'true');
+      }
+    });
+  });
+  updatePhaseProgress();
+  updateTimeStats();
+}
+
+/* ─── TIME TRACKING ─── */
+function updateTimeStats() {
+  var totalHours = 0;
+  document.querySelectorAll('.jj-task-list .jj-task-item').forEach(function(item) {
+    if (item.querySelector('.jj-task-check.done')) {
+      var hrs = parseFloat(item.getAttribute('data-time') || '0');
+      totalHours += hrs;
+    }
+  });
+  document.getElementById('stat-hours').innerHTML = totalHours + '<span>h</span>';
+  updateDailyWeeklyStats();
+}
+
+/* ─── DAILY / WEEKLY TIME TRACKING ─── */
+var timeCompletionLog = {};
+try { timeCompletionLog = JSON.parse(localStorage.getItem('jj_time_log') || '{}'); } catch(e) { timeCompletionLog = {}; }
+
+function logTaskCompletion(taskId, hours) {
+  var today = new Date().toISOString().slice(0,10);
+  if (!timeCompletionLog[today]) timeCompletionLog[today] = [];
+  // Avoid duplicates
+  var exists = timeCompletionLog[today].some(function(e){ return e.id === taskId; });
+  if (!exists) timeCompletionLog[today].push({id: taskId, hours: hours, ts: Date.now()});
+  try { localStorage.setItem('jj_time_log', JSON.stringify(timeCompletionLog)); } catch(e) {}
+}
+
+function logTaskUndo(taskId) {
+  var today = new Date().toISOString().slice(0,10);
+  if (timeCompletionLog[today]) {
+    timeCompletionLog[today] = timeCompletionLog[today].filter(function(e){ return e.id !== taskId; });
+    try { localStorage.setItem('jj_time_log', JSON.stringify(timeCompletionLog)); } catch(e) {}
+  }
+}
+
+function getDayHours(dateStr) {
+  if (!timeCompletionLog[dateStr]) return 0;
+  return timeCompletionLog[dateStr].reduce(function(s,e){ return s + e.hours; }, 0);
+}
+
+function getWeekHours() {
+  var now = new Date();
+  var day = now.getDay();
+  var monday = new Date(now);
+  monday.setDate(now.getDate() - (day === 0 ? 6 : day - 1));
+  monday.setHours(0,0,0,0);
+  var total = 0;
+  for (var d = new Date(monday); d <= now; d.setDate(d.getDate() + 1)) {
+    total += getDayHours(d.toISOString().slice(0,10));
+  }
+  return total;
+}
+
+function updateDailyWeeklyStats() {
+  var today = new Date().toISOString().slice(0,10);
+  var dailyHrs = getDayHours(today);
+  var weeklyHrs = getWeekHours();
+  var el = document.getElementById('stat-daily');
+  if (el) el.textContent = '今日 ' + dailyHrs + 'h · 本周 ' + weeklyHrs + 'h';
+}
+
+/* ─── ACHIEVEMENT BADGES (WITH UNDO) ─── */
+var badgeConfig = [
+  {phase:0, title:'基础认知解锁', sub:'你已经理解了 AI 技术栈的全貌', icon:'1'},
+  {phase:1, title:'核心技能达成', sub:'Prompt + Agent + MCP 三项全通', icon:'2'},
+  {phase:2, title:'实战项目完成', sub:'一个完整的 AI Agent 已上线', icon:'3'},
+  {phase:3, title:'准备就绪', sub:'你已经准备好冲击 AI PM 岗位', icon:'4'}
+];
+
+var activeToasts = {};
+
+function checkBadges() {
+  var phases = ['p1-tasks','p2-tasks','p3-tasks','p4-tasks'];
+  phases.forEach(function(pid, i) {
+    var list = document.getElementById(pid);
+    if (!list) return;
+    var done = list.querySelectorAll('.jj-task-check.done').length;
+    var total = phaseTaskCounts[i];
+    if (done === total && total > 0 && !achievedBadges[i]) {
+      achievedBadges[i] = true;
+      try { localStorage.setItem('jj_badges', JSON.stringify(achievedBadges)); } catch(e) {}
+      showBadge(badgeConfig[i], i);
+    }
+  });
+}
+
+function showBadge(badge, phaseIdx) {
+  var container = document.getElementById('jj-toast-container');
+  var toastId = 'badge-' + phaseIdx + '-' + Date.now();
+  var toast = document.createElement('div');
+  toast.className = 'jj-toast';
+  toast.id = toastId;
+  toast.innerHTML = '<div class="jj-toast-icon">' + badge.icon + '</div><div class="jj-toast-body"><div class="jj-toast-title">' + badge.title + '</div><div class="jj-toast-sub">' + badge.sub + '</div><span class="jj-toast-undo" onclick="undoBadge(' + phaseIdx + ',\'' + toastId + '\')">撤销</span></div>';
+  container.appendChild(toast);
+  activeToasts[toastId] = setTimeout(function() {
+    if (toast.parentNode) toast.parentNode.removeChild(toast);
+  }, 3400);
+}
+
+function undoBadge(phaseIdx, toastId) {
+  achievedBadges[phaseIdx] = false;
+  try { localStorage.setItem('jj_badges', JSON.stringify(achievedBadges)); } catch(e) {}
+  // Uncheck all tasks in this phase
+  var listId = 'p' + (phaseIdx + 1) + '-tasks';
+  var list = document.getElementById(listId);
+  if (list) {
+    Array.from(list.children).forEach(function(item, i) {
+      var taskId = listId + '_' + i;
+      taskState[taskId] = false;
+      item.querySelector('.jj-task-check').classList.remove('done');
+      item.querySelector('.jj-task-text').classList.remove('done');
+      item.setAttribute('aria-checked', 'false');
+    });
+    try { localStorage.setItem('jj_tasks', JSON.stringify(taskState)); } catch(e) {}
+    updatePhaseProgress();
+    updateTimeStats();
+  }
+  // Remove toast
+  if (activeToasts[toastId]) clearTimeout(activeToasts[toastId]);
+  var toast = document.getElementById(toastId);
+  if (toast && toast.parentNode) toast.parentNode.removeChild(toast);
+}
+
+/* ─── NOTES PANEL ─── */
+var notesState = {};
+try { notesState = JSON.parse(localStorage.getItem('jj_notes') || '{}'); } catch(e) { notesState = {}; }
+
+function toggleNotes(btn) {
+  var phase = btn.getAttribute('data-phase');
+  var panel = document.getElementById('notes-' + phase);
+  var open = panel.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  if (open) {
+    var ta = document.getElementById('notes-textarea-' + phase);
+    if (ta && notesState[phase]) ta.value = notesState[phase];
+  }
+}
+
+function saveNotes(phase) {
+  var ta = document.getElementById('notes-textarea-' + phase);
+  if (!ta) return;
+  notesState[phase] = ta.value;
+  try { localStorage.setItem('jj_notes', JSON.stringify(notesState)); } catch(e) {}
+  // Find the save button in this notes panel
+  var panel = document.getElementById('notes-' + phase);
+  var btn = panel ? panel.querySelector('.jj-notes-save-btn') : null;
+  if (btn) {
+    var orig = btn.textContent;
+    btn.textContent = '已保存 \u2713';
+    setTimeout(function(){ btn.textContent = orig; }, 1500);
+  }
+}
+
+function restoreNotes() {
+  Object.keys(notesState).forEach(function(phase) {
+    var ta = document.getElementById('notes-textarea-' + phase);
+    if (ta) ta.value = notesState[phase];
+  });
+}
+
+/* ─── RADAR CHART ─── */
+var radarChart = null;
+var radarState = {};
+try { radarState = JSON.parse(localStorage.getItem('jj_radar') || '{}'); } catch(e) { radarState = {}; }
+
+function initRadar() {
+  var dims = ['Prompt 工程','Agent 设计','模型评估','产品策略','数据思维','工程协作'];
+  var targetVals = [8,8,7,9,8,7];
+
+  if (radarState.vals) {
+    document.querySelectorAll('.jj-radar-dim-slider').forEach(function(s, i) {
+      s.value = radarState.vals[i];
+      document.getElementById('radar-val-' + i).textContent = radarState.vals[i];
+    });
+  }
+
+  var ctx = document.getElementById('jj-radar-canvas');
+  if (!ctx) return;
+
+  radarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: dims,
+      datasets: [
+        {
+          label: '目标水平',
+          data: targetVals,
+          borderColor: 'rgba(184,153,104,0.5)',
+          backgroundColor: 'rgba(184,153,104,0.06)',
+          borderWidth: 1.5,
+          borderDash: [4,4],
+          pointRadius: 0,
+          pointHitRadius: 0
+        },
+        {
+          label: '当前水平',
+          data: getRadarVals(),
+          borderColor: '#8B7355',
+          backgroundColor: 'rgba(139,115,85,0.12)',
+          borderWidth: 2,
+          pointBackgroundColor: '#8B7355',
+          pointBorderColor: '#FFFDF8',
+          pointBorderWidth: 2,
+          pointRadius: 5,
+          pointHoverRadius: 7
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: true, position: 'bottom', labels: { font: { family: 'Noto Sans SC', size: 12 }, color: '#6B6258', usePointStyle: true, padding: 20 } } },
+      scales: { r: { beginAtZero: true, max: 10, ticks: { stepSize: 2, display: false }, grid: { color: 'rgba(139,115,85,0.12)' }, angleLines: { color: 'rgba(139,115,85,0.12)' }, pointLabels: { font: { family: 'Noto Sans SC', size: 13, weight: '500' }, color: '#3A3530' } } }
+    },
+    plugins: [{
+      id: 'hideSkeleton',
+      afterInit: function() {
+        var skel = document.getElementById('jj-radar-skeleton');
+        if (skel) skel.classList.add('hidden');
+      }
+    }]
+  });
+}
+
+function getRadarVals() {
+  var vals = [];
+  document.querySelectorAll('.jj-radar-dim-slider').forEach(function(s) { vals.push(parseInt(s.value)); });
+  return vals;
+}
+
+function updateRadar() {
+  var vals = getRadarVals();
+  vals.forEach(function(v, i) { document.getElementById('radar-val-' + i).textContent = v; });
+  if (radarChart) {
+    radarChart.data.datasets[1].data = vals;
+    radarChart.update();
+  }
+  radarState.vals = vals;
+  try { localStorage.setItem('jj_radar', JSON.stringify(radarState)); } catch(e) {}
+}
+
+function resetRadar() {
+  var defaults = [2,1,1,5,3,3];
+  document.querySelectorAll('.jj-radar-dim-slider').forEach(function(s, i) {
+    s.value = defaults[i];
+    document.getElementById('radar-val-' + i).textContent = defaults[i];
+  });
+  if (radarChart) {
+    radarChart.data.datasets[1].data = defaults;
+    radarChart.update();
+  }
+  radarState.vals = defaults;
+  try { localStorage.setItem('jj_radar', JSON.stringify(radarState)); } catch(e) {}
+}
+
+/* ─── SPRINT TRACKER ─── */
+var sprintState = {};
+try { sprintState = JSON.parse(localStorage.getItem('jj_sprint') || '{}'); } catch(e) { sprintState = {}; }
+
+var sprintTaskCounts = [6,6,4,5];
+
+function toggleSprintWeek(idx) {
+  var week = document.querySelector('[data-week="' + idx + '"]');
+  var header = week ? week.querySelector('.jj-sprint-header') : null;
+  week.classList.toggle('open');
+  if (header) header.setAttribute('aria-expanded', week.classList.contains('open').toString());
+}
+
+function toggleSprintTask(el, week, task) {
+  var check = el.querySelector('.jj-sprint-task-check');
+  var text = el.querySelector('.jj-sprint-task-text');
+  var key = 'w' + week + '_t' + task;
+  var done = check.classList.toggle('done');
+  text.classList.toggle('done', done);
+  el.setAttribute('aria-checked', done.toString());
+  sprintState[key] = done;
+  try { localStorage.setItem('jj_sprint', JSON.stringify(sprintState)); } catch(e) {}
+  updateSprintProgress();
+}
+
+function restoreSprint() {
+  sprintTaskCounts.forEach(function(count, week) {
+    var weekDone = 0;
+    for (var t = 0; t < count; t++) {
+      var key = 'w' + week + '_t' + t;
+      if (sprintState[key]) {
+        var tasks = document.querySelectorAll('[data-week="' + week + '"] .jj-sprint-task');
+        if (tasks[t]) {
+          tasks[t].querySelector('.jj-sprint-task-check').classList.add('done');
+          tasks[t].querySelector('.jj-sprint-task-text').classList.add('done');
+          tasks[t].setAttribute('aria-checked', 'true');
+          weekDone++;
+        }
+      }
+    }
+    var progEl = document.querySelector('[data-week="' + week + '"] .jj-sprint-week-prog');
+    if (progEl) progEl.textContent = weekDone + '/' + count;
+  });
+  updateSprintProgress();
+}
+
+function updateSprintProgress() {
+  var total = 0, done = 0;
+  sprintTaskCounts.forEach(function(count, week) {
+    var weekDone = document.querySelectorAll('[data-week="' + week + '"] .jj-sprint-task-check.done').length;
+    var progEl = document.querySelector('[data-week="' + week + '"] .jj-sprint-week-prog');
+    if (progEl) progEl.textContent = weekDone + '/' + count;
+    total += count;
+    done += weekDone;
+  });
+  var pct = total ? Math.round(done / total * 100) : 0;
+  document.getElementById('sprint-fill').style.width = pct + '%';
+  document.getElementById('sprint-pct').textContent = pct + '%';
+}
+
+/* ─── RESOURCE LIBRARY ─── */
+var activeLibTab = 'docs';
+var activeFilterTag = 'all';
+var libSearchQuery = '';
+
+var libData = {
+  docs: {
+    cols: ['类别', '资源', '说明'],
+    rows: [
+      ['Anthropic 官方文档','docs.claude.com','API、Agent SDK、MCP 协议规范','必读 Claude'],
+      ['Anthropic Academy','anthropic.com/learn','17-18 门免费认证课程','必读 Claude'],
+      ['MCP 入门 + 进阶','Anthropic Academy','两门连读，重点看 Sampling、Transport','进阶 MCP'],
+      ['AI Product Management','Anthropic Academy','讲 agentic 产品的评估 / 监控','必读'],
+      ['Building with Claude API','Anthropic Academy','覆盖 agent loop、tool use、managed agents','进阶 Claude'],
+      ['MCP 官方规范','modelcontextprotocol.io','开放协议标准文档','必读 MCP'],
+      ['LangGraph 文档','langchain.com/docs','图状态机、checkpointing、human-in-the-loop','进阶'],
+    ]
+  },
+  repos: {
+    cols: ['仓库', '优先级', '建议操作'],
+    rows: [
+      ['anthropics/claude-agent-sdk-python','核心','clone + 跑通 hello world','必读 Claude 开源'],
+      ['anthropics/claude-agent-sdk-demos','核心','精读 research-agent 多智能体协调','必读 Claude 开源'],
+      ['modelcontextprotocol/servers','核心','精读 filesystem、git 两个 server 源码','必读 MCP 开源'],
+      ['anthropics/claude-cookbooks','核心','找 evaluation notebook 借鉴评估框架','必读 Claude'],
+      ['anthropics/claude-quickstarts','建议','看 computer-use-demo 可观测性实践','进阶 Claude'],
+      ['modelcontextprotocol/*-sdk','建议','按技术栈选一个深入','进阶 MCP 开源'],
+      ['crewAIInc/crewAI','泛读','泛读 README，理解角色制范式','进阶 开源'],
+      ['microsoft/agent-framework','泛读','了解定位，AutoGen 继任者','开源'],
+    ]
+  }
+};
+
+function renderLib() {
+  var data = libData[activeLibTab];
+  var hdr = document.getElementById('lib-hdr');
+  hdr.innerHTML = '<span>' + data.cols[0] + '</span><span>' + data.cols[1] + '</span><span>' + data.cols[2] + '</span>';
+  var rows = data.rows;
+  if (activeFilterTag !== 'all') {
+    rows = rows.filter(function(r) { return r[3] && r[3].split(' ').indexOf(activeFilterTag) !== -1; });
+  }
+  if (libSearchQuery) {
+    var q = libSearchQuery.toLowerCase();
+    rows = rows.filter(function(r) { return r[0].toLowerCase().indexOf(q) !== -1 || r[1].toLowerCase().indexOf(q) !== -1 || r[2].toLowerCase().indexOf(q) !== -1; });
+  }
+  var rowsEl = document.getElementById('lib-rows');
+  if (rows.length === 0) {
+    rowsEl.innerHTML = '<div class="jj-lib-empty"><span class="jj-lib-empty-icon">\uD83D\uDD0D</span><span>未找到匹配的资源，试试其他关键词或标签</span></div>';
+  } else {
+    rowsEl.innerHTML = rows.map(function(row) {
+      return '<div class="jj-lib-row"><span class="jj-lib-a">' + row[0] + '</span><span class="jj-lib-b">' + row[1] + '</span><span class="jj-lib-c">' + row[2] + '</span></div>';
+    }).join('');
+  }
+}
+
+function switchLibTab(tab, btn) {
+  activeLibTab = tab;
+  document.querySelectorAll('.jj-lib-tab').forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+  renderLib();
+}
+
+function filterTag(tag, btn) {
+  activeFilterTag = tag;
+  document.querySelectorAll('.jj-lib-tag').forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+  renderLib();
+}
+
+function filterLib() {
+  libSearchQuery = document.getElementById('lib-search').value.trim();
+  renderLib();
+}
+
+/* ─── COMPARE TOGGLE ─── */
+function toggleCompare(btn) {
+  var item = btn.closest('.jj-compare-item');
+  var panels = item.querySelector('.jj-compare-panels');
+  var open = panels.style.display !== 'none';
+  panels.style.display = open ? 'none' : 'grid';
+  item.classList.toggle('open', !open);
+  btn.setAttribute('aria-expanded', (!open).toString());
+}
+
+/* ─── FORM SUBMIT (INLINE VALIDATION) ─── */
+function clearFieldError(input) {
+  input.classList.remove('error');
+  var errorEl = input.parentElement.querySelector('.jj-form-error');
+  if (errorEl) errorEl.classList.remove('visible');
+}
+
+function showFieldError(inputId, errorId) {
+  var input = document.getElementById(inputId);
+  var error = document.getElementById(errorId);
+  if (input) input.classList.add('error');
+  if (error) error.classList.add('visible');
+}
+
+function resetForm() {
+  document.getElementById('form-name').value = '';
+  document.getElementById('form-email').value = '';
+  document.getElementById('form-name').classList.remove('error');
+  document.getElementById('form-email').classList.remove('error');
+  document.getElementById('form-error-name').classList.remove('visible');
+  document.getElementById('form-error-email').classList.remove('visible');
+  document.getElementById('form-success').classList.remove('visible');
+  document.getElementById('form-fail').classList.remove('visible');
+  document.getElementById('form-submit-btn').disabled = false;
+  document.getElementById('form-submit-btn').textContent = '提交申请';
+  document.getElementById('form-fields').querySelector('.jj-form-label:first-of-type').style.display = '';
+  document.getElementById('form-fields').querySelector('.jj-form-label:nth-of-type(2)').style.display = '';
+}
+
+/* ─── WEB3FORMS SUBMISSION ─── */
+var W3F_KEY = 'ac78597e-f487-4ac0-ad3c-1154651cdd05'; /* Web3Forms access key */
+var DAILY_LIMIT = 250;
+
+function getDailyCount() {
+  var today = new Date().toISOString().slice(0, 10);
+  var raw = localStorage.getItem('jj_form_daily');
+  try {
+    var data = raw ? JSON.parse(raw) : {};
+    if (data.date === today) return data.count || 0;
+  } catch(e) {}
+  return 0;
+}
+
+function incrDailyCount() {
+  var today = new Date().toISOString().slice(0, 10);
+  var count = getDailyCount() + 1;
+  try { localStorage.setItem('jj_form_daily', JSON.stringify({date: today, count: count})); } catch(e) {}
+  return count;
+}
+
+function showFormFail(msg) {
+  var failEl = document.getElementById('form-fail');
+  failEl.innerHTML = '&#9888; ' + msg;
+  failEl.classList.add('visible');
+}
+
+function submitForm() {
+  var name = document.getElementById('form-name').value.trim();
+  var email = document.getElementById('form-email').value.trim();
+  var valid = true;
+
+  if (!name) { showFieldError('form-name', 'form-error-name'); valid = false; }
+  else { document.getElementById('form-name').classList.remove('error'); document.getElementById('form-error-name').classList.remove('visible'); }
+
+  if (!email) { showFieldError('form-email', 'form-error-email'); valid = false; }
+  else if (!email.includes('@') || !email.includes('.')) { showFieldError('form-email', 'form-error-email'); valid = false; }
+  else { document.getElementById('form-email').classList.remove('error'); document.getElementById('form-error-email').classList.remove('visible'); }
+
+  if (!valid) return;
+
+  /* Honeypot: if filled, silently reject (bot) */
+  var botcheck = document.querySelector('input[name="botcheck"]');
+  if (botcheck && botcheck.value) return;
+
+  /* Daily limit pre-check */
+  if (getDailyCount() >= DAILY_LIMIT) {
+    showFormFail('今日提交已达上限，请明天再试。');
+    return;
+  }
+
+  var btn = document.getElementById('form-submit-btn');
+  var successEl = document.getElementById('form-success');
+  var failEl = document.getElementById('form-fail');
+  btn.textContent = '提交中...';
+  btn.disabled = true;
+  successEl.classList.remove('visible');
+  failEl.classList.remove('visible');
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: W3F_KEY,
+      name: name,
+      email: email,
+      subject: 'AI PM 学习路径 - 新的社群申请',
+      from_name: 'AI PM 学习路径'
+    })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.success) {
+      incrDailyCount();
+      btn.textContent = '\u2713 已提交';
+      successEl.classList.add('visible');
+      document.getElementById('form-fields').querySelector('.jj-form-label:first-of-type').style.display = 'none';
+      document.getElementById('form-fields').querySelector('.jj-form-label:nth-of-type(2)').style.display = 'none';
+    } else {
+      btn.textContent = '提交申请';
+      btn.disabled = false;
+      showFormFail('提交失败：' + (data.message || '服务暂时不可用') + '。请稍后再试或直接邮件联系我们。');
+    }
+  })
+  .catch(function(err) {
+    btn.textContent = '提交申请';
+    btn.disabled = false;
+    showFormFail('网络异常，请检查网络连接后重试，或直接邮件联系我们。');
+  });
+}
+
+/* ─── SCROLL POSITION PRESERVATION ─── */
+var scrollPosKey = 'jj_scroll_pos_' + location.pathname;
+(function(){
+  var savedY = sessionStorage.getItem(scrollPosKey);
+  if (savedY) {
+    var y = parseFloat(savedY);
+    if (!isNaN(y) && y > 0) {
+      setTimeout(function(){ window.scrollTo({top: y, behavior: 'instant'}); }, 150);
+    }
+  }
+  window.addEventListener('beforeunload', function(){
+    try { sessionStorage.setItem(scrollPosKey, window.scrollY.toString()); } catch(e) {}
+  });
+})();
+
+function scrollToSection(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  // Also expand the phase if it's a phase section
+  var phaseMap = {phase1:0, phase2:1, phase3:2, phase4:3};
+  if (phaseMap[id] !== undefined && phaseCollapsed[phaseMap[id]]) {
+    phaseCollapsed[phaseMap[id]] = false;
+    applyPhaseState(phaseMap[id]);
+    updateCollapseBtn(null, phaseMap[id]);
+    try { localStorage.setItem('jj_phase_collapsed', JSON.stringify(phaseCollapsed)); } catch(e) {}
+    updateCollapseAllBtn();
+  }
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ─── KEYBOARD SHORTCUTS ─── */
+var currentSectionIdx = 0;
+
+function openShortcuts() {
+  document.getElementById('jj-shortcut-overlay').classList.add('open');
+}
+
+function closeShortcuts() {
+  document.getElementById('jj-shortcut-overlay').classList.remove('open');
+}
+
+document.addEventListener('keydown', function(e) {
+  // Don't intercept when typing in inputs or textareas
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  // Don't intercept when modifiers are pressed
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+  var key = e.key.toLowerCase();
+
+  if (key === '?') { e.preventDefault(); openShortcuts(); return; }
+  if (key === 'escape') {
+    var ov = document.getElementById('jj-shortcut-overlay');
+    if (ov && ov.classList.contains('open')) { e.preventDefault(); closeShortcuts(); return; }
+  }
+
+  // Number keys 1-7: jump to sections
+  var num = parseInt(key);
+  if (num >= 1 && num <= 7) {
+    e.preventDefault();
+    scrollToSection(sectionIds[num - 1]);
+    return;
+  }
+
+  // J/K: next/previous section
+  if (key === 'j') {
+    e.preventDefault();
+    // Find current visible section
+    for (var i = 0; i < sectionIds.length; i++) {
+      var el = document.getElementById(sectionIds[i]);
+      if (el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.top >= -100) {
+          var next = Math.min(i + 1, sectionIds.length - 1);
+          scrollToSection(sectionIds[next]);
+          break;
+        }
+      }
+    }
+  }
+  if (key === 'k') {
+    e.preventDefault();
+    for (var i = sectionIds.length - 1; i >= 0; i--) {
+      var el = document.getElementById(sectionIds[i]);
+      if (el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.top <= window.innerHeight + 100) {
+          var prev = Math.max(i - 1, 0);
+          scrollToSection(sectionIds[prev]);
+          break;
+        }
+      }
+    }
+  }
+
+  // T: back to top
+  if (key === 't') { e.preventDefault(); scrollToTop(); }
+
+  // E: export data
+  if (key === 'e') { e.preventDefault(); exportData(); }
+});
+
+/* ─── EXPORT DATA ─── */
+function exportData() {
+  var data = {
+    exportedAt: new Date().toISOString(),
+    tasks: taskState,
+    phaseCollapsed: phaseCollapsed,
+    notes: notesState,
+    radar: radarState,
+    sprint: sprintState,
+    badges: achievedBadges,
+    timeLog: timeCompletionLog,
+    stats: {
+      totalHours: 0,
+      dailyHours: getDayHours(new Date().toISOString().slice(0,10)),
+      weeklyHours: getWeekHours()
+    }
+  };
+  // Calculate total hours
+  document.querySelectorAll('.jj-task-list .jj-task-item').forEach(function(item) {
+    if (item.querySelector('.jj-task-check.done')) {
+      data.stats.totalHours += parseFloat(item.getAttribute('data-time') || '0');
+    }
+  });
+
+  // Generate Markdown export
+  var md = '# AI PM 学习路径 · 学习数据导出\n\n';
+  md += '**导出时间**: ' + new Date().toLocaleString('zh-CN') + '\n\n';
+  md += '## 学习统计\n\n';
+  md += '| 指标 | 数值 |\n|------|------|\n';
+  md += '| 总投入时间 | ' + data.stats.totalHours + 'h |\n';
+  md += '| 今日投入 | ' + data.stats.dailyHours + 'h |\n';
+  md += '| 本周投入 | ' + data.stats.weeklyHours + 'h |\n\n';
+
+  md += '## 各阶段进度\n\n';
+  var phaseLabels = ['基础认知','核心技能','实战项目','求职冲刺'];
+  var phaseTimes = [12,14,16,8];
+  for (var p = 0; p < 4; p++) {
+    var listId = 'p' + (p+1) + '-tasks';
+    var done = document.querySelectorAll('#' + listId + ' .jj-task-check.done').length;
+    var total = phaseTaskCounts[p];
+    md += '- **' + phaseLabels[p] + '**: ' + done + '/' + total + ' 项完成 (' + Math.round(done/total*100) + '%)\n';
+  }
+
+  // Notes
+  md += '\n## 学习笔记\n\n';
+  Object.keys(notesState).forEach(function(p) {
+    if (notesState[p] && notesState[p].trim()) {
+      md += '### ' + phaseLabels[parseInt(p)] + '\n\n' + notesState[p] + '\n\n';
+    }
+  });
+
+  // Download both formats
+  downloadFile('aipm-learning-data-' + new Date().toISOString().slice(0,10) + '.json', JSON.stringify(data, null, 2), 'application/json');
+  setTimeout(function(){
+    downloadFile('aipm-learning-data-' + new Date().toISOString().slice(0,10) + '.md', md, 'text/markdown');
+  }, 300);
+}
+
+function downloadFile(filename, content, mimeType) {
+  var blob = new Blob([content], {type: mimeType});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* ─── INIT ─── */
+document.addEventListener('DOMContentLoaded', function() {
+  initPhaseStates();
+  restoreTasks();
+  restoreSprint();
+  restoreNotes();
+  initRadar();
+  renderLib();
+  updateDailyWeeklyStats();
+
+  // Initialize first phase as active on rail
+  var firstRail = document.querySelector('.jj-rail-dot[data-rail="overview"]');
+  if (firstRail) firstRail.classList.add('active');
+});
+</script>
+
+</body>
+</html>
