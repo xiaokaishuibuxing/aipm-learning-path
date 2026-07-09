@@ -1023,6 +1023,60 @@ body::before{
   .jj-audience-card,.jj-interview-card,.jj-pitfall-item,.jj-career-stat,.jj-career-type-card{border:1px solid #ddd;break-inside:avoid;}
   .jj-glossary-item{break-inside:avoid;}
 }
+/* ─── V11: SELF-ASSESSMENT ─── */
+.jj-sa-quiz{display:flex;flex-direction:column;gap:22px;margin-bottom:8px;}
+.jj-sa-q{background:rgba(255,253,248,.6);border:1px solid var(--line);border-radius:2px;padding:18px 20px;}
+.jj-sa-q-num{font-family:'Noto Serif SC',serif;font-size:12px;font-weight:700;color:var(--copper);letter-spacing:.08em;margin-bottom:8px;}
+.jj-sa-q-text{font-size:15px;font-weight:500;color:var(--t1);margin-bottom:14px;line-height:1.6;}
+.jj-sa-opts{display:flex;flex-wrap:wrap;gap:10px;}
+.jj-sa-opt{cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--t2);font-size:13.5px;padding:9px 16px;border-radius:2px;transition:all .2s;font-family:'Noto Sans SC',sans-serif;}
+.jj-sa-opt:hover{border-color:var(--wood);color:var(--t1);}
+.jj-sa-opt.sel{background:var(--wood);border-color:var(--wood);color:#fff;font-weight:600;}
+.jj-sa-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px;}
+.jj-sa-btn{font-family:'Noto Sans SC',sans-serif;font-size:14px;font-weight:600;background:var(--wood-dk);color:#fff;border:none;padding:11px 26px;border-radius:2px;cursor:pointer;transition:all .2s;}
+.jj-sa-btn:hover{background:#6f5a3c;}
+.jj-sa-btn.ghost{background:transparent;color:var(--wood-dk);border:1px solid var(--line);}
+.jj-sa-hint{font-size:13px;color:var(--warm-red);}
+.jj-sa-result{margin-top:26px;background:linear-gradient(135deg,rgba(184,153,104,.08),rgba(139,184,136,.06));border:1px solid var(--line);border-radius:2px;padding:28px 30px;}
+.jj-sa-type{font-family:'Noto Serif SC',serif;font-size:26px;font-weight:700;color:var(--t1);margin-bottom:6px;}
+.jj-sa-type .jj-sa-badge{font-size:12px;font-weight:600;color:#fff;background:var(--copper);padding:3px 12px;border-radius:20px;vertical-align:middle;margin-left:10px;}
+.jj-sa-desc{font-size:14px;color:var(--t2);line-height:1.8;margin-bottom:8px;max-width:660px;}
+.jj-sa-block-title{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--wood-dk);text-transform:uppercase;margin:20px 0 10px;}
+.jj-sa-weak{display:flex;flex-direction:column;gap:8px;}
+.jj-sa-weak-item{font-size:13.5px;color:var(--t2);background:#fff;border:1px solid var(--line);border-left:3px solid var(--copper);padding:10px 14px;border-radius:2px;cursor:pointer;transition:all .2s;}
+.jj-sa-weak-item:hover{background:rgba(184,153,104,.06);}
+.jj-sa-weak-item b{color:var(--t1);}
+.jj-sa-rec{display:flex;flex-direction:column;gap:8px;}
+.jj-sa-rec-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--t1);background:#fff;border:1px solid var(--line);padding:10px 14px;border-radius:2px;cursor:pointer;transition:all .2s;}
+.jj-sa-rec-item:hover{border-color:var(--wood);background:rgba(184,153,104,.05);}
+.jj-sa-rec-item .jj-sa-rec-idx{font-family:'Noto Serif SC',serif;font-weight:700;color:var(--wood-dk);width:22px;}
+.jj-sa-fallback{font-size:13px;color:var(--t3);margin-top:16px;line-height:1.7;}
+@keyframes jjflash{0%{box-shadow:0 0 0 0 rgba(184,153,104,0);}30%{box-shadow:0 0 0 4px rgba(184,153,104,.45);}100%{box-shadow:0 0 0 0 rgba(184,153,104,0);}}
+.jj-task-item.jj-task-flash{animation:jjflash 1.9s ease;border-color:var(--wood)!important;}
+
+/* ─── V11: CERTIFICATE ─── */
+.jj-cert-phases{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.jj-phase-cert{background:#fff;border:1px solid var(--line);border-radius:2px;padding:20px 16px;text-align:center;position:relative;opacity:.6;transition:all .3s;}
+.jj-phase-cert.earned{opacity:1;border-color:var(--wood);background:linear-gradient(160deg,rgba(184,153,104,.1),#fff);}
+.jj-phase-cert-seal{width:46px;height:46px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;background:var(--line-a);}
+.jj-phase-cert.earned .jj-phase-cert-seal{background:var(--copper);}
+.jj-phase-cert-name{font-size:13px;font-weight:600;color:var(--t1);margin-bottom:6px;}
+.jj-phase-cert-prog{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:var(--wood-dk);}
+.jj-phase-cert-tag{font-size:11px;color:var(--t3);margin-top:4px;}
+.jj-cert-total{background:rgba(255,253,248,.6);border:1px solid var(--line);border-radius:2px;padding:24px 26px;}
+.jj-cert-total-status{font-size:15px;color:var(--t1);font-weight:600;margin-bottom:16px;}
+.jj-cert-total-status .jj-cert-ok{color:var(--tea);}
+.jj-cert-form{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px;}
+.jj-cert-input{font-family:'Noto Sans SC',sans-serif;font-size:14px;padding:10px 14px;border:1px solid var(--line);border-radius:2px;min-width:240px;background:#fff;}
+.jj-cert-btn{font-family:'Noto Sans SC',sans-serif;font-size:14px;font-weight:600;background:var(--wood-dk);color:#fff;border:none;padding:11px 24px;border-radius:2px;cursor:pointer;transition:all .2s;}
+.jj-cert-btn:hover{background:#6f5a3c;}
+.jj-cert-btn:disabled{background:var(--line-a);cursor:not-allowed;}
+.jj-cert-canvas{max-width:100%;height:auto;border:1px solid var(--line);border-radius:2px;box-shadow:0 6px 24px rgba(58,53,48,.12);margin-bottom:14px;}
+.jj-cert-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.jj-cert-act{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:600;background:#fff;border:1px solid var(--wood);color:var(--wood-dk);padding:9px 18px;border-radius:2px;cursor:pointer;transition:all .2s;}
+.jj-cert-act:hover{background:rgba(184,153,104,.08);}
+textarea.jj-cert-share{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;border:0;resize:none;}
+@media(max-width:760px){.jj-cert-phases{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
@@ -1053,6 +1107,7 @@ body::before{
   <button class="jj-rail-dot" data-rail="pitfall" onclick="scrollToSection('pitfall')" aria-label="跳转到避坑指南" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">避坑指南</span></button>
   <div class="jj-rail-dot-spacer"></div>
   <button class="jj-rail-dot" data-rail="overview" onclick="scrollToSection('overview')" aria-label="跳转到路径总览" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">路径总览</span></button>
+  <button class="jj-rail-dot" data-rail="selfassess" onclick="scrollToSection('selfassess')" aria-label="跳转到职业自测" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">职业自测</span></button>
   <button class="jj-rail-dot" data-rail="phase1" onclick="scrollToSection('phase1')" aria-label="跳转到基础认知" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">基础认知</span></button>
   <button class="jj-rail-dot" data-rail="phase2" onclick="scrollToSection('phase2')" aria-label="跳转到核心技能" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">核心技能</span></button>
   <button class="jj-rail-dot" data-rail="phase3" onclick="scrollToSection('phase3')" aria-label="跳转到实战项目" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">实战项目</span></button>
@@ -1061,6 +1116,7 @@ body::before{
   <div class="jj-rail-dot-spacer"></div>
   <button class="jj-rail-dot" data-rail="glossary" onclick="scrollToSection('glossary')" aria-label="跳转到术语词典" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">术语词典</span></button>
   <button class="jj-rail-dot" data-rail="interview" onclick="scrollToSection('interview')" aria-label="跳转到面试真题" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">面试真题</span></button>
+  <button class="jj-rail-dot" data-rail="certificate" onclick="scrollToSection('certificate')" aria-label="跳转到成就证书" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">成就证书</span></button>
   <button class="jj-rail-dot" data-rail="resources" onclick="scrollToSection('resources')" aria-label="跳转到资料库" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">资料库</span></button>
   <button class="jj-rail-dot" data-rail="contact" onclick="scrollToSection('contact')" aria-label="跳转到加入社群" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">加入社群</span></button>
   <button class="jj-rail-top-dot" onclick="scrollToTop()" aria-label="回到顶部" tabindex="0" title="回到顶部">&#9650;</button>
@@ -1104,9 +1160,11 @@ body::before{
     <a href="#compare" class="jj-nav-link" data-nav="compare">PM对比</a>
     <a href="#pitfall" class="jj-nav-link" data-nav="pitfall">避坑指南</a>
     <a href="#overview" class="jj-nav-link" data-nav="overview">路径总览</a>
+    <a href="#selfassess" class="jj-nav-link" data-nav="selfassess">职业自测</a>
     <a href="#phase1" class="jj-nav-link" data-nav="phase1">基础认知</a>
     <a href="#phase4" class="jj-nav-link" data-nav="phase4">求职冲刺</a>
     <a href="#interview" class="jj-nav-link" data-nav="interview">面试题</a>
+    <a href="#certificate" class="jj-nav-link" data-nav="certificate">成就证书</a>
     <a href="#resources" class="jj-nav-link" data-nav="resources">资料库</a>
     <a href="#contact" class="jj-nav-cta">加入社群</a>
   </div>
@@ -1535,6 +1593,19 @@ body::before{
         <div class="jj-phase-desc">简历打磨、面试准备、作品集呈现，完成从学到用的跃迁</div>
         <div class="jj-phase-badge" style="border-color:var(--warm-red);color:var(--warm-red);background:rgba(201,120,94,.06)">冲刺</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SELF-ASSESSMENT ─── -->
+<section id="selfassess" class="jj-section">
+  <div class="jj-section-inner">
+    <div class="jj-section-eyebrow jj-reveal">职业自测</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s">找到你的 AI PM 方向</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s;margin-bottom:28px">7 道短题，1 分钟测出你更适合「技术型」还是「业务型」AI PM，并给出优先学习路径。结果仅保存在你的浏览器本地。</p>
+    <div class="jj-reveal" style="transition-delay:.18s">
+      <div id="sa-quiz"></div>
+      <div id="sa-result"></div>
     </div>
   </div>
 </section>
@@ -2061,6 +2132,37 @@ body::before{
   </div>
 </section>
 
+<!-- ─── CERTIFICATE ─── -->
+<section id="certificate" class="jj-section alt">
+  <div class="jj-section-inner">
+    <div class="jj-section-eyebrow jj-reveal">学习成就</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s">完成证书</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s;margin-bottom:28px">每完成一个阶段解锁一枚阶段证书；完成全部 18 项任务，即可生成可分享、可下载的 AI PM 成就证书。</p>
+    <div class="jj-reveal" style="transition-delay:.18s">
+      <div class="jj-cert-phases" id="cert-phases">
+        <div class="jj-phase-cert" id="pcert-0"><div class="jj-phase-cert-seal">&#10003;</div><div class="jj-phase-cert-name">阶段 01 · 基础认知</div><div class="jj-phase-cert-prog" id="pcert-prog-0">0/4</div><div class="jj-phase-cert-tag" id="pcert-tag-0">进行中</div></div>
+        <div class="jj-phase-cert" id="pcert-1"><div class="jj-phase-cert-seal">&#10003;</div><div class="jj-phase-cert-name">阶段 02 · 核心技能</div><div class="jj-phase-cert-prog" id="pcert-prog-1">0/5</div><div class="jj-phase-cert-tag" id="pcert-tag-1">进行中</div></div>
+        <div class="jj-phase-cert" id="pcert-2"><div class="jj-phase-cert-seal">&#10003;</div><div class="jj-phase-cert-name">阶段 03 · 实战项目</div><div class="jj-phase-cert-prog" id="pcert-prog-2">0/4</div><div class="jj-phase-cert-tag" id="pcert-tag-2">进行中</div></div>
+        <div class="jj-phase-cert" id="pcert-3"><div class="jj-phase-cert-seal">&#10003;</div><div class="jj-phase-cert-name">阶段 04 · 求职冲刺</div><div class="jj-phase-cert-prog" id="pcert-prog-3">0/5</div><div class="jj-phase-cert-tag" id="pcert-tag-3">进行中</div></div>
+      </div>
+      <div class="jj-cert-total">
+        <div class="jj-cert-total-status" id="cert-total-status"></div>
+        <div class="jj-cert-form">
+          <input type="text" id="cert-name" class="jj-cert-input" placeholder="输入证书署名（默认：AI PM 学员）" aria-label="证书署名">
+          <button class="jj-cert-btn" id="cert-gen-btn" onclick="generateCertificate()">生成我的证书</button>
+        </div>
+        <div class="jj-cert-preview" id="cert-preview"></div>
+        <canvas id="cert-canvas" class="jj-cert-canvas" style="display:none"></canvas>
+        <div class="jj-cert-actions" id="cert-actions" style="display:none">
+          <button class="jj-cert-act" onclick="downloadCertificate()">下载证书图片</button>
+          <button class="jj-cert-act" id="cert-copy-btn" onclick="copyCertShare()">复制分享文案</button>
+        </div>
+        <textarea id="cert-share-text" class="jj-cert-share" readonly aria-hidden="true"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── RESOURCE LIBRARY ─── -->
 <section id="resources" class="jj-section">
   <div class="jj-section-inner">
@@ -2254,7 +2356,7 @@ function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
 })();
 
 /* ─── NAV & RAIL SCROLL HIGHLIGHT ─── */
-var sectionIds = ['audience','radar','career','compare','pitfall','overview','phase1','phase2','phase3','phase4','sprint','glossary','interview','resources','contact'];
+var sectionIds = ['audience','radar','career','compare','pitfall','overview','selfassess','phase1','phase2','phase3','phase4','sprint','glossary','interview','certificate','resources','contact'];
 (function(){
   var navLinks = document.querySelectorAll('.jj-nav-link[data-nav]');
   var railDots = document.querySelectorAll('.jj-rail-dot[data-rail]');
@@ -2414,6 +2516,7 @@ function toggleTask(el) {
   updatePhaseProgress();
   updateTimeStats();
   checkBadges();
+  updateCertificate();
 }
 
 function updatePhaseProgress() {
@@ -3192,6 +3295,8 @@ function exportData() {
     radar: radarState,
     sprint: sprintState,
     badges: achievedBadges,
+    selfAssess: selfAssessState,
+    certificate: certState,
     timeLog: timeCompletionLog,
     stats: {
       totalHours: 0,
@@ -3252,6 +3357,379 @@ function downloadFile(filename, content, mimeType) {
   URL.revokeObjectURL(url);
 }
 
+/* ─── V11: SELF-ASSESSMENT + PATH BRANCHING ─── */
+var selfAssessState = {};
+try { selfAssessState = JSON.parse(localStorage.getItem('jj_selfassess') || '{}'); } catch(e) { selfAssessState = {}; }
+
+var TASK_LABEL_MAP = {};
+var SA_QUESTIONS = [
+  { q:'你目前或最近的工作职能最接近？', opts:[
+    {t:'研发 / 算法 / 数据工程', tech:2, biz:0},
+    {t:'产品 / 设计', tech:0, biz:2},
+    {t:'运营 / 项目 / 其他', tech:0, biz:1},
+    {t:'学生 / 待业 / 想转行', tech:0, biz:0}
+  ]},
+  { q:'看到「用代码调 API 搭一个 Agent」，你的第一反应是？', opts:[
+    {t:'想马上动手试试', tech:2, biz:0},
+    {t:'先想清楚它解决什么业务问题', tech:0, biz:2},
+    {t:'有点慌，但愿意学', tech:1, biz:0}
+  ]},
+  { q:'你更擅长哪类沟通？', opts:[
+    {t:'跟工程师对齐技术实现细节', tech:1, biz:0},
+    {t:'跟业务方 / 客户对齐目标', tech:0, biz:1},
+    {t:'两者都还行', tech:0, biz:0}
+  ]},
+  { q:'转 AI PM 后，你最想做成的事是？', opts:[
+    {t:'把 AI 能力做进产品功能里', tech:1, biz:1},
+    {t:'用 AI 提效现有业务流程', tech:0, biz:2},
+    {t:'从 0 到 1 定义一款 AI 产品', tech:1, biz:1}
+  ]},
+  { q:'你希望 1 年后成长为？', opts:[
+    {t:'能带技术团队做 AI 产品的技术型 PM', tech:2, biz:0},
+    {t:'懂 AI 的业务 / 产品负责人', tech:0, biz:2},
+    {t:'还没想好', tech:0, biz:0}
+  ]},
+  { q:'你每周能投入的学习时间大概是？', info:true, opts:[
+    {t:'少于 5 小时', tech:0, biz:0},
+    {t:'5–10 小时', tech:0, biz:0},
+    {t:'10 小时以上', tech:0, biz:0}
+  ]},
+  { q:'下面哪句话更打动你？', opts:[
+    {t:'把模型跑起来，看效果说话', tech:2, biz:0},
+    {t:'找到真实用户痛点，用 AI 解决它', tech:0, biz:2},
+    {t:'两句话都打动我', tech:1, biz:1}
+  ]}
+];
+
+var SA_TYPE_INFO = {
+  tech:{ name:'技术型 AI PM', desc:'你更享受把 AI 能力「做出来」——从模型到产品功能，你是团队里连接技术与产品的技术桥梁。', fallback:'业务型 AI PM 更擅长从用户与业务出发定义价值；若日后想转业务线，可补强产品策略与数据思维。' },
+  biz:{ name:'业务型 AI PM', desc:'你更擅长从用户与业务出发，用 AI 解决真实问题——你是 AI 价值的翻译官与落地推手。', fallback:'技术型 AI PM 更偏工程实现；若想增强技术话语权，可补强 Prompt 工程与 Agent 设计。' },
+  dual:{ name:'技术业务双修型', desc:'你既想懂技术、又不丢业务视角——未来可走技术型也可走业务型，先把当前短板补齐最划算。', fallback:'当你在实践中更偏某一边时，再来测一次，方向会更清晰。' }
+};
+
+var SA_REC_TASKS = {
+  tech:['p2-tasks_1','p2-tasks_2','p2-tasks_3','p3-tasks_1','p3-tasks_2'],
+  biz:['p1-tasks_3','p2-tasks_4','p3-tasks_0','p4-tasks_0','p4-tasks_1'],
+  dual:['p1-tasks_2','p2-tasks_2','p3-tasks_0','p4-tasks_2']
+};
+
+var SA_WEAK_DIM = {
+  0:{ name:'Prompt 工程', task:'p2-tasks_0' },
+  1:{ name:'Agent 设计', task:'p2-tasks_1' },
+  2:{ name:'模型评估', task:'p3-tasks_2' },
+  3:{ name:'产品策略', task:'p3-tasks_0' },
+  4:{ name:'数据思维', task:'p1-tasks_2' },
+  5:{ name:'工程协作', task:'p2-tasks_3' }
+};
+
+function avgArr(arr){ if(!arr.length) return 0; var s=0; arr.forEach(function(v){s+=v;}); return s/arr.length; }
+
+function buildTaskLabelMap(){
+  TASK_LABEL_MAP = {};
+  document.querySelectorAll('.jj-task-list').forEach(function(list){
+    Array.from(list.children).forEach(function(item,i){
+      var tx = item.querySelector('.jj-task-text');
+      if (tx) TASK_LABEL_MAP[list.id+'_'+i] = tx.textContent.trim();
+    });
+  });
+}
+
+function renderSelfAssessQuiz(){
+  var box = document.getElementById('sa-quiz');
+  if (!box) return;
+  var html = '';
+  SA_QUESTIONS.forEach(function(Q, qi){
+    html += '<div class="jj-sa-q">';
+    html += '<div class="jj-sa-q-num">问题 '+(qi+1)+' / '+SA_QUESTIONS.length+'</div>';
+    html += '<div class="jj-sa-q-text">'+Q.q+'</div>';
+    html += '<div class="jj-sa-opts" data-q="'+qi+'">';
+    Q.opts.forEach(function(o, oi){
+      html += '<button type="button" class="jj-sa-opt" data-q="'+qi+'" data-o="'+oi+'" onclick="selectSAOpt('+qi+','+oi+',this)">'+o.t+'</button>';
+    });
+    html += '</div></div>';
+  });
+  html += '<div class="jj-sa-actions"><button class="jj-sa-btn" onclick="submitSelfAssess()">查看我的方向</button><span class="jj-sa-hint" id="sa-hint"></span></div>';
+  box.innerHTML = html;
+}
+
+function selectSAOpt(qi, oi, el){
+  var group = document.querySelectorAll('.jj-sa-opt[data-q="'+qi+'"]');
+  group.forEach(function(b){ b.classList.remove('sel'); });
+  el.classList.add('sel');
+  if (!selfAssessState.answers) selfAssessState.answers = {};
+  selfAssessState.answers[qi] = oi;
+}
+
+function submitSelfAssess(){
+  var hint = document.getElementById('sa-hint');
+  var answers = selfAssessState.answers || {};
+  for (var i=0;i<SA_QUESTIONS.length;i++){
+    if (answers[i] == null) { if(hint) hint.textContent='请先回答全部 '+SA_QUESTIONS.length+' 道题再查看结果～'; return; }
+  }
+  if (hint) hint.textContent='';
+  var tech=0, biz=0;
+  SA_QUESTIONS.forEach(function(Q,i){
+    var oi = answers[i]; var o = Q.opts[oi];
+    if (o){ tech += (o.tech||0); biz += (o.biz||0); }
+  });
+  if (radarState.vals && Math.abs(tech-biz) <= 1){
+    var rv = radarState.vals;
+    var tAvg = avgArr([rv[0],rv[1],rv[2],rv[5]]);
+    var bAvg = avgArr([rv[3],rv[4]]);
+    if (tAvg - bAvg >= 1) tech += 2;
+    else if (bAvg - tAvg >= 1) biz += 2;
+  }
+  var type = (tech > biz + 1) ? 'tech' : (biz > tech + 1) ? 'biz' : 'dual';
+  var gap = Math.abs(tech-biz);
+  var conf = gap >= 3 ? '高' : (gap >= 1 ? '中' : '低');
+  selfAssessState.type = type;
+  selfAssessState.tech = tech;
+  selfAssessState.biz = biz;
+  selfAssessState.conf = conf;
+  selfAssessState.ts = Date.now();
+  try { localStorage.setItem('jj_selfassess', JSON.stringify(selfAssessState)); } catch(e) {}
+  renderSelfAssessResult(type, conf);
+}
+
+function renderSelfAssessResult(type, conf){
+  var box = document.getElementById('sa-result');
+  if (!box) return;
+  var info = SA_TYPE_INFO[type];
+  var rec = SA_REC_TASKS[type] || [];
+  var html = '';
+  html += '<div class="jj-sa-type">'+info.name+'<span class="jj-sa-badge">置信度 '+conf+'</span></div>';
+  html += '<div class="jj-sa-desc">'+info.desc+'</div>';
+  if (radarState.vals){
+    var dims = radarState.vals.map(function(v,i){ return {i:i,v:v}; });
+    dims.sort(function(a,b){ return a.v - b.v; });
+    var weak = dims.slice(0,2);
+    html += '<div class="jj-sa-block-title">能力弱项 · 建议优先补强</div>';
+    html += '<div class="jj-sa-weak">';
+    weak.forEach(function(d){
+      var w = SA_WEAK_DIM[d.i];
+      if (!w) return;
+      html += '<div class="jj-sa-weak-item" onclick="focusTask(\''+w.task+'\')"><b>'+w.name+'</b>（当前 '+d.v+'/10）— 点击去补：'+(TASK_LABEL_MAP[w.task]||w.task)+'</div>';
+    });
+    html += '</div>';
+  }
+  html += '<div class="jj-sa-block-title">推荐优先任务 · 先做这 '+(type==='dual'?4:5)+' 项</div>';
+  html += '<div class="jj-sa-rec">';
+  rec.forEach(function(tid, k){
+    html += '<div class="jj-sa-rec-item" onclick="focusTask(\''+tid+'\')"><span class="jj-sa-rec-idx">'+(k+1)+'</span><span>'+(TASK_LABEL_MAP[tid]||tid)+'</span></div>';
+  });
+  html += '</div>';
+  html += '<div class="jj-sa-fallback">另一条路：'+info.fallback+'</div>';
+  html += '<div class="jj-sa-actions" style="margin-top:18px"><button class="jj-sa-btn ghost" onclick="retakeSelfAssess()">重新测试</button></div>';
+  box.innerHTML = html;
+  box.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function retakeSelfAssess(){
+  selfAssessState = {};
+  try { localStorage.removeItem('jj_selfassess'); } catch(e) {}
+  var box = document.getElementById('sa-result'); if (box) box.innerHTML='';
+  renderSelfAssessQuiz();
+}
+
+function focusTask(taskId){
+  var parts = taskId.split('_');
+  var listId = parts[0];
+  var idx = parseInt(parts[1]);
+  var pi = parseInt(listId.charAt(1)) - 1;
+  if (pi >= 0 && pi < 4 && phaseCollapsed[pi]){
+    phaseCollapsed[pi] = false;
+    applyPhaseState(pi);
+    updateCollapseBtn(null, pi);
+    try { localStorage.setItem('jj_phase_collapsed', JSON.stringify(phaseCollapsed)); } catch(e) {}
+    updateCollapseAllBtn();
+  }
+  var sec = document.getElementById('phase'+(pi+1));
+  if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+  setTimeout(function(){
+    var list = document.getElementById(listId);
+    if (!list) return;
+    var item = list.children[idx];
+    if (item){
+      item.classList.add('jj-task-flash');
+      try { item.scrollIntoView({behavior:'smooth', block:'center'}); } catch(e) {}
+      setTimeout(function(){ item.classList.remove('jj-task-flash'); }, 1900);
+    }
+  }, 550);
+}
+
+function initSelfAssess(){
+  buildTaskLabelMap();
+  var quiz = document.getElementById('sa-quiz');
+  var result = document.getElementById('sa-result');
+  if (!quiz || !result) return;
+  if (selfAssessState && selfAssessState.type){
+    if (!selfAssessState.answers) selfAssessState.answers = {};
+    renderSelfAssessQuiz();
+    SA_QUESTIONS.forEach(function(Q, qi){
+      var oi = selfAssessState.answers[qi];
+      if (oi != null){
+        var b = document.querySelector('.jj-sa-opt[data-q="'+qi+'"][data-o="'+oi+'"]');
+        if (b) b.classList.add('sel');
+      }
+    });
+    renderSelfAssessResult(selfAssessState.type, selfAssessState.conf || '中');
+  } else {
+    renderSelfAssessQuiz();
+  }
+}
+
+/* ─── V11: COMPLETION CERTIFICATE ─── */
+var certState = {};
+try { certState = JSON.parse(localStorage.getItem('jj_certificate') || '{}'); } catch(e) { certState = {}; }
+var CERT_PHASE_COUNTS = [4,5,4,5];
+
+function getTaskDoneCounts(){
+  var done=[0,0,0,0];
+  var totalDone=0;
+  for (var p=0;p<4;p++){
+    var list=document.getElementById('p'+(p+1)+'-tasks');
+    if(list){ done[p]=list.querySelectorAll('.jj-task-check.done').length; }
+    totalDone+=done[p];
+  }
+  return {phaseDone:done, totalDone:totalDone, total:18};
+}
+
+function getTotalHours(){
+  var h = 0;
+  document.querySelectorAll('.jj-task-list .jj-task-item').forEach(function(item){
+    if (item.querySelector('.jj-task-check.done')) h += parseFloat(item.getAttribute('data-time') || '0');
+  });
+  return h;
+}
+
+function getTypeLabel(){
+  if (selfAssessState && selfAssessState.type && SA_TYPE_INFO[selfAssessState.type]) return SA_TYPE_INFO[selfAssessState.type].name;
+  return '全面型（未做自测）';
+}
+
+function updateCertificate(){
+  var counts = getTaskDoneCounts();
+  for (var p=0;p<4;p++){
+    var card = document.getElementById('pcert-'+p);
+    var prog = document.getElementById('pcert-prog-'+p);
+    var tag = document.getElementById('pcert-tag-'+p);
+    if (!card) continue;
+    var done = counts.phaseDone[p];
+    var total = CERT_PHASE_COUNTS[p];
+    var earned = (done === total);
+    card.classList.toggle('earned', earned);
+    if (prog) prog.textContent = done + '/' + total;
+    if (tag) tag.textContent = earned ? '已解锁 ✓' : '进行中';
+  }
+  var statusEl = document.getElementById('cert-total-status');
+  var genBtn = document.getElementById('cert-gen-btn');
+  if (statusEl){
+    if (counts.totalDone === 18){
+      statusEl.innerHTML = '<span class="jj-cert-ok">🎉 恭喜！你已完成全部 18 项任务</span>，可生成专属成就证书。';
+      if (genBtn){ genBtn.disabled = false; genBtn.textContent = '生成我的证书'; }
+    } else {
+      var left = 18 - counts.totalDone;
+      statusEl.innerHTML = '当前已完成 <b>'+counts.totalDone+'/18</b> 项，再完成 <b>'+left+'</b> 项即可解锁总证书。';
+      if (genBtn){ genBtn.disabled = false; genBtn.textContent = '生成进度证书（预览）'; }
+    }
+  }
+}
+
+function genShareId(){
+  return 'C' + Date.now().toString(36).slice(-6).toUpperCase();
+}
+
+function generateCertificate(){
+  var nameEl = document.getElementById('cert-name');
+  var name = (nameEl && nameEl.value.trim()) ? nameEl.value.trim() : 'AI PM 学员';
+  var counts = getTaskDoneCounts();
+  var hours = getTotalHours();
+  var typeLabel = getTypeLabel();
+  var today = new Date();
+  var dateStr = today.getFullYear()+'年'+(today.getMonth()+1)+'月'+today.getDate()+'日';
+  var complete = (counts.totalDone === 18);
+  certState = { genAt: today.toISOString(), name: name, type: (selfAssessState.type||'na'), done: counts.totalDone, shareId: genShareId() };
+  try { localStorage.setItem('jj_certificate', JSON.stringify(certState)); } catch(e) {}
+  var canvas = document.getElementById('cert-canvas');
+  if (!canvas) return;
+  drawCertificate(canvas, { name: name, hours: hours, typeLabel: typeLabel, date: dateStr, done: counts.totalDone, complete: complete });
+  canvas.style.display = 'block';
+  var prev = document.getElementById('cert-preview');
+  if (prev) prev.innerHTML = '';
+  var actions = document.getElementById('cert-actions');
+  if (actions) actions.style.display = 'flex';
+  var share = document.getElementById('cert-share-text');
+  if (share) share.value = buildShareText(name, counts.totalDone, hours, typeLabel);
+}
+
+function drawCertificate(canvas, d){
+  var ctx = canvas.getContext('2d');
+  var W=1000, H=700;
+  canvas.width=W; canvas.height=H;
+  ctx.fillStyle='#F5F1EA'; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='#B89968'; ctx.lineWidth=6; ctx.strokeRect(28,28,W-56,H-56);
+  ctx.strokeStyle='rgba(184,153,104,.45)'; ctx.lineWidth=1.5; ctx.strokeRect(40,40,W-80,H-80);
+  ctx.textAlign='center';
+  ctx.fillStyle='#3A3530'; ctx.font='700 42px "Noto Serif SC", serif';
+  ctx.fillText('AI PM 学习路径', W/2, 118);
+  ctx.fillStyle='#8B7355'; ctx.font='600 24px "Noto Serif SC", serif';
+  ctx.fillText('成就证书 · Certificate of Completion', W/2, 158);
+  ctx.fillStyle='#6B6258'; ctx.font='400 18px "Noto Sans SC", sans-serif';
+  ctx.fillText('兹证明', W/2, 226);
+  ctx.fillStyle='#3A3530'; ctx.font='700 38px "Noto Serif SC", serif';
+  ctx.fillText(d.name, W/2, 282);
+  ctx.fillStyle='#6B6258'; ctx.font='400 18px "Noto Sans SC", sans-serif';
+  var subtitle = d.complete ? '已完成全部 18 项 AI PM 核心学习任务' : ('已完成 '+d.done+' / 18 项学习任务（进行中）');
+  ctx.fillText(subtitle, W/2, 326);
+  ctx.fillStyle='#3A3530'; ctx.font='500 20px "Noto Sans SC", sans-serif';
+  ctx.fillText('累计投入 '+d.hours+' 小时  ·  '+d.typeLabel+'  ·  '+d.date, W/2, 376);
+  var sx=W-165, sy=H-165, r=54;
+  ctx.beginPath(); ctx.arc(sx,sy,r,0,Math.PI*2);
+  ctx.fillStyle='#A67B5B'; ctx.fill();
+  ctx.beginPath(); ctx.arc(sx,sy,r-6,0,Math.PI*2); ctx.strokeStyle='rgba(255,253,248,.6)'; ctx.lineWidth=2; ctx.stroke();
+  ctx.fillStyle='#FFFDF8'; ctx.font='700 30px "Noto Serif SC", serif'; ctx.textAlign='center';
+  ctx.fillText('✓', sx, sy+11);
+  ctx.font='600 13px "Noto Sans SC", sans-serif';
+  ctx.fillText('AI PM', sx, sy+34);
+  ctx.fillStyle='#9A8F80'; ctx.font='400 14px "Noto Sans SC", sans-serif';
+  ctx.fillText('AI PM 学习路径 · 从零到一的系统成长之路', W/2, H-52);
+  if (!d.complete){
+    ctx.fillStyle='rgba(201,120,94,.9)'; ctx.font='600 16px "Noto Sans SC", sans-serif';
+    ctx.fillText('· 进度预览 ·', W/2, H-78);
+  }
+}
+
+function buildShareText(name, done, hours, typeLabel){
+  return '我正在攻克「AI PM 学习路径」，已完成 '+done+'/18 项核心任务（累计 '+hours+' 小时），方向：'+typeLabel+'。一起从零到一成为懂 AI 的产品经理 🎓 #AIPM #学习路径';
+}
+
+function downloadCertificate(){
+  var canvas = document.getElementById('cert-canvas');
+  if (!canvas) return;
+  var url = canvas.toDataURL('image/png');
+  var a = document.createElement('a');
+  a.href = url; a.download = 'aipm-certificate-' + (certState.name || 'ai-pm') + '.png';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+
+function copyCertShare(){
+  var ta = document.getElementById('cert-share-text');
+  if (!ta) return;
+  var text = ta.value;
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      var btn = document.getElementById('cert-copy-btn');
+      if (btn){ var o=btn.textContent; btn.textContent='已复制 ✓'; setTimeout(function(){btn.textContent=o;},1500); }
+    });
+  } else {
+    ta.select(); try { document.execCommand('copy'); } catch(e) {}
+  }
+}
+
+function initCertificate(){
+  updateCertificate();
+}
+
 /* ─── INIT ─── */
 document.addEventListener('DOMContentLoaded', function() {
   initPhaseStates();
@@ -3260,6 +3738,8 @@ document.addEventListener('DOMContentLoaded', function() {
   restoreNotes();
   initRadar();
   renderLib();
+  initSelfAssess();
+  initCertificate();
   updateDailyWeeklyStats();
 
   // Initialize first phase as active on rail
