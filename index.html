@@ -1225,10 +1225,10 @@ body::before{
 </section>
 <div class="jj-stats">
   <div class="jj-stats-inner">
-    <div class="jj-stat"><div class="jj-stat-val">12<span>周</span></div><div class="jj-stat-label">总学习周期</div></div>
-    <div class="jj-stat"><div class="jj-stat-val">4<span>阶段</span></div><div class="jj-stat-label">系统进阶路径</div></div>
-    <div class="jj-stat"><div class="jj-stat-val">18<span>项</span></div><div class="jj-stat-label">核心学习任务</div></div>
-    <div class="jj-stat"><div class="jj-stat-val" id="stat-hours">0<span>h</span></div><div class="jj-stat-label">已投入学习时间</div><div class="jj-stat-sub" id="stat-daily">今日 0h · 本周 0h</div></div>
+    <div class="jj-stat"><div class="jj-stat-val" id="stat-done">0<span>/18</span></div><div class="jj-stat-label">已完成学习任务</div></div>
+    <div class="jj-stat"><div class="jj-stat-val" id="stat-streak">0<span>天</span></div><div class="jj-stat-label">连续学习</div><div class="jj-stat-sub" id="stat-streak-best">历史最佳 0 天</div></div>
+    <div class="jj-stat"><div class="jj-stat-val" id="stat-week">0<span>h</span></div><div class="jj-stat-label">本周投入</div><div class="jj-stat-sub" id="stat-week-sub">今日 0h</div></div>
+    <div class="jj-stat"><div class="jj-stat-val" id="stat-hours">0<span>h</span></div><div class="jj-stat-label">累计学习</div></div>
   </div>
 </div>
 
@@ -1969,26 +1969,63 @@ body::before{
         <span class="jj-interview-tag">Agent 设计</span>
         <div class="jj-interview-q">你的 Agent 延迟太高（平均 15 秒），用户抱怨。你会从哪些维度优化？</div>
         <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>四个方向：1) 模型层——换小模型做路由，大模型做核心；2) Prompt 层——减少 Token、缓存 system prompt；3) 架构层——并行工具调用、流式输出；4) 产品层——加 loading 动画、分步展示结果。关键是先测量再优化。</div>
+        <button class="jj-interview-answer-toggle" onclick="toggleAnswer(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleAnswer(this)" tabindex="0" aria-expanded="false">参考答案 <span class="jj-interview-answer-arrow">&#9662;</span></button>
+        <div class="jj-interview-answer"><div class="jj-interview-answer-body">
+          <strong>模型层：</strong>用更小的模型做路由 / 分类，只在核心步骤调用大模型；开启流式输出（streaming），让用户先看到部分结果而不是干等。<br><br>
+          <strong>Prompt 层：</strong>压缩 system prompt、减少 few-shot 示例长度、去掉冗余指令；把可并行的子任务拆成独立 prompt 并发调用。<br><br>
+          <strong>架构层：</strong>工具调用改并行（同时查订单 + 查库存，而非串行）；加结果缓存与语义缓存，相同问题不重复算；预取下一步可能需要的数据；用轻量 planner 减少规划步数。<br><br>
+          <strong>产品层：</strong>骨架屏 + 渐进式渲染，先出结构再填内容；乐观 UI（先显示「正在处理」）；把长任务拆成可感知的子步骤并展示进度条。<br><br>
+          <strong>加分项：</strong>给出「延迟预算拆解」——规划 2s / 检索 5s / 生成 8s，定位瓶颈在哪一段；用 trace（如 LangSmith）逐段监控，优先优化最慢的那一段而非整体。
+        </div></div>
       </div>
       <div class="jj-interview-card">
         <span class="jj-interview-tag">产品策略</span>
         <div class="jj-interview-q">AI 产品和传统产品最大的区别是什么？用你自己的话解释。</div>
         <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>三个核心差异：1) 确定性→概率性（接受非确定性输出）；2) 功能验收→持续 Eval（永不「完成」）；3) 数据是运营工具→数据是产品本身（数据飞轮）。用具体案例说明，不要背概念。</div>
+        <button class="jj-interview-answer-toggle" onclick="toggleAnswer(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleAnswer(this)" tabindex="0" aria-expanded="false">参考答案 <span class="jj-interview-answer-arrow">&#9662;</span></button>
+        <div class="jj-interview-answer"><div class="jj-interview-answer-body">
+          <strong>确定性 → 概率性：</strong>传统功能给定输入必有确定输出；AI 产品输出有方差，同一问题可能得到不同答案。PM 要接受「不完美但够用」，用置信度 / 兜底策略管理不确定性。<br><br>
+          <strong>功能验收 → 持续 Eval：</strong>传统产品上线即验收完成；AI 产品上线只是开始，需持续评估质量、监控模型漂移，答案可能随模型升级变好或变差。<br><br>
+          <strong>数据是产品本身：</strong>传统产品的数据是运营辅助；AI 产品的效果取决于数据飞轮——用户反馈、bad case、标注数据直接决定产品能力，数据闭环即核心竞争力。<br><br>
+          <strong>加分项：</strong>补充「安全护栏与人在回路」——高风险操作（退款、删除）必须人工确认；可解释性不是技术点缀而是用户信任机制。用「传统 PM 管功能，AI PM 管概率」一句话收尾。
+        </div></div>
       </div>
       <div class="jj-interview-card">
         <span class="jj-interview-tag">Eval 方法</span>
         <div class="jj-interview-q">什么是「幻觉」？你的产品里如何检测和降低幻觉？</div>
         <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>幻觉 = LLM 生成看似合理但事实错误的内容。检测：自动（事实一致性校验）+ 人工（bad case 标注）。降低：RAG 提供事实依据、Prompt 约束（「不确定时说不知道」）、输出后校验。产品设计上让用户能纠错。</div>
+        <button class="jj-interview-answer-toggle" onclick="toggleAnswer(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleAnswer(this)" tabindex="0" aria-expanded="false">参考答案 <span class="jj-interview-answer-arrow">&#9662;</span></button>
+        <div class="jj-interview-answer"><div class="jj-interview-answer-body">
+          <strong>定义：</strong>幻觉 = 模型生成看似合理但事实错误、或根本不存在的内容（张冠李戴、编造来源、虚构数据）。<br><br>
+          <strong>检测：</strong>自动——事实一致性打分、检索对齐度校验、NLI 自然语言推断；人工——抽样评测 + bad case 标注，建立幻觉率基线。<br><br>
+          <strong>降低：</strong>RAG 基于可信知识库生成，让答案有出处；Prompt 约束「不确定时说不知道 / 必须引用来源」；用户纠错闭环——让真人能一键标记错误并回流训练。<br><br>
+          <strong>加分项：</strong>按场景设分级容忍度（闲聊可宽松、医疗 / 金融要严格）；建幻觉率 dashboard 持续监控，而不是上线一次就完事。
+        </div></div>
       </div>
       <div class="jj-interview-card">
         <span class="jj-interview-tag">技术协作</span>
         <div class="jj-interview-q">你的算法工程师说「这个效果做不出来，模型能力不够」。你怎么判断他说的是真的还是推脱？</div>
         <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>三步验证：1) 要具体的 Eval 数据（准确率多少？在什么测试集上？）；2) 对比竞品/开源方案（别人做到了吗？）；3) 拆解问题（是模型能力问题还是 Prompt/架构问题？）。AI PM 不需要会写代码，但必须能看懂 Eval 结果。</div>
+        <button class="jj-interview-answer-toggle" onclick="toggleAnswer(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleAnswer(this)" tabindex="0" aria-expanded="false">参考答案 <span class="jj-interview-answer-arrow">&#9662;</span></button>
+        <div class="jj-interview-answer"><div class="jj-interview-answer-body">
+          <strong>要 Eval 数据：</strong>不让对方用「感觉不行」搪塞，要求量化指标（准确率多少？在什么测试集上？和 baseline 差多少？）。AI PM 不写代码，但必须看得懂评测结果。<br><br>
+          <strong>对比竞品 / 开源：</strong>业界或竞品做到没？差距在哪？如果别人用类似方案做到了，那「做不出来」往往是范围或数据问题，不是能力问题。<br><br>
+          <strong>拆解问题：</strong>把「做不出来」拆成子问题（是模型能力、数据质量、还是架构设计？），定位真瓶颈。很多「做不到」其实是「没拆对」。<br><br>
+          <strong>加分项：</strong>设 1–2 天的 spike 小实验验证可行性，用数据决策而非立场；约定「做不到的判定标准」写入需求文档，避免反复扯皮。
+        </div></div>
       </div>
       <div class="jj-interview-card">
         <span class="jj-interview-tag">产品策略</span>
         <div class="jj-interview-q">给你 3 个月和 2 个工程师，做一个 AI 产品 MVP。你会选什么方向？为什么？</div>
         <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>考察产品判断力。好的回答：选一个「AI 能做到、传统方案做不到」的场景（而不是用 AI 重复造轮子），有明确的 Eval 标准，MVP 范围克制（1 个核心功能 > 5 个半成品），有商业化路径。避免选太泛的方向。</div>
+        <button class="jj-interview-answer-toggle" onclick="toggleAnswer(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleAnswer(this)" tabindex="0" aria-expanded="false">参考答案 <span class="jj-interview-answer-arrow">&#9662;</span></button>
+        <div class="jj-interview-answer"><div class="jj-interview-answer-body">
+          <strong>选 AI 独有价值：</strong>挑「AI 能做到、传统方案做不到 / 做不划算」的场景，而不是用 AI 重造一个表单。差异化才是 MVP 的意义。<br><br>
+          <strong>明确 Eval：</strong>能定义可量化的成功标准（准确率、满意度、节省时长），否则无法判断是否做对了，也无法迭代。<br><br>
+          <strong>克制范围：</strong>MVP 只验证一个核心假设，1 个功能 > 5 个半成品；先跑通主链路再补边角。<br><br>
+          <strong>商业化：</strong>选有付费意愿、价值清晰场景，而非技术 demo；想清楚谁买单、为什么买单。<br><br>
+          <strong>加分项：</strong>用「一周出可用雏形 + 数据验证」的节奏替代「一次到位」；先拿真实用户跑通再谈扩展，避免闭门造车三个月做出没人要的东西。
+        </div></div>
       </div>
     </div>
   </div>
@@ -2405,6 +2442,8 @@ function updatePhaseProgress() {
   var overall = totalTasks ? Math.round(totalDone / totalTasks * 100) : 0;
   var overallEl = document.getElementById('hero-overall-pct');
   if (overallEl) overallEl.textContent = totalDone === 0 ? '尚未开始' : overall + '%';
+  var doneEl = document.getElementById('stat-done');
+  if (doneEl) doneEl.innerHTML = totalDone + '<span>/18</span>';
   var navBar = document.getElementById('jj-nav-progress');
   if (navBar) navBar.style.width = overall + '%';
   var resumeBtn = document.getElementById('jj-hero-resume');
@@ -2482,6 +2521,7 @@ function updateTimeStats() {
   });
   document.getElementById('stat-hours').innerHTML = totalHours + '<span>h</span>';
   updateDailyWeeklyStats();
+  updateStreakStat();
 }
 
 /* ─── DAILY / WEEKLY TIME TRACKING ─── */
@@ -2527,8 +2567,42 @@ function updateDailyWeeklyStats() {
   var today = new Date().toISOString().slice(0,10);
   var dailyHrs = getDayHours(today);
   var weeklyHrs = getWeekHours();
-  var el = document.getElementById('stat-daily');
-  if (el) el.textContent = '今日 ' + dailyHrs + 'h · 本周 ' + weeklyHrs + 'h';
+  var weekEl = document.getElementById('stat-week');
+  if (weekEl) weekEl.innerHTML = weeklyHrs + '<span>h</span>';
+  var weekSub = document.getElementById('stat-week-sub');
+  if (weekSub) weekSub.textContent = '今日 ' + dailyHrs + 'h';
+}
+
+function computeStreak() {
+  var keys = Object.keys(timeCompletionLog).filter(function(d){ return (timeCompletionLog[d]||[]).length > 0; }).sort();
+  if (keys.length === 0) return {current:0, best:0};
+  var active = {};
+  keys.forEach(function(d){ active[d] = true; });
+  function fmt(dt){ return dt.toISOString().slice(0,10); }
+  var d = new Date();
+  var todayStr = fmt(d);
+  if (!active[todayStr]) d.setDate(d.getDate() - 1);
+  var cur = 0;
+  while (active[fmt(d)]) { cur++; d.setDate(d.getDate() - 1); }
+  var best = 0, run = 0, prev = null;
+  keys.forEach(function(ds){
+    if (prev === null) { run = 1; }
+    else {
+      var diff = Math.round((new Date(ds) - new Date(prev)) / 86400000);
+      run = (diff === 1) ? run + 1 : 1;
+    }
+    if (run > best) best = run;
+    prev = ds;
+  });
+  return {current: cur, best: best};
+}
+
+function updateStreakStat() {
+  var s = computeStreak();
+  var el = document.getElementById('stat-streak');
+  if (el) el.innerHTML = s.current + '<span>天</span>';
+  var best = document.getElementById('stat-streak-best');
+  if (best) best.textContent = '历史最佳 ' + s.best + ' 天';
 }
 
 /* ─── ACHIEVEMENT BADGES (WITH UNDO) ─── */
