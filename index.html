@@ -5,9 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI PM 学习路径 · 从零到一的系统成长之路</title>
 <meta name="description" content="从零到一成为 AI 产品经理的完整学习路径，包含 Prompt 工程、Agent 设计、MCP 协议与实战项目">
-<meta property="og:title" content="AI PM 学习路径">
-<meta property="og:description" content="12 周系统化学习路线图，四阶段渐进式成长">
+<meta property="og:title" content="AI PM 学习路径 · 从零到一的系统成长之路">
+<meta property="og:description" content="12 周系统化学习路线图，四阶段渐进式成长。包含 Prompt 工程、Agent 设计、MCP 协议、Eval 框架、面试真题与实战项目。">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://xiaokaishuibuxing.github.io/aipm-learning-path/">
+<meta property="og:site_name" content="AI PM 学习路径">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI PM 学习路径 · 从零到一的系统成长之路">
+<meta name="twitter:description" content="12 周系统化学习路线图，四阶段渐进式成长。Prompt 工程 · Agent 设计 · MCP · Eval · 面试真题。">
 <meta name="theme-color" content="#F5F1EA">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='2' fill='%23B89968'/><text x='16' y='15' text-anchor='middle' dominant-baseline='central' font-family='serif' font-size='14' font-weight='700' fill='%23FFFDF8'>AI</text><text x='16' y='25' text-anchor='middle' dominant-baseline='central' font-family='serif' font-size='8' fill='rgba(255,253,248,0.85)'>PM</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -400,9 +406,12 @@ body::before{
   display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
   transition:border-color .25s,background .25s;
 }
+.jj-task-check.progress{border-color:var(--wood);background:var(--wood-glow);}
+.jj-task-check.progress::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--wood);animation:jjCheckPop .3s ease;}
 .jj-task-check.done{border-color:var(--wood);background:var(--wood);color:#FFFDF8;}
 .jj-task-check.done::after{content:'\2713';font-size:12px;animation:jjCheckPop .3s ease;}
 .jj-task-text{font-size:13.5px;line-height:1.75;color:var(--t2);transition:color .25s,text-decoration .25s;flex:1;}
+.jj-task-text.progress{color:var(--wood-dk);}
 .jj-task-text.done{color:var(--t3);text-decoration:line-through;}
 
 /* ─── NOTES PANEL ─── */
@@ -484,6 +493,30 @@ body::before{
 .jj-glossary-en{font-family:monospace;font-size:11px;color:var(--wood-dk);margin-left:8px;font-weight:400;}
 .jj-glossary-def{font-size:13px;line-height:1.8;color:var(--t2);}
 
+/* ─── CAREER / JOB MARKET ─── */
+.jj-career-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.jj-career-stat{padding:24px 22px;background:var(--paper);border:1px solid var(--line);border-radius:2px;text-align:center;transition:border-color .25s,box-shadow .25s;}
+.jj-career-stat:hover{border-color:var(--line-a);box-shadow:0 4px 16px rgba(58,53,48,.04);}
+.jj-career-stat-num{font-family:'Noto Serif SC',serif;font-size:32px;font-weight:900;color:var(--wood-dk);line-height:1.1;margin-bottom:6px;}
+.jj-career-stat-num span{font-size:14px;font-weight:500;color:var(--t3);margin-left:2px;}
+.jj-career-stat-label{font-size:12px;color:var(--t2);line-height:1.5;}
+.jj-career-salary{margin-bottom:24px;border:1px solid var(--line);border-radius:2px;overflow:hidden;}
+.jj-career-salary-hdr{display:grid;grid-template-columns:120px 1fr 1fr 1fr;padding:12px 20px;background:rgba(184,153,104,.06);font-size:11px;font-weight:600;color:var(--wood-dk);letter-spacing:.08em;border-bottom:1px solid var(--line-a);}
+.jj-career-salary-row{display:grid;grid-template-columns:120px 1fr 1fr 1fr;padding:14px 20px;border-bottom:1px solid var(--line);font-size:13px;color:var(--t2);align-items:center;}
+.jj-career-salary-row:last-child{border-bottom:none;}
+.jj-career-salary-row:hover{background:rgba(184,153,104,.02);}
+.jj-career-salary-city{font-family:'Noto Serif SC',serif;font-weight:700;color:var(--t1);}
+.jj-career-salary-val{font-family:'Noto Serif SC',serif;font-weight:600;color:var(--wood-dk);}
+.jj-career-types{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
+.jj-career-type-card{padding:20px 22px;background:var(--paper);border:1px solid var(--line);border-radius:2px;transition:border-color .25s,box-shadow .25s;}
+.jj-career-type-card:hover{border-color:var(--line-a);box-shadow:0 2px 12px rgba(58,53,48,.03);}
+.jj-career-type-tag{display:inline-block;font-size:10px;letter-spacing:.1em;padding:2px 8px;background:var(--tea-glow);border:1px solid rgba(139,168,136,.2);color:var(--tea-dk);border-radius:1px;margin-bottom:10px;}
+.jj-career-type-title{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:6px;}
+.jj-career-type-desc{font-size:12.5px;line-height:1.7;color:var(--t2);}
+.jj-career-note{padding:18px 24px;background:var(--wood-glow);border:1px solid var(--line-a);border-radius:2px;font-size:13px;line-height:1.8;color:var(--t2);}
+.jj-career-note strong{color:var(--wood-dk);font-family:'Noto Serif SC',serif;}
+.jj-career-source{font-size:11px;color:var(--t3);margin-top:10px;font-style:italic;}
+
 /* ─── INTERVIEW SECTION ─── */
 .jj-interview-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
 .jj-interview-card{
@@ -496,6 +529,14 @@ body::before{
 .jj-interview-q{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--t1);line-height:1.6;}
 .jj-interview-hint{font-size:12.5px;line-height:1.8;color:var(--t3);padding-top:8px;border-top:1px solid var(--line);}
 .jj-interview-hint-label{font-family:'Noto Serif SC',serif;font-size:10px;letter-spacing:.16em;color:var(--wood-dk);text-transform:uppercase;margin-right:6px;}
+.jj-interview-answer-toggle{font-size:12px;color:var(--wood-dk);cursor:pointer;display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-family:'Noto Sans SC',sans-serif;background:none;border:none;padding:0;transition:color .2s;}
+.jj-interview-answer-toggle:hover{color:var(--tea-dk);}
+.jj-interview-answer-arrow{font-size:10px;transition:transform .3s;}
+.jj-interview-answer-toggle.open .jj-interview-answer-arrow{transform:rotate(180deg);}
+.jj-interview-answer{max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease,opacity .3s ease;margin-top:0;}
+.jj-interview-answer.open{max-height:600px;opacity:1;margin-top:10px;}
+.jj-interview-answer-body{padding:14px 18px;background:rgba(139,168,136,.06);border:1px solid rgba(139,168,136,.15);border-radius:2px;font-size:12.5px;line-height:1.85;color:var(--t2);}
+.jj-interview-answer-body strong{color:var(--tea-dk);font-family:'Noto Serif SC',serif;font-weight:600;}
 
 /* ─── PITFALL SECTION ─── */
 .jj-pitfall-list{display:flex;flex-direction:column;gap:16px;}
@@ -510,6 +551,16 @@ body::before{
 .jj-pitfall-title{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--t1);margin-bottom:6px;}
 .jj-pitfall-wrong{font-size:13px;line-height:1.8;color:var(--warm-red);margin-bottom:4px;}
 .jj-pitfall-right{font-size:13px;line-height:1.8;color:var(--tea-dk);}
+
+/* ─── DAY 1 START CARD ─── */
+.jj-dayone{margin-top:28px;padding:24px 28px;background:linear-gradient(135deg,var(--wood-glow),var(--tea-glow));border:1px solid var(--line-a);border-radius:2px;display:flex;gap:20px;align-items:flex-start;}
+.jj-dayone-badge{flex-shrink:0;font-family:'Noto Serif SC',serif;font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--wood-dk);background:var(--paper);border:1px solid var(--wood-lt);border-radius:2px;padding:6px 10px;}
+.jj-dayone-body{flex:1;}
+.jj-dayone-title{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:600;color:var(--t1);margin-bottom:12px;}
+.jj-dayone-step{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.8;color:var(--t2);margin-bottom:6px;}
+.jj-dayone-num{flex-shrink:0;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--paper);background:var(--wood);border-radius:50%;margin-top:2px;}
+.jj-dayone-step a{color:var(--wood-dk);font-weight:500;text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--wood-lt);}
+.jj-dayone-step a:hover{color:var(--tea-dk);}
 
 /* ─── STATS BAR ─── */
 .jj-stats{position:relative;z-index:5;border-bottom:1px solid var(--line);background:var(--bg1);}
@@ -567,6 +618,11 @@ body::before{
   transition:color .25s,border-color .25s;
 }
 .jj-radar-reset:hover{color:var(--wood-dk);border-color:var(--line-a);}
+.jj-radar-rubric{margin-top:24px;padding:18px 20px;background:rgba(184,153,104,.04);border:1px solid var(--line);border-radius:2px;}
+.jj-radar-rubric-title{font-family:'Noto Serif SC',serif;font-size:11px;font-weight:600;color:var(--wood-dk);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;}
+.jj-radar-rubric-grid{display:flex;flex-direction:column;gap:8px;}
+.jj-radar-rubric-col{display:flex;align-items:baseline;gap:10px;font-size:12px;color:var(--t2);line-height:1.6;}
+.jj-radar-rubric-lvl{font-family:'Noto Serif SC',serif;font-weight:700;color:var(--wood-dk);min-width:36px;font-size:12px;}
 
 /* ─── SPRINT TRACKER ─── */
 .jj-sprint-bar{
@@ -676,6 +732,13 @@ body::before{
 .jj-contact-h2{font-family:'Noto Serif SC',serif;font-weight:900;font-size:40px;margin:18px 0 22px;line-height:1.25;color:var(--t1);}
 .jj-contact-p{font-size:16px;line-height:2.1;color:var(--t2);max-width:440px;}
 .jj-contact-links{display:flex;flex-direction:column;gap:14px;margin-top:40px;}
+.jj-contact-cta{display:flex;flex-direction:column;gap:14px;margin-top:36px;}
+.jj-contact-cta-card{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;background:rgba(255,253,248,.6);border:1px solid var(--line);border-radius:2px;transition:border-color .25s,box-shadow .25s;}
+.jj-contact-cta-card:hover{border-color:var(--line-a);box-shadow:0 4px 16px rgba(58,53,48,.04);}
+.jj-contact-cta-icon{font-size:22px;flex-shrink:0;line-height:1.4;}
+.jj-contact-cta-title{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:4px;}
+.jj-contact-cta-desc{font-size:13px;line-height:1.75;color:var(--t2);}
+.jj-contact-cta-desc a{color:var(--wood-dk);text-decoration:underline;text-underline-offset:2px;}
 .jj-contact-row{display:flex;gap:16px;align-items:baseline;}
 .jj-contact-row-label{color:var(--t3);font-family:'Noto Serif SC',serif;font-size:11px;letter-spacing:.16em;width:60px;text-transform:uppercase;flex-shrink:0;}
 .jj-contact-row-val{font-size:15px;color:var(--t2);}
@@ -895,6 +958,11 @@ body::before{
   .jj-glossary-item{border-right:none;}
   .jj-interview-grid{grid-template-columns:1fr;}
   .jj-audience{padding:48px 20px;}
+  .jj-career-stats{grid-template-columns:repeat(2,1fr);}
+  .jj-career-types{grid-template-columns:1fr;}
+  .jj-career-salary-hdr,.jj-career-salary-row{grid-template-columns:80px 1fr 1fr;font-size:11px;}
+  .jj-career-salary-row span:nth-child(4){display:none;}
+  .jj-dayone{flex-direction:column;gap:12px;}
 }
 
 @media (max-width: 768px) {
@@ -938,7 +1006,7 @@ body::before{
   .jj-phase-body.collapsed{max-height:none;opacity:1;display:block;}
   .jj-phase-collapsed-hint{display:none !important;}
   .jj-glossary-panel{display:block !important;}
-  .jj-audience-card,.jj-interview-card,.jj-pitfall-item{border:1px solid #ddd;break-inside:avoid;}
+  .jj-audience-card,.jj-interview-card,.jj-pitfall-item,.jj-career-stat,.jj-career-type-card{border:1px solid #ddd;break-inside:avoid;}
   .jj-glossary-item{break-inside:avoid;}
 }
 </style>
@@ -972,6 +1040,7 @@ body::before{
   <button class="jj-rail-dot" data-rail="phase4" onclick="scrollToSection('phase4')" aria-label="跳转到求职冲刺" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">求职冲刺</span></button>
   <div class="jj-rail-dot-spacer"></div>
   <button class="jj-rail-dot" data-rail="glossary" onclick="scrollToSection('glossary')" aria-label="跳转到术语词典" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">术语词典</span></button>
+  <button class="jj-rail-dot" data-rail="career" onclick="scrollToSection('career')" aria-label="跳转到就业前景" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">就业前景</span></button>
   <button class="jj-rail-dot" data-rail="resources" onclick="scrollToSection('resources')" aria-label="跳转到资料库" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">资料库</span></button>
   <button class="jj-rail-dot" data-rail="interview" onclick="scrollToSection('interview')" aria-label="跳转到面试真题" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">面试真题</span></button>
   <button class="jj-rail-dot" data-rail="contact" onclick="scrollToSection('contact')" aria-label="跳转到加入社群" tabindex="0"><div class="jj-rail-dot-inner"></div><span class="jj-rail-tooltip">加入社群</span></button>
@@ -1016,6 +1085,7 @@ body::before{
     <a href="#phase3" class="jj-nav-link" data-nav="phase3">实战项目</a>
     <a href="#phase4" class="jj-nav-link" data-nav="phase4">求职冲刺</a>
     <a href="#glossary" class="jj-nav-link" data-nav="glossary">术语</a>
+    <a href="#career" class="jj-nav-link" data-nav="career">就业前景</a>
     <a href="#interview" class="jj-nav-link" data-nav="interview">面试题</a>
     <a href="#resources" class="jj-nav-link" data-nav="resources">资料库</a>
     <a href="#contact" class="jj-nav-cta">加入社群</a>
@@ -1120,10 +1190,17 @@ body::before{
       <div class="jj-audience-bar-sep"></div>
       <div class="jj-audience-bar-item"><span class="jj-audience-bar-num">FREE</span><span>所有推荐资源免费</span></div>
     </div>
+    <div class="jj-dayone jj-reveal" style="transition-delay:.24s">
+      <div class="jj-dayone-badge">DAY 1</div>
+      <div class="jj-dayone-body">
+        <div class="jj-dayone-title">关闭这个页面后，第一件事做什么？</div>
+        <div class="jj-dayone-step"><span class="jj-dayone-num">1</span><span>打开 <a href="https://docs.claude.com/en/docs/welcome" target="_blank" rel="noopener">docs.claude.com</a>，花 15 分钟读完 Introduction 页面</span></div>
+        <div class="jj-dayone-step"><span class="jj-dayone-num">2</span><span>注册一个 Claude 账号（免费版即可），和它聊 3 个你工作中的真实问题</span></div>
+        <div class="jj-dayone-step"><span class="jj-dayone-num">3</span><span>回到本页面，展开「阶段 01」，打勾第一个任务——你的 AI PM 之路正式开始</span></div>
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- ─── STATS ─── -->
 <div class="jj-stats">
   <div class="jj-stats-inner">
     <div class="jj-stat"><div class="jj-stat-val">12<span>周</span></div><div class="jj-stat-label">总学习周期</div></div>
@@ -1156,6 +1233,16 @@ body::before{
         <div class="jj-radar-dim-row"><label class="jj-radar-dim-label" for="rdim-5">工程协作</label><input type="range" min="0" max="10" value="3" class="jj-radar-dim-slider" data-dim="5" id="rdim-5" oninput="updateRadar()"><span class="jj-radar-dim-val" id="radar-val-5">3</span></div>
       </div>
       <button class="jj-radar-reset" onclick="resetRadar()">&#8634; 重置评估</button>
+      <div class="jj-radar-rubric jj-reveal" style="transition-delay:.12s">
+        <div class="jj-radar-rubric-title">评分参考</div>
+        <div class="jj-radar-rubric-grid">
+          <div class="jj-radar-rubric-col"><span class="jj-radar-rubric-lvl">0-2</span><span class="jj-radar-rubric-desc">零基础：听说过但没实际操作过</span></div>
+          <div class="jj-radar-rubric-col"><span class="jj-radar-rubric-lvl">3-4</span><span class="jj-radar-rubric-desc">入门：跟过教程，能跑通基本流程</span></div>
+          <div class="jj-radar-rubric-col"><span class="jj-radar-rubric-lvl">5-6</span><span class="jj-radar-rubric-desc">可用：能独立完成一个完整场景</span></div>
+          <div class="jj-radar-rubric-col"><span class="jj-radar-rubric-lvl">7-8</span><span class="jj-radar-rubric-desc">熟练：能设计方案、做 Eval、指导他人</span></div>
+          <div class="jj-radar-rubric-col"><span class="jj-radar-rubric-lvl">9-10</span><span class="jj-radar-rubric-desc">专家：能定义标准、推动团队落地</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1759,6 +1846,66 @@ body::before{
   </div>
 </section>
 
+<!-- ─── CAREER / JOB MARKET ─── -->
+<section id="career" class="jj-section alt">
+  <div class="jj-section-inner">
+    <div class="jj-section-eyebrow jj-reveal">就业前景</div>
+    <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s">值得转吗？让数据说话</h2>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s">以下数据来自智联招聘《2025 年人工智能产业人才发展报告》及脉脉高聘公开数据，帮你做决策。</p>
+    <div class="jj-career-stats jj-reveal" style="transition-delay:.18s">
+      <div class="jj-career-stat">
+        <div class="jj-career-stat-num">+178<span>%</span></div>
+        <div class="jj-career-stat-label">AI PM 岗位招聘量同比增长<br>（2025 Q3，智联招聘）</div>
+      </div>
+      <div class="jj-career-stat">
+        <div class="jj-career-stat-num">19,459<span>元</span></div>
+        <div class="jj-career-stat-label">AI PM 全国平均招聘月薪<br>（智联招聘 2025）</div>
+      </div>
+      <div class="jj-career-stat">
+        <div class="jj-career-stat-num">+20.6<span>%</span></div>
+        <div class="jj-career-stat-label">较传统 PM 薪资溢价<br>（脉脉高聘 2025）</div>
+      </div>
+      <div class="jj-career-stat">
+        <div class="jj-career-stat-num">80<span>%+</span></div>
+        <div class="jj-career-stat-label">中小微企业招聘占比<br>不只是大厂在招人</div>
+      </div>
+    </div>
+    <div class="jj-reveal" style="transition-delay:.2s">
+      <div class="jj-career-salary">
+        <div class="jj-career-salary-hdr"><span>城市</span><span>中位月薪</span><span>P75 月薪</span><span>市场特点</span></div>
+        <div class="jj-career-salary-row"><span class="jj-career-salary-city">杭州</span><span class="jj-career-salary-val">28.6K</span><span class="jj-career-salary-val">45K+</span><span>阿里 + 六小龙拉动，薪资领跑</span></div>
+        <div class="jj-career-salary-row"><span class="jj-career-salary-city">上海</span><span class="jj-career-salary-val">25K</span><span class="jj-career-salary-val">40K+</span><span>平台型 + 商业化岗位多</span></div>
+        <div class="jj-career-salary-row"><span class="jj-career-salary-city">北京</span><span class="jj-career-salary-val">23K</span><span class="jj-career-salary-val">38K+</span><span>招聘体量最大，占比 25%</span></div>
+        <div class="jj-career-salary-row"><span class="jj-career-salary-city">深圳</span><span class="jj-career-salary-val">22K</span><span class="jj-career-salary-val">35K+</span><span>应用型 + 产业型 + 硬件结合</span></div>
+        <div class="jj-career-salary-row"><span class="jj-career-salary-city">广州</span><span class="jj-career-salary-val">18K</span><span class="jj-career-salary-val">28K+</span><span>相对低，但岗位增长快</span></div>
+      </div>
+    </div>
+    <div class="jj-career-types jj-reveal" style="transition-delay:.22s">
+      <div class="jj-career-type-card">
+        <span class="jj-career-type-tag">入门最易</span>
+        <div class="jj-career-type-title">AI 应用 PM</div>
+        <div class="jj-career-type-desc">做具体场景的 AI 落地：智能客服、AI 搜索、Copilot。需求量最大，传统 PM 转型首选方向。月之暗面、字节豆包、百度文心都在大量招。</div>
+      </div>
+      <div class="jj-career-type-card">
+        <span class="jj-career-type-tag">天花板高</span>
+        <div class="jj-career-type-title">AI 平台 PM</div>
+        <div class="jj-career-type-desc">搭能力底座：模型接入、RAG 管理、评测平台、MLOps。技术门槛高，但薪资天花板也高。阿里云 PAI、火山引擎、华为云 ModelArts 方向。</div>
+      </div>
+      <div class="jj-career-type-card">
+        <span class="jj-career-type-tag">增长最快</span>
+        <div class="jj-career-type-title">Agent PM</div>
+        <div class="jj-career-type-desc">2025 年增长最快的新物种。设计任务编排、工具调用、多 Agent 协作。不是设计对话界面，是设计「虚拟员工」的行为规则。</div>
+      </div>
+    </div>
+    <div class="jj-career-note jj-reveal" style="transition-delay:.24s">
+      <strong>按经验分级：</strong>0-2 年 15-25K · 3-5 年 25-40K · 5-8 年 40-60K · 8 年+ 60-100K+<br>
+      <strong>行业扩散：</strong>不只是互联网——金融科技 14%、新能源车 12%、通信 12% 都在加速招 AI PM。<br>
+      <strong>趋势判断：</strong>传统 PM 市场在缩，AI PM 在爆发。此消彼长，转型窗口期就在现在。
+      <div class="jj-career-source">数据来源：智联招聘 2025 AI 人才报告 · 脉脉高聘 · McKinsey 2025 · WEF Future of Jobs 2025</div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── INTERVIEW QUESTIONS ─── -->
 <section id="interview" class="jj-section alt">
   <div class="jj-section-inner">
@@ -1770,16 +1917,48 @@ body::before{
         <span class="jj-interview-tag">Agent 设计</span>
         <div class="jj-interview-q">设计一个客服 Agent，它需要能查订单、改地址、处理退款。你会怎么设计 Tool Use 和 Agent Loop？</div>
         <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>先画 Agent 架构图（感知→工具选择→执行→观察→循环），再定义每个 Tool 的输入输出 schema，最后设计 fallback 策略（什么时候转人工）。重点讲清楚「多轮对话的状态管理」。</div>
+        <button class="jj-interview-answer-toggle" onclick="toggleAnswer(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleAnswer(this)" tabindex="0" aria-expanded="false">参考答案 <span class="jj-interview-answer-arrow">&#9662;</span></button>
+        <div class="jj-interview-answer"><div class="jj-interview-answer-body">
+          <strong>架构设计：</strong>用户消息进入后，先过意图识别（小模型/规则），判断属于查询类还是操作类。查询类直接调用对应 Tool 返回结果；操作类需要先确认再执行。<br><br>
+          <strong>Tool 定义：</strong>① <code>query_order(order_id)</code> → 返回订单状态、金额、商品列表；② <code>update_address(order_id, new_addr)</code> → 需要用户确认后执行；③ <code>process_refund(order_id, reason)</code> → 金额超过阈值需人工审批。<br><br>
+          <strong>Agent Loop：</strong>感知（接收消息）→ 思考（LLM 判断需要调哪个 Tool）→ 行动（执行 Tool）→ 观察（读取返回结果）→ 循环（如果需要多步则继续）。关键：每步都要记录到 context，避免重复调用。<br><br>
+          <strong>Fallback 策略：</strong>连续 2 次工具调用失败 → 转人工；退款金额 >500 元 → 人工审批；用户情绪检测到负面 → 转人工并标记优先级。<br><br>
+          <strong>加分项：</strong>提到用 Checkpointing 保存对话状态，用户中途离开再回来能接续；提到 Eval 框架评估 Agent 在 100 个测试用例上的表现。
+        </div></div>
       </div>
       <div class="jj-interview-card">
         <span class="jj-interview-tag">Eval 方法</span>
         <div class="jj-interview-q">你的 AI 客服上线后准确率只有 75%，你会怎么系统性地提升？</div>
         <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>分三步：1) 建 Eval 数据集，按错误类型分类（幻觉/拒答/理解错误）；2) 分析 Top 3 错误类型的根因（Prompt/数据/模型）；3) 针对性优化并重新评估。强调「数据驱动的迭代」。</div>
+        <button class="jj-interview-answer-toggle" onclick="toggleAnswer(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleAnswer(this)" tabindex="0" aria-expanded="false">参考答案 <span class="jj-interview-answer-arrow">&#9662;</span></button>
+        <div class="jj-interview-answer"><div class="jj-interview-answer-body">
+          <strong>第一步：建立 Eval 数据集</strong><br>
+          从线上日志中抽取 500 条 bad case，按错误类型标注：幻觉（编造不存在的信息）35%、拒答（该回答但不回答）25%、理解错误（答非所问）20%、格式问题 15%、其他 5%。<br><br>
+          <strong>第二步：根因分析</strong><br>
+          幻觉 35% → 根因：知识库覆盖不足，模型在知识盲区编造答案。方案：加 RAG，对高频问题补充知识库文档。<br>
+          拒答 25% → 根因：System Prompt 过于保守，安全策略误伤。方案：调整 Prompt 边界，区分「不能回答」和「不需要回答」。<br>
+          理解错误 20% → 根因：用户口语化表达，模型没正确理解意图。方案：加 Few-shot 示例覆盖常见口语表达。<br><br>
+          <strong>第三步：迭代与验证</strong><br>
+          每次修改后跑 Eval 数据集，对比修改前后准确率。目标：幻觉降到 10% 以下，整体准确率提升到 88%+。上线后持续监控，建立数据飞轮——用户反馈自动进入下一轮 Eval 数据集。<br><br>
+          <strong>加分项：</strong>提到「不要只看整体准确率」，要分场景看（退款场景准确率可能比查询低 15%）；提到成本控制（不是所有 bad case 都值得修，按影响面排序）。
+        </div></div>
       </div>
       <div class="jj-interview-card">
         <span class="jj-interview-tag">产品策略</span>
         <div class="jj-interview-q">RAG 和微调，什么场景选哪个？如果一个客户问「我的产品文档有 10 万页，怎么做 AI 问答」，你怎么回答？</div>
         <div class="jj-interview-hint"><span class="jj-interview-hint-label">思路</span>核心判断：知识更新频率。频繁更新→RAG（改数据库不改模型）；稳定领域+特定格式→微调。10 万页文档→RAG + 分块策略 + 向量检索，不建议微调（成本高、更新难）。</div>
+        <button class="jj-interview-answer-toggle" onclick="toggleAnswer(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleAnswer(this)" tabindex="0" aria-expanded="false">参考答案 <span class="jj-interview-answer-arrow">&#9662;</span></button>
+        <div class="jj-interview-answer"><div class="jj-interview-answer-body">
+          <strong>决策框架：</strong><br>
+          选 RAG 当：知识需要频繁更新、需要溯源（标注答案来自哪份文档）、数据量大且持续增长、预算有限。<br>
+          选微调当：需要特定输出风格/格式、领域术语密集且稳定、推理速度要求高（微调后小模型可能够用）、有足够的标注数据。<br><br>
+          <strong>10 万页文档的具体方案：</strong><br>
+          1. <strong>分块策略：</strong>按章节/段落分块，每块 500-1000 Token，保留上下文重叠 100 Token。不要按固定字数切——会切断语义。<br>
+          2. <strong>向量化：</strong>用 Embedding 模型（如 text-embedding-3-small）对每个块生成向量，存入向量数据库（Pinecone / Milvus / Chroma）。<br>
+          3. <strong>检索策略：</strong>用户提问 → 向量检索 Top 5 相关块 → 拼 Prompt → LLM 生成回答。加 Rerank 提升精度。<br>
+          4. <strong>为什么不微调：</strong>10 万页 ≈ 1.5 亿 Token，微调成本高且文档更新后需要重新训练。RAG 只需更新数据库。<br><br>
+          <strong>加分项：</strong>提到混合方案——RAG 为主 + 微调一个小模型做意图分类/路由；提到 Eval（建 100 个标准 Q&A 对，评估检索召回率和回答准确率）；提到成本估算（每千次查询的 Token 成本）。
+        </div></div>
       </div>
       <div class="jj-interview-card">
         <span class="jj-interview-tag">Agent 设计</span>
@@ -1860,14 +2039,20 @@ body::before{
       <span class="jj-contact-eyebrow jj-reveal">加入社群</span>
       <h2 class="jj-contact-h2 jj-reveal" style="transition-delay:.08s">不要一个人走，<br>一起走得更远。</h2>
       <p class="jj-contact-p jj-reveal" style="transition-delay:.16s">加入 AI PM 学习社群，和同样在成长路上的伙伴互相陪伴，分享每周学习笔记，在真实的社区里获得真实的反馈。</p>
-      <div class="jj-contact-links jj-reveal" style="transition-delay:.24s">
-        <div class="jj-contact-row">
-          <span class="jj-contact-row-label">邮箱</span>
-          <div class="jj-contact-row-val"><a href="mailto:wenkai920914@gmail.com">wenkai920914@gmail.com</a></div>
+      <div class="jj-contact-cta jj-reveal" style="transition-delay:.2s">
+        <div class="jj-contact-cta-card">
+          <div class="jj-contact-cta-icon">&#128172;</div>
+          <div>
+            <div class="jj-contact-cta-title">微信群 · 互助学习</div>
+            <div class="jj-contact-cta-desc">加微信 AIPM_Learning，拉你进群。群内每周分享学习笔记、互相 Review 项目、模拟面试。</div>
+          </div>
         </div>
-        <div class="jj-contact-row">
-          <span class="jj-contact-row-label">微信</span>
-          <div class="jj-contact-row-val" style="color:var(--t2)">AIPM_Learning</div>
+        <div class="jj-contact-cta-card">
+          <div class="jj-contact-cta-icon">&#9993;</div>
+          <div>
+            <div class="jj-contact-cta-title">邮件 · 1v1 咨询</div>
+            <div class="jj-contact-cta-desc">有具体问题？邮件 <a href="mailto:wenkai920914@gmail.com">wenkai920914@gmail.com</a>，48 小时内回复。也可以直接填写右侧表单。</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1894,7 +2079,7 @@ body::before{
   </div>
   <div class="jj-footer">
     <span>AI PM 学习路径 · 从零到一的系统成长计划</span>
-    <span class="jj-footer-brand">AI PM 学习路径</span>
+    <span class="jj-footer-brand">最后更新 2025-07 · AI PM 学习路径</span>
   </div>
 </section>
 
@@ -2010,7 +2195,7 @@ function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
 })();
 
 /* ─── NAV & RAIL SCROLL HIGHLIGHT ─── */
-var sectionIds = ['overview','phase1','phase2','phase3','phase4','glossary','interview','resources','contact'];
+var sectionIds = ['overview','phase1','phase2','phase3','phase4','glossary','career','interview','resources','contact'];
 (function(){
   var navLinks = document.querySelectorAll('.jj-nav-link[data-nav]');
   var railDots = document.querySelectorAll('.jj-rail-dot[data-rail]');
@@ -2138,16 +2323,33 @@ function toggleTask(el) {
   var text = el.querySelector('.jj-task-text');
   var list = el.closest('.jj-task-list');
   var taskId = list.id + '_' + Array.from(list.children).indexOf(el);
-  var done = check.classList.toggle('done');
-  text.classList.toggle('done', done);
-  el.setAttribute('aria-checked', done.toString());
-  taskState[taskId] = done;
+  // Three-state cycle: 0 (not started) → 1 (in progress) → 2 (done) → 0
+  var current = taskState[taskId];
+  // Backward compat: true → 2, false/undefined → 0
+  if (current === true) current = 2;
+  else if (current === false || current === undefined) current = 0;
+  var next = (current + 1) % 3;
+  // Update visual state
+  check.classList.remove('done', 'progress');
+  text.classList.remove('done', 'progress');
+  if (next === 1) {
+    check.classList.add('progress');
+    text.classList.add('progress');
+    el.setAttribute('aria-checked', 'mixed');
+  } else if (next === 2) {
+    check.classList.add('done');
+    text.classList.add('done');
+    el.setAttribute('aria-checked', 'true');
+  } else {
+    el.setAttribute('aria-checked', 'false');
+  }
+  taskState[taskId] = next;
   try { localStorage.setItem('jj_tasks', JSON.stringify(taskState)); } catch(e) {}
-  // Log time for daily/weekly tracking
-  if (done) {
+  // Log time for daily/weekly tracking — only when transitioning to done
+  if (next === 2 && current !== 2) {
     var hrs = parseFloat(el.getAttribute('data-time') || '0');
     logTaskCompletion(taskId, hrs);
-  } else {
+  } else if (next !== 2 && current === 2) {
     logTaskUndo(taskId);
   }
   updatePhaseProgress();
@@ -2181,9 +2383,19 @@ function restoreTasks() {
   document.querySelectorAll('.jj-task-list').forEach(function(list) {
     Array.from(list.children).forEach(function(item, i) {
       var taskId = list.id + '_' + i;
-      if (taskState[taskId]) {
-        item.querySelector('.jj-task-check').classList.add('done');
-        item.querySelector('.jj-task-text').classList.add('done');
+      var state = taskState[taskId];
+      // Backward compat: true → 2 (done), false → 0 (not started)
+      if (state === true) state = 2;
+      else if (state === false || state === undefined) state = 0;
+      var check = item.querySelector('.jj-task-check');
+      var text = item.querySelector('.jj-task-text');
+      if (state === 1) {
+        check.classList.add('progress');
+        text.classList.add('progress');
+        item.setAttribute('aria-checked', 'mixed');
+      } else if (state === 2) {
+        check.classList.add('done');
+        text.classList.add('done');
         item.setAttribute('aria-checked', 'true');
       }
     });
@@ -2299,9 +2511,9 @@ function undoBadge(phaseIdx, toastId) {
   if (list) {
     Array.from(list.children).forEach(function(item, i) {
       var taskId = listId + '_' + i;
-      taskState[taskId] = false;
-      item.querySelector('.jj-task-check').classList.remove('done');
-      item.querySelector('.jj-task-text').classList.remove('done');
+      taskState[taskId] = 0;
+      item.querySelector('.jj-task-check').classList.remove('done','progress');
+      item.querySelector('.jj-task-text').classList.remove('done','progress');
       item.setAttribute('aria-checked', 'false');
     });
     try { localStorage.setItem('jj_tasks', JSON.stringify(taskState)); } catch(e) {}
@@ -2335,6 +2547,14 @@ function toggleGlossary(btn) {
   btn.classList.toggle('open', open);
   btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   btn.firstChild.textContent = open ? '收起术语词典 ' : '展开全部术语 ';
+}
+
+function toggleAnswer(btn) {
+  var answer = btn.nextElementSibling;
+  if (!answer) return;
+  var open = answer.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 
 function saveNotes(phase) {
