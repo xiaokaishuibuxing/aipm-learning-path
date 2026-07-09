@@ -187,6 +187,7 @@ body::before{
 }
 .jj-logo-icon:hover{background:var(--wood-glow);box-shadow:0 4px 20px rgba(184,153,104,.15);}
 .jj-logo-text{font-family:'Noto Serif SC',serif;font-weight:700;font-size:17px;letter-spacing:.06em;color:var(--t1);}
+.jj-nav-progress{position:absolute;left:0;bottom:0;height:2px;width:0;background:linear-gradient(90deg,var(--wood),var(--copper),var(--tea));border-radius:0 2px 2px 0;transition:width .6s cubic-bezier(.4,0,.2,1);z-index:1;}
 .jj-logo-sub{font-family:'Noto Serif SC',serif;font-size:11px;letter-spacing:.18em;color:var(--t3);text-transform:uppercase;margin-top:1px;}
 .jj-nav-links{display:flex;align-items:center;gap:16px;font-size:12.5px;flex-wrap:wrap;}
 .jj-nav-link{color:var(--t2);position:relative;padding-bottom:2px;transition:color .25s;white-space:nowrap;}
@@ -254,7 +255,7 @@ body::before{
 .jj-btn-ghost:hover{border-color:var(--wood);color:var(--wood-dk);background:var(--wood-glow);}
 
 /* ─── HERO CARD ─── */
-.jj-hero-right{flex-shrink:0;width:340px;padding-top:4px;}
+.jj-hero-right{flex-shrink:0;width:340px;padding-top:4px;position:sticky;top:88px;align-self:flex-start;}
 .jj-hero-card{
   background:#FFFDFB;
   border:1px solid var(--line);
@@ -267,6 +268,7 @@ body::before{
   color:var(--t3);display:flex;justify-content:space-between;text-transform:uppercase;
 }
 .jj-hero-card-live{display:flex;align-items:center;gap:8px;color:var(--t2);}
+.jj-hero-card-overall{margin-left:2px;font-size:13px;font-weight:600;color:var(--wood-dk);text-transform:none;letter-spacing:0;}
 .jj-hero-card-livdot{width:6px;height:6px;background:var(--tea);border-radius:50%;animation:jjPulse 2.5s ease-in-out infinite;}
 .jj-progress-row{
   padding:14px 20px;border-bottom:1px solid var(--line);
@@ -279,7 +281,7 @@ body::before{
 .jj-progress-label{display:flex;justify-content:space-between;align-items:center;font-size:13px;}
 .jj-progress-title{color:var(--t2);font-weight:500;}
 .jj-progress-pct{font-family:'Noto Serif SC',serif;font-size:13px;color:var(--wood-dk);font-weight:500;}
-.jj-progress-track{height:2px;background:rgba(139,115,85,.08);overflow:hidden;border-radius:2px;}
+.jj-progress-track{height:4px;background:rgba(139,115,85,.12);overflow:hidden;border-radius:3px;}
 .jj-progress-fill{height:100%;background:linear-gradient(90deg,var(--wood),var(--copper));transition:width .8s cubic-bezier(.4,0,.2,1);border-radius:2px;}
 .jj-progress-sub{font-size:11.5px;color:var(--t3);margin-top:2px;}
 .jj-hero-card-export{
@@ -295,6 +297,17 @@ body::before{
 .jj-hero-card-export:focus-visible{outline:2px solid var(--wood);outline-offset:-2px;}
 .jj-hero-card-export:active{color:var(--wood-dk);background:rgba(184,153,104,.08);}
 .jj-hero-card-export-arrow{display:inline-block;transition:transform .2s;}
+.jj-hero-card-resume{
+  display:flex;align-items:center;justify-content:flex-end;gap:4px;
+  width:100%;padding:10px 20px;
+  font-size:11.5px;color:var(--wood-dk);font-family:'Noto Sans SC',sans-serif;font-weight:500;
+  background:none;cursor:pointer;border:none;border-top:1px solid var(--line);
+  transition:background .2s,color .2s;
+}
+.jj-hero-card-resume:hover,.jj-hero-card-resume:focus-visible{background:rgba(184,153,104,.06);outline:none;}
+.jj-hero-card-resume:focus-visible{outline:2px solid var(--wood);outline-offset:-2px;}
+.jj-hero-card-resume:active{background:rgba(184,153,104,.10);}
+.jj-hero-card-resume[disabled]{color:var(--t3);cursor:default;}
 .jj-hero-card-export:hover .jj-hero-card-export-arrow,
 .jj-hero-card-export:focus-visible .jj-hero-card-export-arrow{transform:translateX(3px);}
 
@@ -500,6 +513,7 @@ body::before{
 .jj-career-stat-num{font-family:'Noto Serif SC',serif;font-size:32px;font-weight:900;color:var(--wood-dk);line-height:1.1;margin-bottom:6px;}
 .jj-career-stat-num span{font-size:14px;font-weight:500;color:var(--t3);margin-left:2px;}
 .jj-career-stat-label{font-size:12px;color:var(--t2);line-height:1.5;}
+.jj-career-cutoff{font-size:12px;color:var(--t3);}
 .jj-career-salary{margin-bottom:24px;border:1px solid var(--line);border-radius:2px;overflow:hidden;}
 .jj-career-salary-hdr{display:grid;grid-template-columns:120px 1fr 1fr 1fr;padding:12px 20px;background:rgba(184,153,104,.06);font-size:11px;font-weight:600;color:var(--wood-dk);letter-spacing:.08em;border-bottom:1px solid var(--line-a);}
 .jj-career-salary-row{display:grid;grid-template-columns:120px 1fr 1fr 1fr;padding:14px 20px;border-bottom:1px solid var(--line);font-size:13px;color:var(--t2);align-items:center;}
@@ -937,7 +951,7 @@ body::before{
   .jj-phase-watermark{font-size:100px;left:-20px;top:0;}
   .jj-hero-h1{font-size:40px;}
   .jj-hero-inner{flex-direction:column;gap:40px;}
-  .jj-hero-right{width:100%;padding-top:0;}
+  .jj-hero-right{width:100%;padding-top:0;position:static;}
   .jj-hero-deco{font-size:140px;opacity:.02;}
   .jj-timeline{grid-template-columns:repeat(2,1fr);gap:24px;}
   .jj-timeline::before{display:none;}
@@ -978,7 +992,7 @@ body::before{
   .jj-stat{padding:28px 20px;}
   .jj-stat-val{font-size:36px;}
   .jj-stat-val span{font-size:18px;}
-  .jj-hero-right{width:100%;padding-top:0;}
+  .jj-hero-right{width:100%;padding-top:0;position:static;}
   .jj-section-h2{font-size:26px;}
   .jj-contact-h2{font-size:30px;}
   .jj-lib-hdr,.jj-lib-row{grid-template-columns:1fr;gap:4px;padding:10px 14px;}
@@ -1090,6 +1104,7 @@ body::before{
     <a href="#resources" class="jj-nav-link" data-nav="resources">资料库</a>
     <a href="#contact" class="jj-nav-cta">加入社群</a>
   </div>
+  <div class="jj-nav-progress" id="jj-nav-progress" role="progressbar" aria-label="学习总进度"></div>
 </nav>
 
 <!-- ─── HERO ─── -->
@@ -1114,7 +1129,7 @@ body::before{
       <div class="jj-hero-card">
         <div class="jj-hero-card-hdr">
           <div class="jj-hero-card-live">
-            <span class="jj-hero-card-livdot" aria-hidden="true"></span>总体进度
+            <span class="jj-hero-card-livdot" aria-hidden="true"></span>总体进度 <span id="hero-overall-pct" class="jj-hero-card-overall">0%</span>
           </div>
           <span>12 WEEKS</span>
         </div>
@@ -1153,6 +1168,7 @@ body::before{
         <a href="#" class="jj-hero-card-export" onclick="exportData();return false" role="button" aria-label="导出学习数据">
           导出学习数据 <span class="jj-hero-card-export-arrow">→</span>
         </a>
+        <button class="jj-hero-card-resume" id="jj-hero-resume" onclick="resumeLearning()" aria-label="跳到下一个未完成任务">继续学习 <span class="jj-hero-card-export-arrow">→</span></button>
       </div>
     </div>
   </div>
@@ -1851,7 +1867,7 @@ body::before{
   <div class="jj-section-inner">
     <div class="jj-section-eyebrow jj-reveal">就业前景</div>
     <h2 class="jj-section-h2 jj-reveal" style="transition-delay:.06s">值得转吗？让数据说话</h2>
-    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s">以下数据来自智联招聘《2025 年人工智能产业人才发展报告》及脉脉高聘公开数据，帮你做决策。</p>
+    <p class="jj-section-lead jj-reveal" style="transition-delay:.12s">以下数据来自智联招聘《2025 年人工智能产业人才发展报告》及脉脉高聘公开数据，帮你做决策。<span class="jj-career-cutoff">（数据截至 2025 年 Q3）</span></p>
     <div class="jj-career-stats jj-reveal" style="transition-delay:.18s">
       <div class="jj-career-stat">
         <div class="jj-career-stat-num">+178<span>%</span></div>
@@ -2365,18 +2381,63 @@ function updatePhaseProgress() {
     {id:'p4-tasks', fillIdx:3}
   ];
   var fills = document.querySelectorAll('.jj-progress-fill');
+  var totalDone = 0, totalTasks = 0;
   phases.forEach(function(p,i) {
     var list = document.getElementById(p.id);
     if (!list) return;
     var done = list.querySelectorAll('.jj-task-check.done').length;
     var total = phaseTaskCounts[i];
     var pct = total ? Math.round(done / total * 100) : 0;
+    totalDone += done;
+    totalTasks += total;
     if (fills[p.fillIdx]) fills[p.fillIdx].style.width = pct + '%';
     var pctEl = document.getElementById('hero-pct-' + i);
     if (pctEl) pctEl.textContent = pct + '%';
     var tasksEl = document.getElementById('hero-tasks-' + i);
     if (tasksEl) tasksEl.textContent = done + '/' + total + ' 项完成';
   });
+  var overall = totalTasks ? Math.round(totalDone / totalTasks * 100) : 0;
+  var overallEl = document.getElementById('hero-overall-pct');
+  if (overallEl) overallEl.textContent = totalDone === 0 ? '尚未开始' : overall + '%';
+  var navBar = document.getElementById('jj-nav-progress');
+  if (navBar) navBar.style.width = overall + '%';
+  var resumeBtn = document.getElementById('jj-hero-resume');
+  if (resumeBtn) {
+    if (totalTasks > 0 && totalDone === totalTasks) {
+      resumeBtn.innerHTML = '全部任务已完成 &#10003;';
+      resumeBtn.disabled = true;
+    } else {
+      resumeBtn.innerHTML = '继续学习 <span class="jj-hero-card-export-arrow">&#8594;</span>';
+      resumeBtn.disabled = false;
+    }
+  }
+}
+
+function resumeLearning() {
+  var lists = ['p1-tasks','p2-tasks','p3-tasks','p4-tasks'];
+  for (var i = 0; i < lists.length; i++) {
+    var list = document.getElementById(lists[i]);
+    if (!list) continue;
+    var items = list.querySelectorAll('.jj-task-item');
+    var hasIncomplete = false;
+    for (var j = 0; j < items.length; j++) {
+      var check = items[j].querySelector('.jj-task-check');
+      if (check && !check.classList.contains('done')) { hasIncomplete = true; break; }
+    }
+    if (hasIncomplete) {
+      if (phaseCollapsed[i]) {
+        phaseCollapsed[i] = false;
+        applyPhaseState(i);
+        updateCollapseBtn(null, i);
+        try { localStorage.setItem('jj_phase_collapsed', JSON.stringify(phaseCollapsed)); } catch(e) {}
+        updateCollapseAllBtn();
+      }
+      var sec = document.getElementById('phase' + (i + 1));
+      if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+      else scrollToSection('phase' + (i + 1));
+      return;
+    }
+  }
 }
 
 function restoreTasks() {
